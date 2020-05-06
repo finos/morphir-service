@@ -1,5 +1,5 @@
 # Morphir-Dapr
-The morphir-dapr project is a Morphir sub-project dedicated to enabling the [Microsoft Dapr](http://dapr.io) platform as a target for [Morphir Application Models].  
+The morphir-dapr project is a Morphir sub-project dedicated to enabling the [Microsoft Dapr](http://dapr.io) platform as a target for [Morphir Application Models](https://morgan-stanley.github.io/morphir/application_modeling).
 
 ## What
 Morphir Application Modeling imagines development as:
