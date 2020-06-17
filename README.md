@@ -23,5 +23,5 @@ In general, the flow for application modeling is:
 
 ## Notes
 A few important notes:
-1. This is a work-in-project. Community participation will be key to making it production grade.
+1. This is a work-in-progress. Community participation will be key to making it production grade.
 2. While we used Elm in our examples, Bosque is another powerful application modeling language that we're excited about. Keep an eye out for more on this.
