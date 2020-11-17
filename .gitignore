@@ -1,0 +1,8 @@
+Morphir.*.js
+node_modules
+elm-stuff
+.vscode
+.idea
+dist/
+cli/elm-stuff
+**/elm-stuff/*
