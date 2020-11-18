@@ -127,6 +127,5 @@ async function writeFile(filePath, content) {
     return await fsWriteFile(filePath, content)
 }
 
-exports.make = make;
 exports.gen = gen;
 exports.writeFile = writeFile;

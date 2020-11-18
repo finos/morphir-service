@@ -15,24 +15,19 @@
 -}
 
 
-port module Morphir.Elm.CLI exposing (main)
+port module Morphir.Elm.CLI exposing (..)
 
 import Dict
 import Json.Decode as Decode exposing (field, string)
 import Json.Encode as Encode
-import Morphir.Elm.Frontend as Frontend exposing (PackageInfo, SourceFile)
-import Morphir.Elm.Frontend.Codec exposing (decodePackageInfo, encodeError)
+import Morphir.Elm.Frontend as Frontend exposing (PackageInfo, SourceFile, SourceLocation)
+import Morphir.Elm.Frontend.Codec as FrontendCodec exposing (decodePackageInfo)
 import Morphir.Elm.Target exposing (decodeOptions, mapDistribution)
 import Morphir.File.FileMap.Codec exposing (encodeFileMap)
 import Morphir.IR.Distribution as Distribution exposing (Distribution(..))
 import Morphir.IR.Distribution.Codec as DistributionCodec
 import Morphir.IR.Package as Package
-import Morphir.IR.Package.Codec as PackageCodec
-
-port packageDefinitionFromSource : (( Decode.Value, List SourceFile ) -> msg) -> Sub msg
-
-
-port packageDefinitionFromSourceResult : Encode.Value -> Cmd msg
+import Morphir.IR.Type exposing (Type)
 
 
 port decodeError : String -> Cmd msg
@@ -45,8 +40,7 @@ port generateResult : Encode.Value -> Cmd msg
 
 
 type Msg
-    = PackageDefinitionFromSource ( Decode.Value, List SourceFile )
-    | Generate ( Decode.Value, Decode.Value )
+    = Generate ( Decode.Value, Decode.Value )
 
 
 main : Platform.Program () () Msg
@@ -61,24 +55,11 @@ main =
 update : Msg -> () -> ( (), Cmd Msg )
 update msg model =
     case msg of
-        PackageDefinitionFromSource ( packageInfoJson, sourceFiles ) ->
-            case Decode.decodeValue decodePackageInfo packageInfoJson of
-                Ok packageInfo ->
-                    let
-                        result =
-                            Frontend.packageDefinitionFromSource packageInfo Dict.empty sourceFiles
-                                |> Result.map Package.eraseDefinitionAttributes
-                                |> Result.map (Distribution.Library packageInfo.name Dict.empty)
-                    in
-                    ( model, result |> encodeResult (Encode.list encodeError) DistributionCodec.encodeDistribution |> packageDefinitionFromSourceResult )
-
-                Err errorMessage ->
-                    ( model, errorMessage |> Decode.errorToString |> decodeError )
-
         Generate ( optionsJson, packageDistJson ) ->
             let
                 targetOption =
-                   Decode.decodeValue (field "target" string) optionsJson
+                    Decode.decodeValue (field "target" string) optionsJson
+
                 optionsResult =
                     Decode.decodeValue (decodeOptions targetOption) optionsJson
 
@@ -105,13 +86,12 @@ update msg model =
 subscriptions : () -> Sub Msg
 subscriptions _ =
     Sub.batch
-        [ packageDefinitionFromSource PackageDefinitionFromSource
-        , generate Generate
+        [ generate Generate
         ]
 
 
 encodeResult : (e -> Encode.Value) -> (a -> Encode.Value) -> Result e a -> Encode.Value
-encodeResult encodeError encodeValue result =
+encodeResult encodeErr encodeValue result =
     case result of
         Ok a ->
             Encode.list identity
@@ -121,6 +101,6 @@ encodeResult encodeError encodeValue result =
 
         Err e ->
             Encode.list identity
-                [ encodeError e
+                [ encodeErr e
                 , Encode.null
                 ]

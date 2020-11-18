@@ -8,7 +8,7 @@
     "make-cli": "cd cli && elm make src/Morphir/Elm/CLI.elm --output Morphir.Elm.CLI.js --optimize",
     "make-cli-dev": "cd cli && elm make src/Morphir/Elm/CLI.elm --output Morphir.Elm.CLI.js",
     "cli": "npm run clean && ncc build cli/morphir-service.js -o dist/morphir",
-    "build": "npm run clean && npm run make-cli && ncc build cli/morphir.js -o dist/morphir"
+    "build": "npm run clean && npm run make-cli && ncc build cli/morphir-service.js -o dist/morphir"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "commander": "^4.1.1",
+    "elm-format": "^0.8.4",
     "fs-extra": "^9.0.0",
     "get-stdin": "^8.0.0"
   }

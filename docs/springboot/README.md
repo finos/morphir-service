@@ -29,7 +29,7 @@ module Morphir.Reference.Model.BooksAndRecords exposing (..)
 then our folder structure might be
 ```
 exampleIR
-|   morphir.json
+|   morphir-service.json
 |   |example
 |   |   |Morphir
 |   |   |   |Reference
@@ -52,7 +52,7 @@ The morphir.json file should be something like this
 
 Finally to translate to IR
 - Go to command line
-- Navigate to ExampleIR folder (where morphir.json is located)
+- Navigate to ExampleIR folder (where morphir-service.json is located)
 - Execute
     ```
     morphir-elm make
