@@ -6828,6 +6828,14 @@ var $author$project$Morphir$IR$SDK$Basics$moduleSpec = {
 				$author$project$Morphir$IR$SDK$Common$tVar('a'))
 			]))
 };
+var $author$project$Morphir$IR$SDK$Char$moduleName = $author$project$Morphir$IR$Path$fromString('Char');
+var $author$project$Morphir$IR$SDK$Char$charType = function (attributes) {
+	return A3(
+		$author$project$Morphir$IR$Type$Reference,
+		attributes,
+		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Char$moduleName, 'Char'),
+		_List_Nil);
+};
 var $author$project$Morphir$IR$SDK$Char$moduleSpec = {
 	types: $elm$core$Dict$fromList(
 		_List_fromArray(
@@ -6839,23 +6847,140 @@ var $author$project$Morphir$IR$SDK$Char$moduleSpec = {
 					'Type that represents a single character.',
 					$author$project$Morphir$IR$Type$OpaqueTypeSpecification(_List_Nil)))
 			])),
-	values: function () {
-		var valueNames = _List_fromArray(
-			['isUpper', 'isLower', 'isAlpha', 'isAlphaNum', 'isDigit', 'isOctDigit', 'isHexDigit', 'toUpper', 'toLower', 'toLocaleUpper', 'toLocaleLower', 'toCode', 'fromCode']);
-		var dummyValueSpec = A2(
-			$author$project$Morphir$IR$Value$Specification,
-			_List_Nil,
-			$author$project$Morphir$IR$Type$Unit(_Utils_Tuple0));
-		return $elm$core$Dict$fromList(
-			A2(
-				$elm$core$List$map,
-				function (valueName) {
-					return _Utils_Tuple2(
-						$author$project$Morphir$IR$Name$fromString(valueName),
-						dummyValueSpec);
-				},
-				valueNames));
-	}()
+	values: $elm$core$Dict$fromList(
+		_List_fromArray(
+			[
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isUpper',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isLower',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isAlpha',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isAlphaNum',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isDigit',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isOctDigit',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'isHexDigit',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toUpper',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toLower',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toLocaleUpper',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toLocaleLower',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toCode',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'fromCode',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'c',
+						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0))
+			]))
 };
 var $author$project$Morphir$IR$SDK$Decimal$moduleName = $author$project$Morphir$IR$Path$fromString('Decimal');
 var $author$project$Morphir$IR$SDK$Decimal$decimalType = function (attributes) {
@@ -7835,6 +7960,161 @@ var $author$project$Morphir$IR$SDK$Dict$moduleSpec = {
 						$author$project$Morphir$IR$SDK$Common$tVar('result'))
 					]),
 				$author$project$Morphir$IR$SDK$Common$tVar('result'))
+			]))
+};
+var $author$project$Morphir$IR$SDK$Int$moduleName = $author$project$Morphir$IR$Path$fromString('Int');
+var $author$project$Morphir$IR$SDK$Int$int16Type = function (attributes) {
+	return A3(
+		$author$project$Morphir$IR$Type$Reference,
+		attributes,
+		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Int$moduleName, 'Int16'),
+		_List_Nil);
+};
+var $author$project$Morphir$IR$SDK$Int$int32Type = function (attributes) {
+	return A3(
+		$author$project$Morphir$IR$Type$Reference,
+		attributes,
+		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Int$moduleName, 'Int32'),
+		_List_Nil);
+};
+var $author$project$Morphir$IR$SDK$Int$int64Type = function (attributes) {
+	return A3(
+		$author$project$Morphir$IR$Type$Reference,
+		attributes,
+		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Int$moduleName, 'Int64'),
+		_List_Nil);
+};
+var $author$project$Morphir$IR$SDK$Int$int8Type = function (attributes) {
+	return A3(
+		$author$project$Morphir$IR$Type$Reference,
+		attributes,
+		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Int$moduleName, 'Int8'),
+		_List_Nil);
+};
+var $author$project$Morphir$IR$SDK$Int$moduleSpec = {
+	types: $elm$core$Dict$fromList(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				$author$project$Morphir$IR$Name$fromString('Int8'),
+				A2(
+					$author$project$Morphir$IR$Documented$Documented,
+					'Type that represents a 8-bit integer.',
+					$author$project$Morphir$IR$Type$OpaqueTypeSpecification(_List_Nil))),
+				_Utils_Tuple2(
+				$author$project$Morphir$IR$Name$fromString('Int16'),
+				A2(
+					$author$project$Morphir$IR$Documented$Documented,
+					'Type that represents a 16-bit integer.',
+					$author$project$Morphir$IR$Type$OpaqueTypeSpecification(_List_Nil))),
+				_Utils_Tuple2(
+				$author$project$Morphir$IR$Name$fromString('Int32'),
+				A2(
+					$author$project$Morphir$IR$Documented$Documented,
+					'Type that represents a 32-bit integer.',
+					$author$project$Morphir$IR$Type$OpaqueTypeSpecification(_List_Nil))),
+				_Utils_Tuple2(
+				$author$project$Morphir$IR$Name$fromString('Int64'),
+				A2(
+					$author$project$Morphir$IR$Documented$Documented,
+					'Type that represents a 64-bit integer.',
+					$author$project$Morphir$IR$Type$OpaqueTypeSpecification(_List_Nil)))
+			])),
+	values: $elm$core$Dict$fromList(
+		_List_fromArray(
+			[
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'fromInt8',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Int$int8Type(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toInt8',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0))
+					]),
+				A2(
+					$author$project$Morphir$IR$SDK$Maybe$maybeType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Int$int8Type(_Utils_Tuple0))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'fromInt16',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Int$int16Type(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toInt16',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0))
+					]),
+				A2(
+					$author$project$Morphir$IR$SDK$Maybe$maybeType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Int$int16Type(_Utils_Tuple0))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'fromInt32',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Int$int32Type(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toInt32',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0))
+					]),
+				A2(
+					$author$project$Morphir$IR$SDK$Maybe$maybeType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Int$int32Type(_Utils_Tuple0))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'fromInt64',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Int$int64Type(_Utils_Tuple0))
+					]),
+				$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'toInt64',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'n',
+						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0))
+					]),
+				A2(
+					$author$project$Morphir$IR$SDK$Maybe$maybeType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Int$int64Type(_Utils_Tuple0)))
 			]))
 };
 var $author$project$Morphir$IR$SDK$Key$moduleName = $author$project$Morphir$IR$Path$fromString('Key');
@@ -11846,6 +12126,242 @@ var $author$project$Morphir$IR$Type$TypeAliasSpecification = F2(
 	function (a, b) {
 		return {$: 'TypeAliasSpecification', a: a, b: b};
 	});
+var $author$project$Morphir$IR$SDK$ResultList$moduleName = $author$project$Morphir$IR$Path$fromString('ResultList');
+var $author$project$Morphir$IR$SDK$ResultList$resultListType = F3(
+	function (attributes, errorType, itemType) {
+		return A3(
+			$author$project$Morphir$IR$Type$Reference,
+			attributes,
+			A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$ResultList$moduleName, 'ResultList'),
+			_List_fromArray(
+				[errorType, itemType]));
+	});
+var $author$project$Morphir$IR$SDK$ResultList$moduleSpec = {
+	types: $elm$core$Dict$fromList(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				$author$project$Morphir$IR$Name$fromString('ResultList'),
+				A2(
+					$author$project$Morphir$IR$Documented$Documented,
+					'Type that represents a list of results.',
+					A2(
+						$author$project$Morphir$IR$Type$TypeAliasSpecification,
+						_List_fromArray(
+							[
+								_List_fromArray(
+								['e']),
+								_List_fromArray(
+								['a'])
+							]),
+						A2(
+							$author$project$Morphir$IR$SDK$List$listType,
+							_Utils_Tuple0,
+							A3(
+								$author$project$Morphir$IR$SDK$Result$resultType,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$SDK$Common$tVar('e'),
+								$author$project$Morphir$IR$SDK$Common$tVar('a'))))))
+			])),
+	values: $elm$core$Dict$fromList(
+		_List_fromArray(
+			[
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'fromList',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'list',
+						A2(
+							$author$project$Morphir$IR$SDK$List$listType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A3(
+					$author$project$Morphir$IR$SDK$ResultList$resultListType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('e'),
+					$author$project$Morphir$IR$SDK$Common$tVar('a'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'filter',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'f',
+						A2(
+							$author$project$Morphir$IR$SDK$Common$tFun,
+							_List_fromArray(
+								[
+									$author$project$Morphir$IR$SDK$Common$tVar('a')
+								]),
+							$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0))),
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A3(
+					$author$project$Morphir$IR$SDK$ResultList$resultListType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('e'),
+					$author$project$Morphir$IR$SDK$Common$tVar('a'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'filterOrFail',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'f',
+						A2(
+							$author$project$Morphir$IR$SDK$Common$tFun,
+							_List_fromArray(
+								[
+									$author$project$Morphir$IR$SDK$Common$tVar('a')
+								]),
+							A3(
+								$author$project$Morphir$IR$SDK$Result$resultType,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$SDK$Common$tVar('e'),
+								$author$project$Morphir$IR$SDK$Basics$boolType(_Utils_Tuple0)))),
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A3(
+					$author$project$Morphir$IR$SDK$ResultList$resultListType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('e'),
+					$author$project$Morphir$IR$SDK$Common$tVar('a'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'map',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'f',
+						A2(
+							$author$project$Morphir$IR$SDK$Common$tFun,
+							_List_fromArray(
+								[
+									$author$project$Morphir$IR$SDK$Common$tVar('a')
+								]),
+							$author$project$Morphir$IR$SDK$Common$tVar('b'))),
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A3(
+					$author$project$Morphir$IR$SDK$ResultList$resultListType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('e'),
+					$author$project$Morphir$IR$SDK$Common$tVar('b'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'mapOrFail',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'f',
+						A2(
+							$author$project$Morphir$IR$SDK$Common$tFun,
+							_List_fromArray(
+								[
+									$author$project$Morphir$IR$SDK$Common$tVar('a')
+								]),
+							A3(
+								$author$project$Morphir$IR$SDK$Result$resultType,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$SDK$Common$tVar('e'),
+								$author$project$Morphir$IR$SDK$Common$tVar('b')))),
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A3(
+					$author$project$Morphir$IR$SDK$ResultList$resultListType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('e'),
+					$author$project$Morphir$IR$SDK$Common$tVar('b'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'errors',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A2(
+					$author$project$Morphir$IR$SDK$List$listType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('e'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'successes',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A2(
+					$author$project$Morphir$IR$SDK$List$listType,
+					_Utils_Tuple0,
+					$author$project$Morphir$IR$SDK$Common$tVar('a'))),
+				A3(
+				$author$project$Morphir$IR$SDK$Common$vSpec,
+				'partition',
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'list',
+						A3(
+							$author$project$Morphir$IR$SDK$ResultList$resultListType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e'),
+							$author$project$Morphir$IR$SDK$Common$tVar('a')))
+					]),
+				A2(
+					$author$project$Morphir$IR$Type$Tuple,
+					_Utils_Tuple0,
+					_List_fromArray(
+						[
+							A2(
+							$author$project$Morphir$IR$SDK$List$listType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('e')),
+							A2(
+							$author$project$Morphir$IR$SDK$List$listType,
+							_Utils_Tuple0,
+							$author$project$Morphir$IR$SDK$Common$tVar('a'))
+						])))
+			]))
+};
 var $author$project$Morphir$IR$SDK$Rule$moduleName = $author$project$Morphir$IR$Path$fromString('Rule');
 var $author$project$Morphir$IR$SDK$Rule$ruleType = F3(
 	function (attributes, itemType1, itemType2) {
@@ -11870,7 +12386,9 @@ var $author$project$Morphir$IR$SDK$Rule$moduleSpec = {
 						_List_fromArray(
 							[
 								_List_fromArray(
-								['rule'])
+								['a']),
+								_List_fromArray(
+								['b'])
 							]),
 						A2(
 							$author$project$Morphir$IR$SDK$Common$tFun,
@@ -12397,14 +12915,6 @@ var $author$project$Morphir$IR$SDK$StatefulApp$moduleSpec = {
 			])),
 	values: $elm$core$Dict$empty
 };
-var $author$project$Morphir$IR$SDK$Char$moduleName = $author$project$Morphir$IR$Path$fromString('Char');
-var $author$project$Morphir$IR$SDK$Char$charType = function (attributes) {
-	return A3(
-		$author$project$Morphir$IR$Type$Reference,
-		attributes,
-		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Char$moduleName, 'Char'),
-		_List_Nil);
-};
 var $author$project$Morphir$IR$SDK$String$moduleSpec = {
 	types: $elm$core$Dict$fromList(
 		_List_fromArray(
@@ -12845,6 +13355,9 @@ var $author$project$Morphir$IR$SDK$String$moduleSpec = {
 						'n',
 						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
 						_Utils_Tuple2(
+						'ch',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
+						_Utils_Tuple2(
 						's',
 						$author$project$Morphir$IR$SDK$String$stringType(_Utils_Tuple0))
 					]),
@@ -12858,6 +13371,9 @@ var $author$project$Morphir$IR$SDK$String$moduleSpec = {
 						'n',
 						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
 						_Utils_Tuple2(
+						'ch',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
+						_Utils_Tuple2(
 						's',
 						$author$project$Morphir$IR$SDK$String$stringType(_Utils_Tuple0))
 					]),
@@ -12870,6 +13386,9 @@ var $author$project$Morphir$IR$SDK$String$moduleSpec = {
 						_Utils_Tuple2(
 						'n',
 						$author$project$Morphir$IR$SDK$Basics$intType(_Utils_Tuple0)),
+						_Utils_Tuple2(
+						'ch',
+						$author$project$Morphir$IR$SDK$Char$charType(_Utils_Tuple0)),
 						_Utils_Tuple2(
 						's',
 						$author$project$Morphir$IR$SDK$String$stringType(_Utils_Tuple0))
@@ -13276,6 +13795,13 @@ var $author$project$Morphir$IR$SDK$packageSpec = {
 				_List_fromArray(
 					[
 						_List_fromArray(
+						['result', 'list'])
+					]),
+				$author$project$Morphir$IR$SDK$ResultList$moduleSpec),
+				_Utils_Tuple2(
+				_List_fromArray(
+					[
+						_List_fromArray(
 						['tuple'])
 					]),
 				$author$project$Morphir$IR$SDK$Tuple$moduleSpec),
@@ -13313,7 +13839,7 @@ var $author$project$Morphir$IR$SDK$packageSpec = {
 						_List_fromArray(
 						['int'])
 					]),
-				$author$project$Morphir$IR$SDK$Decimal$moduleSpec),
+				$author$project$Morphir$IR$SDK$Int$moduleSpec),
 				_Utils_Tuple2(
 				_List_fromArray(
 					[
@@ -14458,6 +14984,234 @@ var $author$project$Morphir$Type$Infer$annotateDefinition = F2(
 var $author$project$Morphir$IR$Literal$FloatLiteral = function (a) {
 	return {$: 'FloatLiteral', a: a};
 };
+var $author$project$Morphir$IR$Type$ExtensibleRecord = F3(
+	function (a, b, c) {
+		return {$: 'ExtensibleRecord', a: a, b: b, c: c};
+	});
+var $author$project$Morphir$IR$Type$Record = F2(
+	function (a, b) {
+		return {$: 'Record', a: a, b: b};
+	});
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1.$) {
+					case 'LT':
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 'EQ':
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
+var $author$project$Morphir$IR$lookupTypeSpecification = F2(
+	function (fqn, ir) {
+		return A2($elm$core$Dict$get, fqn, ir.typeSpecifications);
+	});
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $elm$core$Tuple$pair = F2(
+	function (a, b) {
+		return _Utils_Tuple2(a, b);
+	});
+var $author$project$Morphir$IR$Type$Field = F2(
+	function (name, tpe) {
+		return {name: name, tpe: tpe};
+	});
+var $author$project$Morphir$IR$Type$substituteTypeVariables = F2(
+	function (mapping, original) {
+		switch (original.$) {
+			case 'Variable':
+				var a = original.a;
+				var varName = original.b;
+				return A2(
+					$elm$core$Maybe$withDefault,
+					original,
+					A2($elm$core$Dict$get, varName, mapping));
+			case 'Reference':
+				var a = original.a;
+				var fQName = original.b;
+				var typeArgs = original.c;
+				return A3(
+					$author$project$Morphir$IR$Type$Reference,
+					a,
+					fQName,
+					A2(
+						$elm$core$List$map,
+						$author$project$Morphir$IR$Type$substituteTypeVariables(mapping),
+						typeArgs));
+			case 'Tuple':
+				var a = original.a;
+				var elemTypes = original.b;
+				return A2(
+					$author$project$Morphir$IR$Type$Tuple,
+					a,
+					A2(
+						$elm$core$List$map,
+						$author$project$Morphir$IR$Type$substituteTypeVariables(mapping),
+						elemTypes));
+			case 'Record':
+				var a = original.a;
+				var fields = original.b;
+				return A2(
+					$author$project$Morphir$IR$Type$Record,
+					a,
+					A2(
+						$elm$core$List$map,
+						function (field) {
+							return A2(
+								$author$project$Morphir$IR$Type$Field,
+								field.name,
+								A2($author$project$Morphir$IR$Type$substituteTypeVariables, mapping, field.tpe));
+						},
+						fields));
+			case 'ExtensibleRecord':
+				var a = original.a;
+				var name = original.b;
+				var fields = original.c;
+				return A3(
+					$author$project$Morphir$IR$Type$ExtensibleRecord,
+					a,
+					name,
+					A2(
+						$elm$core$List$map,
+						function (field) {
+							return A2(
+								$author$project$Morphir$IR$Type$Field,
+								field.name,
+								A2($author$project$Morphir$IR$Type$substituteTypeVariables, mapping, field.tpe));
+						},
+						fields));
+			case 'Function':
+				var a = original.a;
+				var argType = original.b;
+				var returnType = original.c;
+				return A3(
+					$author$project$Morphir$IR$Type$Function,
+					a,
+					A2($author$project$Morphir$IR$Type$substituteTypeVariables, mapping, argType),
+					A2($author$project$Morphir$IR$Type$substituteTypeVariables, mapping, returnType));
+			default:
+				var a = original.a;
+				return $author$project$Morphir$IR$Type$Unit(a);
+		}
+	});
+var $author$project$Morphir$IR$resolveType = F2(
+	function (tpe, ir) {
+		switch (tpe.$) {
+			case 'Variable':
+				var a = tpe.a;
+				var name = tpe.b;
+				return A2($author$project$Morphir$IR$Type$Variable, a, name);
+			case 'Reference':
+				var fQName = tpe.b;
+				var typeParams = tpe.c;
+				return A2(
+					$elm$core$Maybe$withDefault,
+					tpe,
+					A2(
+						$elm$core$Maybe$map,
+						function (typeSpec) {
+							if (typeSpec.$ === 'TypeAliasSpecification') {
+								var typeParamNames = typeSpec.a;
+								var targetType = typeSpec.b;
+								return A2(
+									$author$project$Morphir$IR$Type$substituteTypeVariables,
+									$elm$core$Dict$fromList(
+										A3($elm$core$List$map2, $elm$core$Tuple$pair, typeParamNames, typeParams)),
+									targetType);
+							} else {
+								return tpe;
+							}
+						},
+						A2($author$project$Morphir$IR$lookupTypeSpecification, fQName, ir)));
+			case 'Tuple':
+				var a = tpe.a;
+				var elemTypes = tpe.b;
+				return A2(
+					$author$project$Morphir$IR$Type$Tuple,
+					a,
+					A2(
+						$elm$core$List$map,
+						function (t) {
+							return A2($author$project$Morphir$IR$resolveType, t, ir);
+						},
+						elemTypes));
+			case 'Record':
+				var a = tpe.a;
+				var fields = tpe.b;
+				return A2(
+					$author$project$Morphir$IR$Type$Record,
+					a,
+					A2(
+						$elm$core$List$map,
+						function (f) {
+							return _Utils_update(
+								f,
+								{
+									tpe: A2($author$project$Morphir$IR$resolveType, f.tpe, ir)
+								});
+						},
+						fields));
+			case 'ExtensibleRecord':
+				var a = tpe.a;
+				var varName = tpe.b;
+				var fields = tpe.c;
+				return A3(
+					$author$project$Morphir$IR$Type$ExtensibleRecord,
+					a,
+					varName,
+					A2(
+						$elm$core$List$map,
+						function (f) {
+							return _Utils_update(
+								f,
+								{
+									tpe: A2($author$project$Morphir$IR$resolveType, f.tpe, ir)
+								});
+						},
+						fields));
+			case 'Function':
+				var a = tpe.a;
+				var argType = tpe.b;
+				var returnType = tpe.c;
+				return A3(
+					$author$project$Morphir$IR$Type$Function,
+					a,
+					A2($author$project$Morphir$IR$resolveType, argType, ir),
+					A2($author$project$Morphir$IR$resolveType, returnType, ir));
+			default:
+				var a = tpe.a;
+				return $author$project$Morphir$IR$Type$Unit(a);
+		}
+	});
 var $elm$core$Dict$map = F2(
 	function (func, dict) {
 		if (dict.$ === 'RBEmpty_elm_builtin') {
@@ -14645,73 +15399,33 @@ var $author$project$Morphir$IR$Value$rewriteValue = F2(
 			}
 		}
 	});
-var $author$project$Morphir$Type$Infer$fixNumberLiterals = function (typedValue) {
-	return A2(
-		$author$project$Morphir$IR$Value$rewriteValue,
-		function (value) {
-			if ((value.$ === 'Literal') && (value.b.$ === 'IntLiteral')) {
-				var _v1 = value.a;
-				var va = _v1.a;
-				var tpe = _v1.b;
-				var v = value.b.a;
-				return _Utils_eq(
-					tpe,
-					$author$project$Morphir$IR$SDK$Basics$floatType(_Utils_Tuple0)) ? $elm$core$Maybe$Just(
-					A2(
-						$author$project$Morphir$IR$Value$Literal,
-						_Utils_Tuple2(va, tpe),
-						$author$project$Morphir$IR$Literal$FloatLiteral(v))) : $elm$core$Maybe$Nothing;
-			} else {
-				return $elm$core$Maybe$Nothing;
-			}
-		},
-		typedValue);
-};
-var $elm$core$Dict$get = F2(
-	function (targetKey, dict) {
-		get:
-		while (true) {
-			if (dict.$ === 'RBEmpty_elm_builtin') {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var key = dict.b;
-				var value = dict.c;
-				var left = dict.d;
-				var right = dict.e;
-				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
-				switch (_v1.$) {
-					case 'LT':
-						var $temp$targetKey = targetKey,
-							$temp$dict = left;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-					case 'EQ':
-						return $elm$core$Maybe$Just(value);
-					default:
-						var $temp$targetKey = targetKey,
-							$temp$dict = right;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
+var $author$project$Morphir$Type$Infer$fixNumberLiterals = F2(
+	function (ir, typedValue) {
+		return A2(
+			$author$project$Morphir$IR$Value$rewriteValue,
+			function (value) {
+				if ((value.$ === 'Literal') && (value.b.$ === 'IntLiteral')) {
+					var _v1 = value.a;
+					var va = _v1.a;
+					var tpe = _v1.b;
+					var v = value.b.a;
+					return _Utils_eq(
+						A2($author$project$Morphir$IR$resolveType, tpe, ir),
+						$author$project$Morphir$IR$SDK$Basics$floatType(_Utils_Tuple0)) ? $elm$core$Maybe$Just(
+						A2(
+							$author$project$Morphir$IR$Value$Literal,
+							_Utils_Tuple2(va, tpe),
+							$author$project$Morphir$IR$Literal$FloatLiteral(v))) : $elm$core$Maybe$Nothing;
+				} else {
+					return $elm$core$Maybe$Nothing;
 				}
-			}
-		}
+			},
+			typedValue);
 	});
 var $author$project$Morphir$Type$Solve$get = F2(
 	function (_var, _v0) {
 		var dict = _v0.a;
 		return A2($elm$core$Dict$get, _var, dict);
-	});
-var $elm$core$Maybe$map = F2(
-	function (f, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return $elm$core$Maybe$Just(
-				f(value));
-		} else {
-			return $elm$core$Maybe$Nothing;
-		}
 	});
 var $author$project$Morphir$IR$Value$Definition = F3(
 	function (inputTypes, outputType, body) {
@@ -14780,18 +15494,6 @@ var $author$project$Morphir$IR$Value$mapPatternAttributes = F2(
 				return $author$project$Morphir$IR$Value$UnitPattern(
 					f(a));
 		}
-	});
-var $author$project$Morphir$IR$Type$ExtensibleRecord = F3(
-	function (a, b, c) {
-		return {$: 'ExtensibleRecord', a: a, b: b, c: c};
-	});
-var $author$project$Morphir$IR$Type$Record = F2(
-	function (a, b) {
-		return {$: 'Record', a: a, b: b};
-	});
-var $author$project$Morphir$IR$Type$Field = F2(
-	function (name, tpe) {
-		return {name: name, tpe: tpe};
 	});
 var $author$project$Morphir$IR$Type$mapFieldType = F2(
 	function (f, field) {
@@ -15188,15 +15890,15 @@ var $author$project$Morphir$Type$MetaTypeMapping$metaTypeToConcreteType = F2(
 				return $author$project$Morphir$IR$Type$Unit(_Utils_Tuple0);
 		}
 	});
-var $author$project$Morphir$Type$Infer$applySolutionToAnnotatedDefinition = F2(
-	function (annotatedDef, _v0) {
+var $author$project$Morphir$Type$Infer$applySolutionToAnnotatedDefinition = F3(
+	function (ir, annotatedDef, _v0) {
 		var residualConstraints = _v0.a;
 		var solutionMap = _v0.b;
 		return function (valDef) {
 			return _Utils_update(
 				valDef,
 				{
-					body: $author$project$Morphir$Type$Infer$fixNumberLiterals(valDef.body)
+					body: A2($author$project$Morphir$Type$Infer$fixNumberLiterals, ir, valDef.body)
 				});
 		}(
 			A3(
@@ -15464,19 +16166,20 @@ var $elm$core$Result$fromMaybe = F2(
 			return $elm$core$Result$Err(err);
 		}
 	});
-var $author$project$Morphir$IR$lookupTypeSpecification = F2(
-	function (fqn, ir) {
-		return A2($elm$core$Dict$get, fqn, ir.typeSpecifications);
-	});
 var $author$project$Morphir$Type$MetaTypeMapping$lookupAliasedType = F3(
-	function (baseVar, ir, typeFQN) {
+	function (ir, typeFQN, concreteTypeParams) {
 		return A2(
 			$elm$core$Result$andThen,
 			function (typeSpec) {
 				if (typeSpec.$ === 'TypeAliasSpecification') {
-					var paramNames = typeSpec.a;
+					var typeParamNames = typeSpec.a;
 					var tpe = typeSpec.b;
-					return $elm$core$Result$Ok(tpe);
+					return $elm$core$Result$Ok(
+						A2(
+							$author$project$Morphir$IR$Type$substituteTypeVariables,
+							$elm$core$Dict$fromList(
+								A3($elm$core$List$map2, $elm$core$Tuple$pair, typeParamNames, concreteTypeParams)),
+							tpe));
 				} else {
 					return $elm$core$Result$Err(
 						$author$project$Morphir$Type$MetaTypeMapping$ExpectedAlias(typeFQN));
@@ -15594,24 +16297,22 @@ var $author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType = F4(
 				var args = tpe.c;
 				var resolveAliases = F2(
 					function (fqn, ars) {
+						var metaArgs = A2(
+							$elm$core$List$map,
+							A3($author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType, baseVar, ir, varToMeta),
+							ars);
 						return A2(
 							$elm$core$Result$withDefault,
-							A2($author$project$Morphir$Type$MetaType$metaRef, fqn, ars),
+							A2($author$project$Morphir$Type$MetaType$metaRef, fqn, metaArgs),
 							A2(
 								$elm$core$Result$map,
 								A2(
 									$elm$core$Basics$composeR,
 									A3($author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType, baseVar, ir, varToMeta),
-									A2($author$project$Morphir$Type$MetaType$metaAlias, fqn, ars)),
-								A3($author$project$Morphir$Type$MetaTypeMapping$lookupAliasedType, baseVar, ir, fqn)));
+									A2($author$project$Morphir$Type$MetaType$metaAlias, fqn, metaArgs)),
+								A3($author$project$Morphir$Type$MetaTypeMapping$lookupAliasedType, ir, fqn, ars)));
 					});
-				return A2(
-					resolveAliases,
-					fQName,
-					A2(
-						$elm$core$List$map,
-						A3($author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType, baseVar, ir, varToMeta),
-						args));
+				return A2(resolveAliases, fQName, args);
 			case 'Tuple':
 				var elemTypes = tpe.b;
 				return $author$project$Morphir$Type$MetaType$metaTuple(
@@ -16848,7 +17549,7 @@ var $author$project$Morphir$Type$MetaType$substituteVariable = F3(
 			return original;
 		}
 	});
-var $author$project$Morphir$Type$Constraint$substitute = F3(
+var $author$project$Morphir$Type$Constraint$substituteVariable = F3(
 	function (_var, replacement, constraint) {
 		if (constraint.$ === 'Equality') {
 			var metaType1 = constraint.a;
@@ -16873,7 +17574,7 @@ var $author$project$Morphir$Type$ConstraintSet$substituteVariable = F3(
 			A2(
 				$elm$core$List$filterMap,
 				function (constraint) {
-					var newConstraint = A3($author$project$Morphir$Type$Constraint$substitute, _var, replacement, constraint);
+					var newConstraint = A3($author$project$Morphir$Type$Constraint$substituteVariable, _var, replacement, constraint);
 					return $author$project$Morphir$Type$Constraint$isTrivial(newConstraint) ? $elm$core$Maybe$Nothing : $elm$core$Maybe$Just(newConstraint);
 				},
 				constraints));
@@ -17365,10 +18066,6 @@ var $elm$core$Result$mapError = F2(
 		}
 	});
 var $elm$core$Basics$not = _Basics_not;
-var $elm$core$Tuple$pair = F2(
-	function (a, b) {
-		return _Utils_Tuple2(a, b);
-	});
 var $author$project$Morphir$Type$MetaType$wrapInAliases = F2(
 	function (aliases, tpe) {
 		if (!aliases.b) {
@@ -17405,18 +18102,112 @@ var $author$project$Morphir$Type$Solve$substituteVariable = F3(
 					}),
 				solutions));
 	});
+var $elm$core$Set$intersect = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$intersect, dict1, dict2));
+	});
+var $elm$core$Set$isEmpty = function (_v0) {
+	var dict = _v0.a;
+	return $elm$core$Dict$isEmpty(dict);
+};
 var $author$project$Morphir$Type$MetaType$substituteVariables = F2(
 	function (replacements, original) {
-		return A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v0, soFar) {
-					var _var = _v0.a;
-					var replacement = _v0.b;
-					return A3($author$project$Morphir$Type$MetaType$substituteVariable, _var, replacement, soFar);
-				}),
-			original,
-			replacements);
+		if ($elm$core$Set$isEmpty(
+			A2(
+				$elm$core$Set$intersect,
+				$elm$core$Set$fromList(
+					$elm$core$Dict$keys(replacements)),
+				$author$project$Morphir$Type$MetaType$variables(original)))) {
+			return original;
+		} else {
+			switch (original.$) {
+				case 'MetaVar':
+					var thisVar = original.a;
+					var _v1 = A2($elm$core$Dict$get, thisVar, replacements);
+					if (_v1.$ === 'Just') {
+						var replacement = _v1.a;
+						return replacement;
+					} else {
+						return original;
+					}
+				case 'MetaTuple':
+					var metaElems = original.b;
+					return $author$project$Morphir$Type$MetaType$metaTuple(
+						A2(
+							$elm$core$List$map,
+							$author$project$Morphir$Type$MetaType$substituteVariables(replacements),
+							metaElems));
+				case 'MetaRecord':
+					if (original.b.$ === 'Just') {
+						var _extends = original.b.a;
+						var metaFields = original.c;
+						var _v2 = A2($elm$core$Dict$get, _extends, replacements);
+						if (_v2.$ === 'Just') {
+							var replacement = _v2.a;
+							return replacement;
+						} else {
+							return A2(
+								$author$project$Morphir$Type$MetaType$metaRecord,
+								$elm$core$Maybe$Just(_extends),
+								A2(
+									$elm$core$Dict$map,
+									F2(
+										function (_v3, fieldType) {
+											return A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, fieldType);
+										}),
+									metaFields));
+						}
+					} else {
+						var _v4 = original.b;
+						var metaFields = original.c;
+						return A2(
+							$author$project$Morphir$Type$MetaType$metaRecord,
+							$elm$core$Maybe$Nothing,
+							A2(
+								$elm$core$Dict$map,
+								F2(
+									function (_v5, fieldType) {
+										return A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, fieldType);
+									}),
+								metaFields));
+					}
+				case 'MetaFun':
+					var metaFunc = original.b;
+					var metaArg = original.c;
+					return A2(
+						$author$project$Morphir$Type$MetaType$metaFun,
+						A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, metaFunc),
+						A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, metaArg));
+				case 'MetaRef':
+					var fQName = original.b;
+					var args = original.c;
+					var maybeAliasedType = original.d;
+					if (maybeAliasedType.$ === 'Just') {
+						var aliasedType = maybeAliasedType.a;
+						return A3(
+							$author$project$Morphir$Type$MetaType$metaAlias,
+							fQName,
+							A2(
+								$elm$core$List$map,
+								$author$project$Morphir$Type$MetaType$substituteVariables(replacements),
+								args),
+							A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, aliasedType));
+					} else {
+						return A2(
+							$author$project$Morphir$Type$MetaType$metaRef,
+							fQName,
+							A2(
+								$elm$core$List$map,
+								$author$project$Morphir$Type$MetaType$substituteVariables(replacements),
+								args));
+					}
+				default:
+					return original;
+			}
+		}
 	});
 var $author$project$Morphir$Type$Solve$unifyUnit = F2(
 	function (aliases, metaType2) {
@@ -17450,16 +18241,7 @@ var $author$project$Morphir$Type$Solve$unifyVariable = F3(
 var $author$project$Morphir$Type$Solve$addSolution = F4(
 	function (ir, _var, newSolution, _v14) {
 		var currentSolutions = _v14.a;
-		var substitutedNewSolution = A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v17, soFar) {
-					var currentVar = _v17.a;
-					var currentMetaType = _v17.b;
-					return A3($author$project$Morphir$Type$MetaType$substituteVariable, currentVar, currentMetaType, soFar);
-				}),
-			newSolution,
-			$elm$core$Dict$toList(currentSolutions));
+		var substitutedNewSolution = A2($author$project$Morphir$Type$MetaType$substituteVariables, currentSolutions, newSolution);
 		var _v15 = A2($elm$core$Dict$get, _var, currentSolutions);
 		if (_v15.$ === 'Just') {
 			var existingSolution = _v15.a;
@@ -17478,10 +18260,7 @@ var $author$project$Morphir$Type$Solve$addSolution = F4(
 								A3(
 									$elm$core$Dict$insert,
 									_var,
-									A2(
-										$author$project$Morphir$Type$MetaType$substituteVariables,
-										$elm$core$Dict$toList(newSubstitutions),
-										existingSolution),
+									A2($author$project$Morphir$Type$MetaType$substituteVariables, newSubstitutions, existingSolution),
 									currentSolutions))));
 				},
 				A4($author$project$Morphir$Type$Solve$unifyMetaType, ir, _List_Nil, existingSolution, substitutedNewSolution));
@@ -17863,6 +18642,128 @@ var $author$project$Morphir$Type$Infer$ClassConstraintViolation = F2(
 	function (a, b) {
 		return {$: 'ClassConstraintViolation', a: a, b: b};
 	});
+var $author$project$Morphir$Type$Infer$RecursiveConstraint = F2(
+	function (a, b) {
+		return {$: 'RecursiveConstraint', a: a, b: b};
+	});
+var $elm$core$Dict$values = function (dict) {
+	return A3(
+		$elm$core$Dict$foldr,
+		F3(
+			function (key, value, valueList) {
+				return A2($elm$core$List$cons, value, valueList);
+			}),
+		_List_Nil,
+		dict);
+};
+var $author$project$Morphir$Type$MetaType$contains = F2(
+	function (innerType, outerType) {
+		if (_Utils_eq(innerType, outerType)) {
+			return true;
+		} else {
+			switch (outerType.$) {
+				case 'MetaVar':
+					return false;
+				case 'MetaTuple':
+					var metaElems = outerType.b;
+					return A2(
+						$elm$core$List$any,
+						$author$project$Morphir$Type$MetaType$contains(innerType),
+						metaElems);
+				case 'MetaRecord':
+					var metaFields = outerType.c;
+					return A2(
+						$elm$core$List$any,
+						$author$project$Morphir$Type$MetaType$contains(innerType),
+						$elm$core$Dict$values(metaFields));
+				case 'MetaFun':
+					var metaFunc = outerType.b;
+					var metaArg = outerType.c;
+					return A2($author$project$Morphir$Type$MetaType$contains, innerType, metaFunc) || A2($author$project$Morphir$Type$MetaType$contains, innerType, metaArg);
+				case 'MetaRef':
+					var args = outerType.c;
+					var maybeAliasedType = outerType.d;
+					if (maybeAliasedType.$ === 'Just') {
+						var aliasedType = maybeAliasedType.a;
+						return A2($author$project$Morphir$Type$MetaType$contains, innerType, aliasedType) || A2(
+							$elm$core$List$any,
+							$author$project$Morphir$Type$MetaType$contains(innerType),
+							args);
+					} else {
+						return A2(
+							$elm$core$List$any,
+							$author$project$Morphir$Type$MetaType$contains(innerType),
+							args);
+					}
+				default:
+					return false;
+			}
+		}
+	});
+var $elm$core$Basics$neq = _Utils_notEqual;
+var $author$project$Morphir$Type$MetaType$removeAliases = function (original) {
+	removeAliases:
+	while (true) {
+		switch (original.$) {
+			case 'MetaVar':
+				return original;
+			case 'MetaTuple':
+				var metaElems = original.b;
+				return $author$project$Morphir$Type$MetaType$metaTuple(
+					A2($elm$core$List$map, $author$project$Morphir$Type$MetaType$removeAliases, metaElems));
+			case 'MetaRecord':
+				var _extends = original.b;
+				var metaFields = original.c;
+				return A2(
+					$author$project$Morphir$Type$MetaType$metaRecord,
+					_extends,
+					A2(
+						$elm$core$Dict$map,
+						F2(
+							function (_v1, fieldType) {
+								return $author$project$Morphir$Type$MetaType$removeAliases(fieldType);
+							}),
+						metaFields));
+			case 'MetaFun':
+				var metaFunc = original.b;
+				var metaArg = original.c;
+				return A2(
+					$author$project$Morphir$Type$MetaType$metaFun,
+					$author$project$Morphir$Type$MetaType$removeAliases(metaFunc),
+					$author$project$Morphir$Type$MetaType$removeAliases(metaArg));
+			case 'MetaRef':
+				var fQName = original.b;
+				var args = original.c;
+				var maybeAliasedType = original.d;
+				if (maybeAliasedType.$ === 'Just') {
+					var aliasedType = maybeAliasedType.a;
+					var $temp$original = aliasedType;
+					original = $temp$original;
+					continue removeAliases;
+				} else {
+					return A2(
+						$author$project$Morphir$Type$MetaType$metaRef,
+						fQName,
+						A2($elm$core$List$map, $author$project$Morphir$Type$MetaType$removeAliases, args));
+				}
+			default:
+				return original;
+		}
+	}
+};
+var $author$project$Morphir$Type$Constraint$isRecursive = function (constraint) {
+	if (constraint.$ === 'Equality') {
+		var metaType1 = constraint.a;
+		var metaType2 = constraint.b;
+		var rawMetaType2 = $author$project$Morphir$Type$MetaType$removeAliases(metaType2);
+		var rawMetaType1 = $author$project$Morphir$Type$MetaType$removeAliases(metaType1);
+		return (!_Utils_eq(rawMetaType1, rawMetaType2)) && ((!$elm$core$Set$isEmpty(
+			$author$project$Morphir$Type$MetaType$variables(rawMetaType1))) && ((!$elm$core$Set$isEmpty(
+			$author$project$Morphir$Type$MetaType$variables(rawMetaType2))) && (A2($author$project$Morphir$Type$MetaType$contains, rawMetaType1, rawMetaType2) || A2($author$project$Morphir$Type$MetaType$contains, rawMetaType2, rawMetaType1))));
+	} else {
+		return false;
+	}
+};
 var $elm$core$List$member = F2(
 	function (x, xs) {
 		return A2(
@@ -17927,48 +18828,58 @@ var $author$project$Morphir$Type$Infer$validateConstraints = function (constrain
 								A2($author$project$Morphir$Type$Infer$ClassConstraintViolation, metaType, _class));
 						}
 					} else {
-						return $elm$core$Result$Ok(constraint);
+						var metaType1 = constraint.a;
+						var metaType2 = constraint.b;
+						return $author$project$Morphir$Type$Constraint$isRecursive(constraint) ? $elm$core$Result$Err(
+							A2($author$project$Morphir$Type$Infer$RecursiveConstraint, metaType1, metaType2)) : $elm$core$Result$Ok(constraint);
 					}
 				},
 				constraints)));
 };
 var $author$project$Morphir$Type$Infer$solveHelp = F3(
 	function (refs, solutionsSoFar, constraintSet) {
-		var constraints = constraintSet.a;
-		return A2(
-			$elm$core$Result$andThen,
-			function (nonTrivialConstraints) {
-				return A2(
-					$elm$core$Result$andThen,
-					function (maybeNewSolutions) {
-						if (maybeNewSolutions.$ === 'Nothing') {
-							return $elm$core$Result$Ok(
-								_Utils_Tuple2(
-									$author$project$Morphir$Type$ConstraintSet$fromList(nonTrivialConstraints),
-									solutionsSoFar));
+		solveHelp:
+		while (true) {
+			var constraints = constraintSet.a;
+			var _v0 = $author$project$Morphir$Type$Infer$validateConstraints(constraints);
+			if (_v0.$ === 'Ok') {
+				var nonTrivialConstraints = _v0.a;
+				var _v1 = A2($author$project$Morphir$Type$Solve$findSubstitution, refs, nonTrivialConstraints);
+				if (_v1.$ === 'Ok') {
+					var maybeNewSolutions = _v1.a;
+					if (maybeNewSolutions.$ === 'Nothing') {
+						return $elm$core$Result$Ok(
+							_Utils_Tuple2(
+								$author$project$Morphir$Type$ConstraintSet$fromList(nonTrivialConstraints),
+								solutionsSoFar));
+					} else {
+						var newSolutions = maybeNewSolutions.a;
+						var _v3 = A3($author$project$Morphir$Type$Solve$mergeSolutions, refs, newSolutions, solutionsSoFar);
+						if (_v3.$ === 'Ok') {
+							var mergedSolutions = _v3.a;
+							var $temp$refs = refs,
+								$temp$solutionsSoFar = mergedSolutions,
+								$temp$constraintSet = A2($author$project$Morphir$Type$ConstraintSet$applySubstitutions, mergedSolutions, constraintSet);
+							refs = $temp$refs;
+							solutionsSoFar = $temp$solutionsSoFar;
+							constraintSet = $temp$constraintSet;
+							continue solveHelp;
 						} else {
-							var newSolutions = maybeNewSolutions.a;
-							return A2(
-								$elm$core$Result$andThen,
-								function (mergedSolutions) {
-									return A3(
-										$author$project$Morphir$Type$Infer$solveHelp,
-										refs,
-										mergedSolutions,
-										A2($author$project$Morphir$Type$ConstraintSet$applySubstitutions, mergedSolutions, constraintSet));
-								},
-								A2(
-									$elm$core$Result$mapError,
-									$author$project$Morphir$Type$Infer$UnifyError,
-									A3($author$project$Morphir$Type$Solve$mergeSolutions, refs, newSolutions, solutionsSoFar)));
+							var error = _v3.a;
+							return $elm$core$Result$Err(
+								$author$project$Morphir$Type$Infer$UnifyError(error));
 						}
-					},
-					A2(
-						$elm$core$Result$mapError,
-						$author$project$Morphir$Type$Infer$UnifyError,
-						A2($author$project$Morphir$Type$Solve$findSubstitution, refs, nonTrivialConstraints)));
-			},
-			$author$project$Morphir$Type$Infer$validateConstraints(constraints));
+					}
+				} else {
+					var error = _v1.a;
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Type$Infer$UnifyError(error));
+				}
+			} else {
+				var error = _v0.a;
+				return $elm$core$Result$Err(error);
+			}
+		}
 	});
 var $author$project$Morphir$Type$Infer$solve = F2(
 	function (refs, constraintSet) {
@@ -17983,7 +18894,7 @@ var $author$project$Morphir$Type$Solve$toList = function (_v0) {
 	return $elm$core$Dict$toList(dict);
 };
 var $author$project$Morphir$Type$Infer$inferValueDefinition = F2(
-	function (refs, def) {
+	function (ir, def) {
 		var _v0 = A2($author$project$Morphir$Type$Infer$annotateDefinition, 1, def);
 		var annotatedDef = _v0.a;
 		var lastVarIndex = _v0.b;
@@ -17991,7 +18902,7 @@ var $author$project$Morphir$Type$Infer$inferValueDefinition = F2(
 			var cs = A4(
 				$author$project$Morphir$Type$Infer$constrainDefinition,
 				$author$project$Morphir$Type$MetaType$variableByIndex(0),
-				refs,
+				ir,
 				$elm$core$Dict$empty,
 				annotatedDef);
 			var _v2 = A2(
@@ -18001,7 +18912,7 @@ var $author$project$Morphir$Type$Infer$inferValueDefinition = F2(
 					$author$project$Morphir$Type$ConstraintSet$toList(cs)));
 			return cs;
 		}();
-		var solution = A2($author$project$Morphir$Type$Infer$solve, refs, constraints);
+		var solution = A2($author$project$Morphir$Type$Infer$solve, ir, constraints);
 		var _v1 = A2(
 			$elm$core$Debug$log,
 			'Generated solutions',
@@ -18015,7 +18926,7 @@ var $author$project$Morphir$Type$Infer$inferValueDefinition = F2(
 						solution))));
 		return A2(
 			$elm$core$Result$map,
-			$author$project$Morphir$Type$Infer$applySolutionToAnnotatedDefinition(annotatedDef),
+			A2($author$project$Morphir$Type$Infer$applySolutionToAnnotatedDefinition, ir, annotatedDef),
 			solution);
 	});
 var $elm$core$String$cons = _String_cons;
@@ -18336,7 +19247,7 @@ var $author$project$Morphir$Type$Infer$typeErrorToMessage = function (typeError)
 			return $elm$core$String$concat(
 				_List_fromArray(
 					['Unknown error: ', message]));
-		default:
+		case 'UnifyError':
 			var unificationError = typeError.a;
 			var mapUnificationError = function (uniError) {
 				switch (uniError.$) {
@@ -18384,6 +19295,18 @@ var $author$project$Morphir$Type$Infer$typeErrorToMessage = function (typeError)
 				}
 			};
 			return mapUnificationError(unificationError);
+		default:
+			var metaType1 = typeError.a;
+			var metaType2 = typeError.b;
+			return $elm$core$String$concat(
+				_List_fromArray(
+					[
+						'Recursive constraint: \'',
+						$author$project$Morphir$Type$MetaType$toString(metaType1),
+						'\' == \'',
+						$author$project$Morphir$Type$MetaType$toString(metaType2),
+						'\''
+					]));
 	}
 };
 var $author$project$Morphir$Type$Infer$inferModuleDefinition = F3(
@@ -19106,16 +20029,6 @@ var $elm$core$Dict$update = F3(
 			return A2($elm$core$Dict$remove, targetKey, dictionary);
 		}
 	});
-var $elm$core$Dict$values = function (dict) {
-	return A3(
-		$elm$core$Dict$foldr,
-		F3(
-			function (key, value, valueList) {
-				return A2($elm$core$List$cons, value, valueList);
-			}),
-		_List_Nil,
-		dict);
-};
 var $author$project$Morphir$Elm$Frontend$Resolve$collectImportedNames = F2(
 	function (getModulesExposedNames, imports) {
 		return A3(
@@ -20460,7 +21373,6 @@ var $elm_community$intdict$IntDict$inner = F3(
 		}
 	});
 var $elm$core$Bitwise$and = _Bitwise_and;
-var $elm$core$Basics$neq = _Utils_notEqual;
 var $elm$core$Bitwise$complement = _Bitwise_complement;
 var $elm$core$Bitwise$or = _Bitwise_or;
 var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
@@ -21245,7 +22157,7 @@ var $author$project$Morphir$IR$SDK$List$construct = function (a) {
 	return A2(
 		$author$project$Morphir$IR$Value$Reference,
 		a,
-		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$List$moduleName, 'construct'));
+		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$List$moduleName, 'cons'));
 };
 var $author$project$Morphir$IR$SDK$Basics$divide = function (a) {
 	return A2(
@@ -21502,6 +22414,30 @@ var $author$project$Morphir$Elm$Frontend$mapPattern = F2(
 							$author$project$Morphir$IR$QName$fromName,
 							A2($elm$core$List$map, $author$project$Morphir$IR$Name$fromString, qualifiedNameRef.moduleName),
 							$author$project$Morphir$IR$Name$fromString(qualifiedNameRef.name)));
+					var _v3 = _Utils_Tuple2(qualifiedNameRef.moduleName, qualifiedNameRef.name);
+					_v3$2:
+					while (true) {
+						if (!_v3.a.b) {
+							switch (_v3.b) {
+								case 'True':
+									return $elm$core$Result$Ok(
+										A2(
+											$author$project$Morphir$IR$Value$LiteralPattern,
+											sourceLocation,
+											$author$project$Morphir$IR$Literal$BoolLiteral(true)));
+								case 'False':
+									return $elm$core$Result$Ok(
+										A2(
+											$author$project$Morphir$IR$Value$LiteralPattern,
+											sourceLocation,
+											$author$project$Morphir$IR$Literal$BoolLiteral(false)));
+								default:
+									break _v3$2;
+							}
+						} else {
+							break _v3$2;
+						}
+					}
 					return A2(
 						$elm$core$Result$map,
 						A2($author$project$Morphir$IR$Value$ConstructorPattern, sourceLocation, qualifiedName),
@@ -22743,13 +23679,6 @@ var $author$project$Morphir$Elm$Frontend$VariableShadowing = F3(
 	function (a, b, c) {
 		return {$: 'VariableShadowing', a: a, b: b, c: c};
 	});
-var $elm$core$Set$intersect = F2(
-	function (_v0, _v1) {
-		var dict1 = _v0.a;
-		var dict2 = _v1.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A2($elm$core$Dict$intersect, dict1, dict2));
-	});
 var $elm$core$Maybe$map2 = F3(
 	function (func, ma, mb) {
 		if (ma.$ === 'Nothing') {
@@ -23168,7 +24097,7 @@ var $author$project$Morphir$Elm$Frontend$resolveVariablesAndReferences = F3(
 						var _v3 = value.b;
 						var modulePath = _v3.b;
 						var localName = _v3.c;
-						return A2($elm$core$Dict$member, localName, variables) ? $elm$core$Result$Ok(
+						return ($elm$core$List$isEmpty(modulePath) && A2($elm$core$Dict$member, localName, variables)) ? $elm$core$Result$Ok(
 							A2($author$project$Morphir$IR$Value$Variable, sourceLocation, localName)) : A2(
 							$elm$core$Result$mapError,
 							A2(
@@ -30490,10 +31419,6 @@ var $stil4m$elm_syntax$Elm$Parser$parse = function (input) {
 		var s = _v0.a;
 		return $elm$core$Result$Err(s);
 	}
-};
-var $elm$core$Set$isEmpty = function (_v0) {
-	var dict = _v0.a;
-	return $elm$core$Dict$isEmpty(dict);
 };
 var $author$project$Morphir$Graph$reachableNodes = F2(
 	function (startNodes, _v0) {
@@ -39314,7 +40239,7 @@ var $author$project$Morphir$Visual$XRayView$viewReferenceName = function (_v0) {
 		$author$project$Morphir$IR$Name$toCamelCase(localName));
 };
 var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value) {
-	var nodeLabel = function (labelText) {
+	var logicLabel = function (labelText) {
 		return A2(
 			$mdgriffith$elm_ui$Element$el,
 			_List_fromArray(
@@ -39335,13 +40260,25 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 				]),
 			elems);
 	};
+	var dataLabel = function (labelText) {
+		return A2(
+			$mdgriffith$elm_ui$Element$el,
+			_List_fromArray(
+				[
+					A2($mdgriffith$elm_ui$Element$paddingXY, 6, 3),
+					$mdgriffith$elm_ui$Element$Border$rounded(3),
+					$mdgriffith$elm_ui$Element$Background$color(
+					A3($mdgriffith$elm_ui$Element$rgb, 0.9, 0.9, 1))
+				]),
+			$mdgriffith$elm_ui$Element$text(labelText));
+	};
 	switch (value.$) {
 		case 'Literal':
 			var lit = value.b;
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Literal'),
+						dataLabel('Literal'),
 						$author$project$Morphir$Visual$XRayView$viewLiteral(lit)
 					]));
 		case 'Constructor':
@@ -39349,7 +40286,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Constructor'),
+						dataLabel('Constructor'),
 						$author$project$Morphir$Visual$XRayView$viewConstructorName(fQName)
 					]));
 		case 'Tuple':
@@ -39357,43 +40294,43 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return $elm$core$List$isEmpty(items) ? header(
 				_List_fromArray(
 					[
-						nodeLabel('Tuple'),
+						dataLabel('Tuple'),
 						$mdgriffith$elm_ui$Element$text('()')
 					])) : header(
 				_List_fromArray(
 					[
-						nodeLabel('Tuple')
+						dataLabel('Tuple')
 					]));
 		case 'List':
 			var items = value.b;
 			return $elm$core$List$isEmpty(items) ? header(
 				_List_fromArray(
 					[
-						nodeLabel('List'),
+						dataLabel('List'),
 						$mdgriffith$elm_ui$Element$text('[]')
 					])) : header(
 				_List_fromArray(
 					[
-						nodeLabel('List')
+						dataLabel('List')
 					]));
 		case 'Record':
 			var fields = value.b;
 			return $elm$core$List$isEmpty(fields) ? header(
 				_List_fromArray(
 					[
-						nodeLabel('Record'),
+						dataLabel('Record'),
 						$mdgriffith$elm_ui$Element$text('{}')
 					])) : header(
 				_List_fromArray(
 					[
-						nodeLabel('Record')
+						dataLabel('Record')
 					]));
 		case 'Variable':
 			var varName = value.b;
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Variable'),
+						logicLabel('Variable'),
 						$mdgriffith$elm_ui$Element$text(
 						$author$project$Morphir$IR$Name$toCamelCase(varName))
 					]));
@@ -39402,7 +40339,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Reference'),
+						logicLabel('Reference'),
 						$author$project$Morphir$Visual$XRayView$viewReferenceName(fQName)
 					]));
 		case 'Field':
@@ -39410,7 +40347,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Field'),
+						logicLabel('Field'),
 						$mdgriffith$elm_ui$Element$text(
 						$author$project$Morphir$IR$Name$toCamelCase(fieldName))
 					]));
@@ -39419,7 +40356,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('FieldFunction'),
+						logicLabel('FieldFunction'),
 						$mdgriffith$elm_ui$Element$text(
 						$author$project$Morphir$IR$Name$toCamelCase(fieldName))
 					]));
@@ -39427,55 +40364,55 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Apply')
+						logicLabel('Apply')
 					]));
 		case 'Lambda':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Lambda')
+						logicLabel('Lambda')
 					]));
 		case 'LetDefinition':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('LetDefinition')
+						logicLabel('LetDefinition')
 					]));
 		case 'LetRecursion':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('LetRecursion')
+						logicLabel('LetRecursion')
 					]));
 		case 'Destructure':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Destructure')
+						logicLabel('Destructure')
 					]));
 		case 'IfThenElse':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('IfThenElse')
+						logicLabel('IfThenElse')
 					]));
 		case 'PatternMatch':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('PatternMatch')
+						logicLabel('PatternMatch')
 					]));
 		case 'UpdateRecord':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('UpdateRecord')
+						logicLabel('UpdateRecord')
 					]));
 		default:
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Unit')
+						logicLabel('Unit')
 					]));
 	}
 };

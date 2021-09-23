@@ -6722,7 +6722,7 @@ var $author$project$Morphir$IR$SDK$Maybe$just = F2(
 			$author$project$Morphir$IR$Value$Apply,
 			va,
 			A2(
-				$author$project$Morphir$IR$Value$Reference,
+				$author$project$Morphir$IR$Value$Constructor,
 				va,
 				A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Maybe$moduleName, 'Just')),
 			v);
@@ -6744,7 +6744,7 @@ var $elm$core$Result$map = F2(
 	});
 var $author$project$Morphir$IR$SDK$Maybe$nothing = function (va) {
 	return A2(
-		$author$project$Morphir$IR$Value$Reference,
+		$author$project$Morphir$IR$Value$Constructor,
 		va,
 		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Maybe$moduleName, 'Nothing'));
 };
@@ -13913,11 +13913,11 @@ var $mdgriffith$elm_ui$Element$layoutWith = F3(
 	});
 var $mdgriffith$elm_ui$Element$layout = $mdgriffith$elm_ui$Element$layoutWith(
 	{options: _List_Nil});
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
 var $author$project$Morphir$Value$Error$UnexpectedArguments = function (a) {
 	return {$: 'UnexpectedArguments', a: a};
+};
+var $elm$core$Basics$abs = function (n) {
+	return (n < 0) ? (-n) : n;
 };
 var $author$project$Morphir$Value$Native$binaryLazy = function (f) {
 	return F2(
@@ -13957,480 +13957,186 @@ var $author$project$Morphir$Value$Native$boolLiteral = function (lit) {
 		return $elm$core$Result$Ok(v);
 	} else {
 		return $elm$core$Result$Err(
-			$author$project$Morphir$Value$Error$ExpectedBoolLiteral(lit));
+			$author$project$Morphir$Value$Error$ExpectedBoolLiteral(
+				A2($author$project$Morphir$IR$Value$Literal, _Utils_Tuple0, lit)));
 	}
 };
-var $author$project$Morphir$Value$Native$charLiteral = function (lit) {
-	if (lit.$ === 'CharLiteral') {
-		var v = lit.a;
-		return $elm$core$Result$Ok(v);
-	} else {
-		return $elm$core$Result$Err(
-			$author$project$Morphir$Value$Error$ExpectedBoolLiteral(lit));
-	}
-};
-var $author$project$Morphir$Value$Native$eval1 = F5(
-	function (f, decodeA, encodeB, _eval, args) {
-		if (args.b && (!args.b.b)) {
-			var arg1 = args.a;
-			return A2(
-				$elm$core$Result$andThen,
-				function (a) {
-					return encodeB(
-						f(a));
-				},
-				A2(decodeA, _eval, arg1));
-		} else {
-			return $elm$core$Result$Err(
-				$author$project$Morphir$Value$Error$UnexpectedArguments(args));
-		}
+var $elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
 	});
-var $elm$core$Result$map2 = F3(
-	function (func, ra, rb) {
-		if (ra.$ === 'Err') {
-			var x = ra.a;
-			return $elm$core$Result$Err(x);
-		} else {
-			var a = ra.a;
-			if (rb.$ === 'Err') {
-				var x = rb.a;
-				return $elm$core$Result$Err(x);
-			} else {
-				var b = rb.a;
-				return $elm$core$Result$Ok(
-					A2(func, a, b));
-			}
-		}
+var $author$project$Morphir$Value$Error$TupleLengthNotMatchException = F2(
+	function (a, b) {
+		return {$: 'TupleLengthNotMatchException', a: a, b: b};
 	});
-var $author$project$Morphir$Value$Native$eval2 = F6(
-	function (f, decodeA, decodeB, encodeC, _eval, args) {
-		if ((args.b && args.b.b) && (!args.b.b.b)) {
-			var arg1 = args.a;
-			var _v1 = args.b;
-			var arg2 = _v1.a;
-			return A2(
-				$elm$core$Result$andThen,
-				$elm$core$Basics$identity,
-				A3(
-					$elm$core$Result$map2,
-					F2(
-						function (a, b) {
-							return encodeC(
-								A2(f, a, b));
-						}),
-					A2(decodeA, _eval, arg1),
-					A2(decodeB, _eval, arg2)));
-		} else {
-			return $elm$core$Result$Err(
-				$author$project$Morphir$Value$Error$UnexpectedArguments(args));
-		}
-	});
-var $author$project$Morphir$Value$Error$ExpectedLiteral = function (a) {
-	return {$: 'ExpectedLiteral', a: a};
-};
-var $author$project$Morphir$Value$Native$expectLiteral = F3(
-	function (decodeLiteral, _eval, value) {
-		var _v0 = _eval(value);
-		if (_v0.$ === 'Ok') {
-			if (_v0.a.$ === 'Literal') {
-				var _v1 = _v0.a;
-				var lit = _v1.b;
-				return decodeLiteral(lit);
-			} else {
-				return $elm$core$Result$Err(
-					$author$project$Morphir$Value$Error$ExpectedLiteral(value));
-			}
-		} else {
-			var error = _v0.a;
-			return $elm$core$Result$Err(error);
-		}
-	});
-var $author$project$Morphir$Value$Native$floatLiteral = function (lit) {
-	if (lit.$ === 'FloatLiteral') {
-		var v = lit.a;
-		return $elm$core$Result$Ok(v);
-	} else {
-		return $elm$core$Result$Err(
-			$author$project$Morphir$Value$Error$ExpectedBoolLiteral(lit));
-	}
-};
-var $author$project$Morphir$Value$Native$intLiteral = function (lit) {
-	if (lit.$ === 'IntLiteral') {
-		var v = lit.a;
-		return $elm$core$Result$Ok(v);
-	} else {
-		return $elm$core$Result$Err(
-			$author$project$Morphir$Value$Error$ExpectedBoolLiteral(lit));
-	}
-};
-var $author$project$Morphir$Value$Error$NotImplemented = {$: 'NotImplemented'};
-var $author$project$Morphir$Value$Native$oneOf = function (funs) {
-	return A3(
-		$elm$core$List$foldl,
-		F2(
-			function (nextFun, funSoFar) {
-				return F2(
-					function (_eval, args) {
-						var _v0 = A2(funSoFar, _eval, args);
-						if (_v0.$ === 'Ok') {
-							var result = _v0.a;
-							return $elm$core$Result$Ok(result);
-						} else {
-							return A2(nextFun, _eval, args);
+var $author$project$Morphir$Value$Native$Comparable$compareValue = F2(
+	function (arg1, arg2) {
+		var _v0 = _Utils_Tuple2(arg1, arg2);
+		_v0$6:
+		while (true) {
+			switch (_v0.a.$) {
+				case 'Literal':
+					if (_v0.b.$ === 'Literal') {
+						switch (_v0.a.b.$) {
+							case 'IntLiteral':
+								if (_v0.b.b.$ === 'IntLiteral') {
+									var _v1 = _v0.a;
+									var val1 = _v1.b.a;
+									var _v2 = _v0.b;
+									var val2 = _v2.b.a;
+									return $elm$core$Result$Ok(
+										A2($elm$core$Basics$compare, val1, val2));
+								} else {
+									break _v0$6;
+								}
+							case 'FloatLiteral':
+								if (_v0.b.b.$ === 'FloatLiteral') {
+									var _v3 = _v0.a;
+									var val1 = _v3.b.a;
+									var _v4 = _v0.b;
+									var val2 = _v4.b.a;
+									return $elm$core$Result$Ok(
+										A2($elm$core$Basics$compare, val1, val2));
+								} else {
+									break _v0$6;
+								}
+							case 'CharLiteral':
+								if (_v0.b.b.$ === 'CharLiteral') {
+									var _v5 = _v0.a;
+									var val1 = _v5.b.a;
+									var _v6 = _v0.b;
+									var val2 = _v6.b.a;
+									return $elm$core$Result$Ok(
+										A2($elm$core$Basics$compare, val1, val2));
+								} else {
+									break _v0$6;
+								}
+							case 'StringLiteral':
+								if (_v0.b.b.$ === 'StringLiteral') {
+									var _v7 = _v0.a;
+									var val1 = _v7.b.a;
+									var _v8 = _v0.b;
+									var val2 = _v8.b.a;
+									return $elm$core$Result$Ok(
+										A2($elm$core$Basics$compare, val1, val2));
+								} else {
+									break _v0$6;
+								}
+							default:
+								break _v0$6;
 						}
-					});
-			}),
-		F2(
-			function (_eval, args) {
-				return $elm$core$Result$Err($author$project$Morphir$Value$Error$NotImplemented);
-			}),
-		funs);
-};
-var $author$project$Morphir$Value$Native$returnLiteral = F2(
-	function (toLit, a) {
-		return $elm$core$Result$Ok(
-			A2(
-				$author$project$Morphir$IR$Value$Literal,
-				_Utils_Tuple0,
-				toLit(a)));
-	});
-var $author$project$Morphir$Value$Native$stringLiteral = function (lit) {
-	if (lit.$ === 'StringLiteral') {
-		var v = lit.a;
-		return $elm$core$Result$Ok(v);
-	} else {
-		return $elm$core$Result$Err(
-			$author$project$Morphir$Value$Error$ExpectedBoolLiteral(lit));
-	}
-};
-var $elm$core$Basics$xor = _Basics_xor;
-var $author$project$Morphir$IR$SDK$Basics$nativeFunctions = _List_fromArray(
-	[
-		_Utils_Tuple2(
-		'not',
-		A3(
-			$author$project$Morphir$Value$Native$eval1,
-			$elm$core$Basics$not,
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
-		_Utils_Tuple2(
-		'and',
-		A4(
-			$author$project$Morphir$Value$Native$eval2,
-			$elm$core$Basics$and,
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
-		_Utils_Tuple2(
-		'or',
-		A4(
-			$author$project$Morphir$Value$Native$eval2,
-			$elm$core$Basics$or,
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
-		_Utils_Tuple2(
-		'xor',
-		A4(
-			$author$project$Morphir$Value$Native$eval2,
-			$elm$core$Basics$xor,
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$boolLiteral),
-			$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
-		_Utils_Tuple2(
-		'add',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$add,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$add,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
-				]))),
-		_Utils_Tuple2(
-		'subtract',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$sub,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$sub,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
-				]))),
-		_Utils_Tuple2(
-		'multiply',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$mul,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$mul,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
-				]))),
-		_Utils_Tuple2(
-		'divide',
-		A4(
-			$author$project$Morphir$Value$Native$eval2,
-			$elm$core$Basics$fdiv,
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-			$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
-		_Utils_Tuple2(
-		'integerDivide',
-		A4(
-			$author$project$Morphir$Value$Native$eval2,
-			$elm$core$Basics$idiv,
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-			$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-			$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
-		_Utils_Tuple2(
-		'equal',
-		$author$project$Morphir$Value$Native$binaryStrict(
-			F2(
-				function (arg1, arg2) {
-					return $elm$core$Result$Ok(
-						A2(
-							$author$project$Morphir$IR$Value$Literal,
-							_Utils_Tuple0,
-							$author$project$Morphir$IR$Literal$BoolLiteral(
-								_Utils_eq(arg1, arg2))));
-				}))),
-		_Utils_Tuple2(
-		'notEqual',
-		$author$project$Morphir$Value$Native$binaryStrict(
-			F2(
-				function (arg1, arg2) {
-					return $elm$core$Result$Ok(
-						A2(
-							$author$project$Morphir$IR$Value$Literal,
-							_Utils_Tuple0,
-							$author$project$Morphir$IR$Literal$BoolLiteral(
-								!_Utils_eq(arg1, arg2))));
-				}))),
-		_Utils_Tuple2(
-		'lessThan',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$lt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$lt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$lt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$lt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))
-				]))),
-		_Utils_Tuple2(
-		'greaterThan',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$gt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$gt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$gt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$gt,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))
-				]))),
-		_Utils_Tuple2(
-		'lessThanOrEqual',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$le,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$le,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$le,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$le,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))
-				]))),
-		_Utils_Tuple2(
-		'greaterThanOrEqual',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$ge,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$ge,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$ge,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$charLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral)),
-					A4(
-					$author$project$Morphir$Value$Native$eval2,
-					$elm$core$Basics$ge,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$stringLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$BoolLiteral))
-				]))),
-		_Utils_Tuple2(
-		'abs',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A3(
-					$author$project$Morphir$Value$Native$eval1,
-					$elm$core$Basics$abs,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
-					A3(
-					$author$project$Morphir$Value$Native$eval1,
-					$elm$core$Basics$abs,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
-				]))),
-		_Utils_Tuple2(
-		'toFloat',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A3(
-					$author$project$Morphir$Value$Native$eval1,
-					$elm$core$Basics$toFloat,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
-				]))),
-		_Utils_Tuple2(
-		'negate',
-		$author$project$Morphir$Value$Native$oneOf(
-			_List_fromArray(
-				[
-					A3(
-					$author$project$Morphir$Value$Native$eval1,
-					$elm$core$Basics$negate,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$intLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
-					A3(
-					$author$project$Morphir$Value$Native$eval1,
-					$elm$core$Basics$negate,
-					$author$project$Morphir$Value$Native$expectLiteral($author$project$Morphir$Value$Native$floatLiteral),
-					$author$project$Morphir$Value$Native$returnLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
-				])))
-	]);
-var $author$project$Morphir$Value$Native$expectFun1 = F2(
-	function (_eval, fun) {
-		return $elm$core$Result$Ok(
-			function (arg) {
-				return _eval(
-					A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, arg));
-			});
-	});
-var $author$project$Morphir$Value$Native$expectList = F2(
-	function (_eval, value) {
-		var _v0 = _eval(value);
-		if (_v0.$ === 'Ok') {
-			if (_v0.a.$ === 'List') {
-				var _v1 = _v0.a;
-				var values = _v1.b;
-				return $elm$core$Result$Ok(values);
-			} else {
-				return $elm$core$Result$Err(
-					$author$project$Morphir$Value$Error$ExpectedLiteral(value));
+					} else {
+						break _v0$6;
+					}
+				case 'List':
+					if (_v0.b.$ === 'List') {
+						var _v9 = _v0.a;
+						var list1 = _v9.b;
+						var _v10 = _v0.b;
+						var list2 = _v10.b;
+						var fun = F2(
+							function (listA, listB) {
+								fun:
+								while (true) {
+									var _v11 = _Utils_Tuple2(listA, listB);
+									if (!_v11.a.b) {
+										if (!_v11.b.b) {
+											return $elm$core$Result$Ok($elm$core$Basics$EQ);
+										} else {
+											return $elm$core$Result$Ok($elm$core$Basics$LT);
+										}
+									} else {
+										if (!_v11.b.b) {
+											return $elm$core$Result$Ok($elm$core$Basics$GT);
+										} else {
+											var _v12 = _v11.a;
+											var head1 = _v12.a;
+											var tail1 = _v12.b;
+											var _v13 = _v11.b;
+											var head2 = _v13.a;
+											var tail2 = _v13.b;
+											var _v14 = A2($author$project$Morphir$Value$Native$Comparable$compareValue, head1, head2);
+											if ((_v14.$ === 'Ok') && (_v14.a.$ === 'EQ')) {
+												var _v15 = _v14.a;
+												var $temp$listA = tail1,
+													$temp$listB = tail2;
+												listA = $temp$listA;
+												listB = $temp$listB;
+												continue fun;
+											} else {
+												var other = _v14;
+												return other;
+											}
+										}
+									}
+								}
+							});
+						return A2(fun, list1, list2);
+					} else {
+						break _v0$6;
+					}
+				case 'Tuple':
+					if (_v0.b.$ === 'Tuple') {
+						var _v16 = _v0.a;
+						var tupleList1 = _v16.b;
+						var _v17 = _v0.b;
+						var tupleList2 = _v17.b;
+						var fun = F2(
+							function (listA, listB) {
+								fun:
+								while (true) {
+									var _v18 = _Utils_Tuple2(listA, listB);
+									if (!_v18.a.b) {
+										if (!_v18.b.b) {
+											return $elm$core$Result$Ok($elm$core$Basics$EQ);
+										} else {
+											return $elm$core$Result$Err(
+												A2($author$project$Morphir$Value$Error$TupleLengthNotMatchException, tupleList1, tupleList2));
+										}
+									} else {
+										if (!_v18.b.b) {
+											return $elm$core$Result$Err(
+												A2($author$project$Morphir$Value$Error$TupleLengthNotMatchException, tupleList1, tupleList2));
+										} else {
+											var _v19 = _v18.a;
+											var head1 = _v19.a;
+											var tail1 = _v19.b;
+											var _v20 = _v18.b;
+											var head2 = _v20.a;
+											var tail2 = _v20.b;
+											var _v21 = A2($author$project$Morphir$Value$Native$Comparable$compareValue, head1, head2);
+											if ((_v21.$ === 'Ok') && (_v21.a.$ === 'EQ')) {
+												var _v22 = _v21.a;
+												var $temp$listA = tail1,
+													$temp$listB = tail2;
+												listA = $temp$listA;
+												listB = $temp$listB;
+												continue fun;
+											} else {
+												var other = _v21;
+												return other;
+											}
+										}
+									}
+								}
+							});
+						return A2(fun, tupleList1, tupleList2);
+					} else {
+						break _v0$6;
+					}
+				default:
+					break _v0$6;
 			}
-		} else {
-			var error = _v0.a;
-			return $elm$core$Result$Err(error);
 		}
+		var a = _v0.a;
+		var b = _v0.b;
+		return $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$UnexpectedArguments(
+				_List_fromArray(
+					[a, b])));
 	});
-var $author$project$Morphir$IR$FQName$fqn = F3(
-	function (packageName, moduleName, localName) {
-		return A3(
-			$author$project$Morphir$IR$FQName$fQName,
-			$author$project$Morphir$IR$Path$fromString(packageName),
-			$author$project$Morphir$IR$Path$fromString(moduleName),
-			$author$project$Morphir$IR$Name$fromString(localName));
-	});
-var $author$project$Morphir$Value$Native$returnList = function (list) {
-	return $elm$core$Result$Ok(
-		A2($author$project$Morphir$IR$Value$List, _Utils_Tuple0, list));
+var $author$project$Morphir$Value$Error$ExpectedList = function (a) {
+	return {$: 'ExpectedList', a: a};
 };
 var $elm$core$List$head = function (list) {
 	if (list.b) {
@@ -14489,11 +14195,335 @@ var $author$project$Morphir$ListOfResults$liftFirstError = function (results) {
 				$elm$core$List$head(errors)));
 	}
 };
-var $author$project$Morphir$Value$Native$returnResultList = function (listOfValueResults) {
-	return A2(
-		$elm$core$Result$map,
-		$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
-		$author$project$Morphir$ListOfResults$liftFirstError(listOfValueResults));
+var $author$project$Morphir$Value$Native$decodeList = F3(
+	function (decodeItem, _eval, value) {
+		var _v0 = _eval(value);
+		if (_v0.$ === 'Ok') {
+			if (_v0.a.$ === 'List') {
+				var _v1 = _v0.a;
+				var values = _v1.b;
+				return $author$project$Morphir$ListOfResults$liftFirstError(
+					A2(
+						$elm$core$List$map,
+						decodeItem(_eval),
+						values));
+			} else {
+				return $elm$core$Result$Err(
+					$author$project$Morphir$Value$Error$ExpectedList(value));
+			}
+		} else {
+			var error = _v0.a;
+			return $elm$core$Result$Err(error);
+		}
+	});
+var $author$project$Morphir$Value$Error$ExpectedLiteral = function (a) {
+	return {$: 'ExpectedLiteral', a: a};
+};
+var $author$project$Morphir$Value$Native$decodeLiteral = F3(
+	function (decodeLit, _eval, value) {
+		var _v0 = _eval(value);
+		if (_v0.$ === 'Ok') {
+			if (_v0.a.$ === 'Literal') {
+				var _v1 = _v0.a;
+				var lit = _v1.b;
+				return decodeLit(lit);
+			} else {
+				return $elm$core$Result$Err(
+					$author$project$Morphir$Value$Error$ExpectedLiteral(value));
+			}
+		} else {
+			var error = _v0.a;
+			return $elm$core$Result$Err(error);
+		}
+	});
+var $author$project$Morphir$Value$Native$decodeRaw = F2(
+	function (_eval, value) {
+		return _eval(value);
+	});
+var $author$project$Morphir$Value$Native$encodeList = F2(
+	function (encodeA, list) {
+		return A2(
+			$elm$core$Result$map,
+			$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+			$author$project$Morphir$ListOfResults$liftFirstError(
+				A2($elm$core$List$map, encodeA, list)));
+	});
+var $author$project$Morphir$Value$Native$encodeLiteral = F2(
+	function (toLit, a) {
+		return $elm$core$Result$Ok(
+			A2(
+				$author$project$Morphir$IR$Value$Literal,
+				_Utils_Tuple0,
+				toLit(a)));
+	});
+var $author$project$Morphir$Value$Native$encodeRaw = function (value) {
+	return $elm$core$Result$Ok(value);
+};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$List$all = F2(
+	function (isOkay, list) {
+		return !A2(
+			$elm$core$List$any,
+			A2($elm$core$Basics$composeL, $elm$core$Basics$not, isOkay),
+			list);
+	});
+var $author$project$Morphir$IR$Value$isData = function (value) {
+	switch (value.$) {
+		case 'Literal':
+			return true;
+		case 'Constructor':
+			return true;
+		case 'Tuple':
+			var elems = value.b;
+			return A2($elm$core$List$all, $author$project$Morphir$IR$Value$isData, elems);
+		case 'List':
+			var items = value.b;
+			return A2($elm$core$List$all, $author$project$Morphir$IR$Value$isData, items);
+		case 'Record':
+			var fields = value.b;
+			return A2(
+				$elm$core$List$all,
+				$author$project$Morphir$IR$Value$isData,
+				A2($elm$core$List$map, $elm$core$Tuple$second, fields));
+		case 'Apply':
+			var fun = value.b;
+			var arg = value.c;
+			return $author$project$Morphir$IR$Value$isData(fun) && $author$project$Morphir$IR$Value$isData(arg);
+		case 'Unit':
+			return true;
+		default:
+			return false;
+	}
+};
+var $author$project$Morphir$Value$Native$Eq$equal = F2(
+	function (arg1, arg2) {
+		return ($author$project$Morphir$IR$Value$isData(arg1) && $author$project$Morphir$IR$Value$isData(arg2)) ? $elm$core$Result$Ok(
+			_Utils_eq(arg1, arg2)) : $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$UnexpectedArguments(
+				_List_fromArray(
+					[arg1, arg2])));
+	});
+var $author$project$Morphir$Value$Native$eval1 = F5(
+	function (f, decodeA, encodeR, _eval, args) {
+		if (args.b && (!args.b.b)) {
+			var arg1 = args.a;
+			return A2(
+				$elm$core$Result$andThen,
+				function (a) {
+					return encodeR(
+						f(a));
+				},
+				A2(decodeA, _eval, arg1));
+		} else {
+			return $elm$core$Result$Err(
+				$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+		}
+	});
+var $author$project$Morphir$Value$Native$eval2 = F6(
+	function (f, decodeA, decodeB, encodeR, _eval, args) {
+		if ((args.b && args.b.b) && (!args.b.b.b)) {
+			var arg1 = args.a;
+			var _v1 = args.b;
+			var arg2 = _v1.a;
+			return A2(
+				$elm$core$Result$andThen,
+				function (a) {
+					return A2(
+						$elm$core$Result$andThen,
+						function (b) {
+							return encodeR(
+								A2(f, a, b));
+						},
+						A2(decodeB, _eval, arg2));
+				},
+				A2(decodeA, _eval, arg1));
+		} else {
+			return $elm$core$Result$Err(
+				$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+		}
+	});
+var $author$project$Morphir$Value$Native$eval3 = F7(
+	function (f, decodeA, decodeB, decodeC, encodeR, _eval, args) {
+		if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+			var arg1 = args.a;
+			var _v1 = args.b;
+			var arg2 = _v1.a;
+			var _v2 = _v1.b;
+			var arg3 = _v2.a;
+			return A2(
+				$elm$core$Result$andThen,
+				function (a) {
+					return A2(
+						$elm$core$Result$andThen,
+						function (b) {
+							return A2(
+								$elm$core$Result$andThen,
+								function (c) {
+									return encodeR(
+										A3(f, a, b, c));
+								},
+								A2(decodeC, _eval, arg3));
+						},
+						A2(decodeB, _eval, arg2));
+				},
+				A2(decodeA, _eval, arg1));
+		} else {
+			return $elm$core$Result$Err(
+				$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+		}
+	});
+var $author$project$Morphir$Value$Error$ExpectedFloatLiteral = function (a) {
+	return {$: 'ExpectedFloatLiteral', a: a};
+};
+var $author$project$Morphir$Value$Native$floatLiteral = function (lit) {
+	if (lit.$ === 'FloatLiteral') {
+		var v = lit.a;
+		return $elm$core$Result$Ok(v);
+	} else {
+		return $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$ExpectedFloatLiteral(
+				A2($author$project$Morphir$IR$Value$Literal, _Utils_Tuple0, lit)));
+	}
+};
+var $author$project$Morphir$Value$Native$Comparable$greaterThan = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			function (order) {
+				if (order.$ === 'GT') {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+	});
+var $author$project$Morphir$Value$Native$Comparable$greaterThanOrEqual = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			function (order) {
+				if (order.$ === 'LT') {
+					return false;
+				} else {
+					return true;
+				}
+			},
+			A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+	});
+var $author$project$Morphir$Value$Error$ExpectedIntLiteral = function (a) {
+	return {$: 'ExpectedIntLiteral', a: a};
+};
+var $author$project$Morphir$Value$Native$intLiteral = function (lit) {
+	if (lit.$ === 'IntLiteral') {
+		var v = lit.a;
+		return $elm$core$Result$Ok(v);
+	} else {
+		return $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$ExpectedIntLiteral(
+				A2($author$project$Morphir$IR$Value$Literal, _Utils_Tuple0, lit)));
+	}
+};
+var $author$project$Morphir$Value$Native$Comparable$lessThan = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			function (order) {
+				if (order.$ === 'LT') {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+	});
+var $author$project$Morphir$Value$Native$Comparable$lessThanOrEqual = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			function (order) {
+				if (order.$ === 'GT') {
+					return false;
+				} else {
+					return true;
+				}
+			},
+			A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+	});
+var $author$project$Morphir$Value$Native$Comparable$max = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			function (order) {
+				if (order.$ === 'LT') {
+					return arg2;
+				} else {
+					return arg1;
+				}
+			},
+			A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+	});
+var $author$project$Morphir$Value$Native$Comparable$min = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			function (order) {
+				if (order.$ === 'GT') {
+					return arg2;
+				} else {
+					return arg1;
+				}
+			},
+			A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+	});
+var $author$project$Morphir$IR$SDK$Basics$moduleName = $author$project$Morphir$IR$Path$fromString('Basics');
+var $author$project$Morphir$Value$Native$Eq$notEqual = F2(
+	function (arg1, arg2) {
+		return A2(
+			$elm$core$Result$map,
+			$elm$core$Basics$not,
+			A2($author$project$Morphir$Value$Native$Eq$equal, arg1, arg2));
+	});
+var $author$project$Morphir$Value$Error$NotImplemented = {$: 'NotImplemented'};
+var $author$project$Morphir$Value$Native$oneOf = function (funs) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (nextFun, funSoFar) {
+				return F2(
+					function (_eval, args) {
+						var _v0 = A2(funSoFar, _eval, args);
+						if (_v0.$ === 'Ok') {
+							var result = _v0.a;
+							return $elm$core$Result$Ok(result);
+						} else {
+							return A2(nextFun, _eval, args);
+						}
+					});
+			}),
+		F2(
+			function (_eval, args) {
+				return $elm$core$Result$Err($author$project$Morphir$Value$Error$NotImplemented);
+			}),
+		funs);
+};
+var $elm$core$Basics$pow = _Basics_pow;
+var $author$project$Morphir$Value$Error$ExpectedStringLiteral = function (a) {
+	return {$: 'ExpectedStringLiteral', a: a};
+};
+var $author$project$Morphir$Value$Native$stringLiteral = function (lit) {
+	if (lit.$ === 'StringLiteral') {
+		var v = lit.a;
+		return $elm$core$Result$Ok(v);
+	} else {
+		return $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$ExpectedStringLiteral(
+				A2($author$project$Morphir$IR$Value$Literal, _Utils_Tuple0, lit)));
+	}
 };
 var $author$project$Morphir$Value$Native$unaryLazy = function (f) {
 	return F2(
@@ -14517,108 +14547,4258 @@ var $author$project$Morphir$Value$Native$unaryStrict = function (f) {
 					_eval(arg));
 			}));
 };
+var $elm$core$Basics$xor = _Basics_xor;
+var $author$project$Morphir$IR$SDK$Basics$nativeFunctions = _List_fromArray(
+	[
+		_Utils_Tuple2(
+		'not',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$not,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple2(
+		'and',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$and,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple2(
+		'or',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$or,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple2(
+		'xor',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$xor,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple2(
+		'add',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$add,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$add,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'subtract',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$sub,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$sub,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'multiply',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$mul,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$mul,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'divide',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$fdiv,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple2(
+		'integerDivide',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$idiv,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple2(
+		'power',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$pow,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$pow,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'equal',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (bool) {
+							return A2(
+								$author$project$Morphir$IR$Value$Literal,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$Literal$BoolLiteral(bool));
+						},
+						A2($author$project$Morphir$Value$Native$Eq$equal, arg1, arg2));
+				}))),
+		_Utils_Tuple2(
+		'notEqual',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (bool) {
+							return A2(
+								$author$project$Morphir$IR$Value$Literal,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$Literal$BoolLiteral(bool));
+						},
+						A2($author$project$Morphir$Value$Native$Eq$notEqual, arg1, arg2));
+				}))),
+		_Utils_Tuple2(
+		'identity',
+		$author$project$Morphir$Value$Native$unaryStrict(
+			function (arg1) {
+				return arg1;
+			})),
+		_Utils_Tuple2(
+		'always',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, _v0) {
+					return $elm$core$Result$Ok(arg1);
+				}))),
+		_Utils_Tuple2(
+		'never',
+		F2(
+			function (_eval, args) {
+				return $elm$core$Result$Err(
+					$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+			})),
+		_Utils_Tuple2(
+		'composeLeft',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun1 = args.a;
+					var _v2 = args.b;
+					var fun2 = _v2.a;
+					var _v3 = _v2.b;
+					var arg1 = _v3.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (arg2) {
+							return _eval(
+								A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun1, arg2));
+						},
+						_eval(
+							A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun2, arg1)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'composeRight',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun1 = args.a;
+					var _v5 = args.b;
+					var fun2 = _v5.a;
+					var _v6 = _v5.b;
+					var arg1 = _v6.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (arg2) {
+							return _eval(
+								A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun2, arg2));
+						},
+						_eval(
+							A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun1, arg1)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'lessThan',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (bool) {
+							return A2(
+								$author$project$Morphir$IR$Value$Literal,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$Literal$BoolLiteral(bool));
+						},
+						A2($author$project$Morphir$Value$Native$Comparable$lessThan, arg1, arg2));
+				}))),
+		_Utils_Tuple2(
+		'greaterThan',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (bool) {
+							return A2(
+								$author$project$Morphir$IR$Value$Literal,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$Literal$BoolLiteral(bool));
+						},
+						A2($author$project$Morphir$Value$Native$Comparable$greaterThan, arg1, arg2));
+				}))),
+		_Utils_Tuple2(
+		'lessThanOrEqual',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (bool) {
+							return A2(
+								$author$project$Morphir$IR$Value$Literal,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$Literal$BoolLiteral(bool));
+						},
+						A2($author$project$Morphir$Value$Native$Comparable$lessThanOrEqual, arg1, arg2));
+				}))),
+		_Utils_Tuple2(
+		'greaterThanOrEqual',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (bool) {
+							return A2(
+								$author$project$Morphir$IR$Value$Literal,
+								_Utils_Tuple0,
+								$author$project$Morphir$IR$Literal$BoolLiteral(bool));
+						},
+						A2($author$project$Morphir$Value$Native$Comparable$greaterThanOrEqual, arg1, arg2));
+				}))),
+		_Utils_Tuple2(
+		'abs',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$Basics$abs,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$Basics$abs,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'toFloat',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$Basics$toFloat,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'negate',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$Basics$negate,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$Basics$negate,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'clamp',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A5(
+					$author$project$Morphir$Value$Native$eval3,
+					$elm$core$Basics$clamp,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)),
+					A5(
+					$author$project$Morphir$Value$Native$eval3,
+					$elm$core$Basics$clamp,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))
+				]))),
+		_Utils_Tuple2(
+		'max',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2($author$project$Morphir$Value$Native$Comparable$max, arg1, arg2);
+				}))),
+		_Utils_Tuple2(
+		'min',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2($author$project$Morphir$Value$Native$Comparable$min, arg1, arg2);
+				}))),
+		_Utils_Tuple2(
+		'append',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$append,
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral)),
+					A4(
+					$author$project$Morphir$Value$Native$eval2,
+					$elm$core$Basics$append,
+					$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+					$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+					$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))
+				]))),
+		_Utils_Tuple2(
+		'compare',
+		$author$project$Morphir$Value$Native$binaryStrict(
+			F2(
+				function (arg1, arg2) {
+					return A2(
+						$elm$core$Result$map,
+						function (order) {
+							var val = function () {
+								switch (order.$) {
+									case 'GT':
+										return 'GT';
+									case 'LT':
+										return 'LT';
+									default:
+										return 'EQ';
+								}
+							}();
+							return A2(
+								$author$project$Morphir$IR$Value$Constructor,
+								_Utils_Tuple0,
+								A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Basics$moduleName, val));
+						},
+						A2($author$project$Morphir$Value$Native$Comparable$compareValue, arg1, arg2));
+				})))
+	]);
+var $author$project$Morphir$Value$Native$decodeFun1 = F4(
+	function (encodeA, decodeR, _eval, fun) {
+		return $elm$core$Result$Ok(
+			function (a) {
+				return A2(
+					$elm$core$Result$andThen,
+					decodeR(_eval),
+					A2(
+						$elm$core$Result$andThen,
+						function (arg) {
+							return _eval(
+								A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, arg));
+						},
+						encodeA(a)));
+			});
+	});
+var $author$project$Morphir$Value$Error$ExpectedTuple = function (a) {
+	return {$: 'ExpectedTuple', a: a};
+};
+var $elm$core$Result$map2 = F3(
+	function (func, ra, rb) {
+		if (ra.$ === 'Err') {
+			var x = ra.a;
+			return $elm$core$Result$Err(x);
+		} else {
+			var a = ra.a;
+			if (rb.$ === 'Err') {
+				var x = rb.a;
+				return $elm$core$Result$Err(x);
+			} else {
+				var b = rb.a;
+				return $elm$core$Result$Ok(
+					A2(func, a, b));
+			}
+		}
+	});
+var $author$project$Morphir$Value$Native$decodeTuple2 = F3(
+	function (_v0, _eval, value) {
+		var decodeA = _v0.a;
+		var decodeB = _v0.b;
+		var _v1 = _eval(value);
+		if (_v1.$ === 'Ok') {
+			if ((((_v1.a.$ === 'Tuple') && _v1.a.b.b) && _v1.a.b.b.b) && (!_v1.a.b.b.b.b)) {
+				var _v2 = _v1.a;
+				var _v3 = _v2.b;
+				var val1 = _v3.a;
+				var _v4 = _v3.b;
+				var val2 = _v4.a;
+				return A3(
+					$elm$core$Result$map2,
+					F2(
+						function (a1, b1) {
+							return _Utils_Tuple2(a1, b1);
+						}),
+					A2(decodeA, _eval, val1),
+					A2(decodeB, _eval, val2));
+			} else {
+				return $elm$core$Result$Err(
+					$author$project$Morphir$Value$Error$ExpectedTuple(value));
+			}
+		} else {
+			var error = _v1.a;
+			return $elm$core$Result$Err(error);
+		}
+	});
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $author$project$Morphir$Value$Native$encodeMaybe = F2(
+	function (encodeA, maybe) {
+		if (maybe.$ === 'Just') {
+			var a = maybe.a;
+			return A2(
+				$elm$core$Result$map,
+				A2(
+					$author$project$Morphir$IR$Value$Apply,
+					_Utils_Tuple0,
+					A2(
+						$author$project$Morphir$IR$Value$Constructor,
+						_Utils_Tuple0,
+						_Utils_Tuple3(
+							_List_fromArray(
+								[
+									_List_fromArray(
+									['morphir']),
+									_List_fromArray(
+									['s', 'd', 'k'])
+								]),
+							_List_fromArray(
+								[
+									_List_fromArray(
+									['maybe'])
+								]),
+							_List_fromArray(
+								['just'])))),
+				encodeA(a));
+		} else {
+			return $elm$core$Result$Ok(
+				A2(
+					$author$project$Morphir$IR$Value$Constructor,
+					_Utils_Tuple0,
+					_Utils_Tuple3(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								['morphir']),
+								_List_fromArray(
+								['s', 'd', 'k'])
+							]),
+						_List_fromArray(
+							[
+								_List_fromArray(
+								['maybe'])
+							]),
+						_List_fromArray(
+							['nothing']))));
+		}
+	});
+var $author$project$Morphir$Value$Native$encodeResultList = function (listOfValueResults) {
+	return A2(
+		$elm$core$Result$map,
+		$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+		$author$project$Morphir$ListOfResults$liftFirstError(listOfValueResults));
+};
+var $author$project$Morphir$Value$Native$encodeTuple2 = F2(
+	function (_v0, _v1) {
+		var encodeA = _v0.a;
+		var encodeB = _v0.b;
+		var a = _v1.a;
+		var b = _v1.b;
+		return A3(
+			$elm$core$Result$map2,
+			F2(
+				function (a1, b1) {
+					return A2(
+						$author$project$Morphir$IR$Value$Tuple,
+						_Utils_Tuple0,
+						_List_fromArray(
+							[a1, b1]));
+				}),
+			encodeA(a),
+			encodeB(b));
+	});
+var $elm$core$List$intersperse = F2(
+	function (sep, xs) {
+		if (!xs.b) {
+			return _List_Nil;
+		} else {
+			var hd = xs.a;
+			var tl = xs.b;
+			var step = F2(
+				function (x, rest) {
+					return A2(
+						$elm$core$List$cons,
+						sep,
+						A2($elm$core$List$cons, x, rest));
+				});
+			var spersed = A3($elm$core$List$foldr, step, _List_Nil, tl);
+			return A2($elm$core$List$cons, hd, spersed);
+		}
+	});
+var $elm$core$List$map3 = _List_map3;
+var $elm$core$Result$map3 = F4(
+	function (func, ra, rb, rc) {
+		if (ra.$ === 'Err') {
+			var x = ra.a;
+			return $elm$core$Result$Err(x);
+		} else {
+			var a = ra.a;
+			if (rb.$ === 'Err') {
+				var x = rb.a;
+				return $elm$core$Result$Err(x);
+			} else {
+				var b = rb.a;
+				if (rc.$ === 'Err') {
+					var x = rc.a;
+					return $elm$core$Result$Err(x);
+				} else {
+					var c = rc.a;
+					return $elm$core$Result$Ok(
+						A3(func, a, b, c));
+				}
+			}
+		}
+	});
+var $elm$core$List$map4 = _List_map4;
+var $elm$core$Result$map4 = F5(
+	function (func, ra, rb, rc, rd) {
+		if (ra.$ === 'Err') {
+			var x = ra.a;
+			return $elm$core$Result$Err(x);
+		} else {
+			var a = ra.a;
+			if (rb.$ === 'Err') {
+				var x = rb.a;
+				return $elm$core$Result$Err(x);
+			} else {
+				var b = rb.a;
+				if (rc.$ === 'Err') {
+					var x = rc.a;
+					return $elm$core$Result$Err(x);
+				} else {
+					var c = rc.a;
+					if (rd.$ === 'Err') {
+						var x = rd.a;
+						return $elm$core$Result$Err(x);
+					} else {
+						var d = rd.a;
+						return $elm$core$Result$Ok(
+							A4(func, a, b, c, d));
+					}
+				}
+			}
+		}
+	});
+var $elm$core$List$map5 = _List_map5;
+var $elm$core$Result$map5 = F6(
+	function (func, ra, rb, rc, rd, re) {
+		if (ra.$ === 'Err') {
+			var x = ra.a;
+			return $elm$core$Result$Err(x);
+		} else {
+			var a = ra.a;
+			if (rb.$ === 'Err') {
+				var x = rb.a;
+				return $elm$core$Result$Err(x);
+			} else {
+				var b = rb.a;
+				if (rc.$ === 'Err') {
+					var x = rc.a;
+					return $elm$core$Result$Err(x);
+				} else {
+					var c = rc.a;
+					if (rd.$ === 'Err') {
+						var x = rd.a;
+						return $elm$core$Result$Err(x);
+					} else {
+						var d = rd.a;
+						if (re.$ === 'Err') {
+							var x = re.a;
+							return $elm$core$Result$Err(x);
+						} else {
+							var e = re.a;
+							return $elm$core$Result$Ok(
+								A5(func, a, b, c, d, e));
+						}
+					}
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
+var $elm$core$List$product = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$mul, 1, numbers);
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $elm$core$List$singleton = function (value) {
+	return _List_fromArray(
+		[value]);
+};
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
+};
+var $elm$core$List$tail = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(xs);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2($elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return $elm$core$List$reverse(
+			A3($elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var $elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _v0 = _Utils_Tuple2(n, list);
+			_v0$1:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if (!_v0.b.b) {
+						return list;
+					} else {
+						if (_v0.b.b.b) {
+							switch (_v0.a) {
+								case 1:
+									break _v0$1;
+								case 2:
+									var _v2 = _v0.b;
+									var x = _v2.a;
+									var _v3 = _v2.b;
+									var y = _v3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_v0.b.b.b.b) {
+										var _v4 = _v0.b;
+										var x = _v4.a;
+										var _v5 = _v4.b;
+										var y = _v5.a;
+										var _v6 = _v5.b;
+										var z = _v6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _v0$5;
+									}
+								default:
+									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
+										var _v7 = _v0.b;
+										var x = _v7.a;
+										var _v8 = _v7.b;
+										var y = _v8.a;
+										var _v9 = _v8.b;
+										var z = _v9.a;
+										var _v10 = _v9.b;
+										var w = _v10.a;
+										var tl = _v10.b;
+										return (ctr > 1000) ? A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _v0$5;
+									}
+							}
+						} else {
+							if (_v0.a === 1) {
+								break _v0$1;
+							} else {
+								break _v0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _v1 = _v0.b;
+			var x = _v1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var $elm$core$List$take = F2(
+	function (n, list) {
+		return A3($elm$core$List$takeFast, 0, n, list);
+	});
+var $elm$core$List$unzip = function (pairs) {
+	var step = F2(
+		function (_v0, _v1) {
+			var x = _v0.a;
+			var y = _v0.b;
+			var xs = _v1.a;
+			var ys = _v1.b;
+			return _Utils_Tuple2(
+				A2($elm$core$List$cons, x, xs),
+				A2($elm$core$List$cons, y, ys));
+		});
+	return A3(
+		$elm$core$List$foldr,
+		step,
+		_Utils_Tuple2(_List_Nil, _List_Nil),
+		pairs);
+};
 var $author$project$Morphir$IR$SDK$List$nativeFunctions = _List_fromArray(
 	[
 		_Utils_Tuple2(
-		'sum',
-		$author$project$Morphir$Value$Native$unaryStrict(
-			F2(
-				function (_eval, arg) {
-					if (arg.$ === 'List') {
-						var value = arg.b;
-						return A3(
-							$elm$core$List$foldl,
-							F2(
-								function (nextElem, resultSoFar) {
-									return A2(
-										$elm$core$Result$andThen,
-										function (resultValue) {
-											return _eval(
-												A3(
-													$author$project$Morphir$IR$Value$Apply,
-													_Utils_Tuple0,
-													A3(
-														$author$project$Morphir$IR$Value$Apply,
-														_Utils_Tuple0,
-														A2(
-															$author$project$Morphir$IR$Value$Reference,
-															_Utils_Tuple0,
-															A3($author$project$Morphir$IR$FQName$fqn, 'Morphir.SDK', 'Basics', 'add')),
-														nextElem),
-													resultValue));
-										},
-										resultSoFar);
-								}),
-							$elm$core$Result$Ok(
-								A2(
-									$author$project$Morphir$IR$Value$Literal,
-									_Utils_Tuple0,
-									$author$project$Morphir$IR$Literal$IntLiteral(0))),
-							value);
-					} else {
-						return $elm$core$Result$Err(
-							$author$project$Morphir$Value$Error$UnexpectedArguments(
-								_List_fromArray(
-									[arg])));
-					}
-				}))),
+		'singleton',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$singleton,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'repeat',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$repeat,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'cons',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$cons,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
 		_Utils_Tuple2(
 		'map',
-		A4($author$project$Morphir$Value$Native$eval2, $elm$core$List$map, $author$project$Morphir$Value$Native$expectFun1, $author$project$Morphir$Value$Native$expectList, $author$project$Morphir$Value$Native$returnResultList)),
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$map,
+			A2($author$project$Morphir$Value$Native$decodeFun1, $author$project$Morphir$Value$Native$encodeRaw, $author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeResultList)),
+		_Utils_Tuple2(
+		'filter',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v1 = args.b;
+					var arg1 = _v1.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = F2(
+									function (list, items) {
+										evaluate:
+										while (true) {
+											if (!items.b) {
+												return $elm$core$Result$Ok(list);
+											} else {
+												var head = items.a;
+												var tail = items.b;
+												var _v4 = _eval(
+													A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, head));
+												if (_v4.$ === 'Ok') {
+													if ((_v4.a.$ === 'Literal') && (_v4.a.b.$ === 'BoolLiteral')) {
+														if (_v4.a.b.a) {
+															var _v5 = _v4.a;
+															var $temp$list = _Utils_ap(
+																list,
+																_List_fromArray(
+																	[head])),
+																$temp$items = tail;
+															list = $temp$list;
+															items = $temp$items;
+															continue evaluate;
+														} else {
+															var _v6 = _v4.a;
+															var $temp$list = list,
+																$temp$items = tail;
+															list = $temp$list;
+															items = $temp$items;
+															continue evaluate;
+														}
+													} else {
+														var other = _v4.a;
+														return $elm$core$Result$Err(
+															$author$project$Morphir$Value$Error$ExpectedBoolLiteral(other));
+													}
+												} else {
+													var other = _v4.a;
+													return $elm$core$Result$Err(other);
+												}
+											}
+										}
+									});
+								return A2(
+									$elm$core$Result$map,
+									$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+									A2(evaluate, _List_Nil, listItems));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'filterMap',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v8 = args.b;
+					var arg1 = _v8.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = F2(
+									function (list, items) {
+										evaluate:
+										while (true) {
+											if (!items.b) {
+												return $elm$core$Result$Ok(list);
+											} else {
+												var head = items.a;
+												var tail = items.b;
+												var _v11 = _eval(
+													A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, head));
+												_v11$2:
+												while (true) {
+													if (_v11.$ === 'Ok') {
+														switch (_v11.a.$) {
+															case 'Apply':
+																if ((((((((((((((((((((((_v11.a.b.$ === 'Constructor') && _v11.a.b.b.a.b) && _v11.a.b.b.a.a.b) && (_v11.a.b.b.a.a.a === 'morphir')) && (!_v11.a.b.b.a.a.b.b)) && _v11.a.b.b.a.b.b) && _v11.a.b.b.a.b.a.b) && (_v11.a.b.b.a.b.a.a === 's')) && _v11.a.b.b.a.b.a.b.b) && (_v11.a.b.b.a.b.a.b.a === 'd')) && _v11.a.b.b.a.b.a.b.b.b) && (_v11.a.b.b.a.b.a.b.b.a === 'k')) && (!_v11.a.b.b.a.b.a.b.b.b.b)) && (!_v11.a.b.b.a.b.b.b)) && _v11.a.b.b.b.b) && _v11.a.b.b.b.a.b) && (_v11.a.b.b.b.a.a === 'maybe')) && (!_v11.a.b.b.b.a.b.b)) && (!_v11.a.b.b.b.b.b)) && _v11.a.b.b.c.b) && (_v11.a.b.b.c.a === 'just')) && (!_v11.a.b.b.c.b.b)) {
+																	var _v12 = _v11.a;
+																	var _v13 = _v12.b;
+																	var _v14 = _v13.b;
+																	var _v15 = _v14.a;
+																	var _v16 = _v15.a;
+																	var _v17 = _v15.b;
+																	var _v18 = _v17.a;
+																	var _v19 = _v18.b;
+																	var _v20 = _v19.b;
+																	var _v21 = _v14.b;
+																	var _v22 = _v21.a;
+																	var _v23 = _v14.c;
+																	var value = _v12.c;
+																	var $temp$list = _Utils_ap(
+																		list,
+																		_List_fromArray(
+																			[value])),
+																		$temp$items = tail;
+																	list = $temp$list;
+																	items = $temp$items;
+																	continue evaluate;
+																} else {
+																	break _v11$2;
+																}
+															case 'Constructor':
+																if ((((((((((((((((((((_v11.a.b.a.b && _v11.a.b.a.a.b) && (_v11.a.b.a.a.a === 'morphir')) && (!_v11.a.b.a.a.b.b)) && _v11.a.b.a.b.b) && _v11.a.b.a.b.a.b) && (_v11.a.b.a.b.a.a === 's')) && _v11.a.b.a.b.a.b.b) && (_v11.a.b.a.b.a.b.a === 'd')) && _v11.a.b.a.b.a.b.b.b) && (_v11.a.b.a.b.a.b.b.a === 'k')) && (!_v11.a.b.a.b.a.b.b.b.b)) && (!_v11.a.b.a.b.b.b)) && _v11.a.b.b.b) && _v11.a.b.b.a.b) && (_v11.a.b.b.a.a === 'maybe')) && (!_v11.a.b.b.a.b.b)) && (!_v11.a.b.b.b.b)) && _v11.a.b.c.b) && (_v11.a.b.c.a === 'nothing')) && (!_v11.a.b.c.b.b)) {
+																	var _v24 = _v11.a;
+																	var _v25 = _v24.b;
+																	var _v26 = _v25.a;
+																	var _v27 = _v26.a;
+																	var _v28 = _v26.b;
+																	var _v29 = _v28.a;
+																	var _v30 = _v29.b;
+																	var _v31 = _v30.b;
+																	var _v32 = _v25.b;
+																	var _v33 = _v32.a;
+																	var _v34 = _v25.c;
+																	var $temp$list = list,
+																		$temp$items = tail;
+																	list = $temp$list;
+																	items = $temp$items;
+																	continue evaluate;
+																} else {
+																	break _v11$2;
+																}
+															default:
+																break _v11$2;
+														}
+													} else {
+														var other = _v11.a;
+														return $elm$core$Result$Err(other);
+													}
+												}
+												var other = _v11.a;
+												return $elm$core$Result$Err(
+													$author$project$Morphir$Value$Error$ExpectedBoolLiteral(other));
+											}
+										}
+									});
+								return A2(
+									$elm$core$Result$map,
+									$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+									A2(evaluate, _List_Nil, listItems));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'foldl',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun = args.a;
+					var _v36 = args.b;
+					var arg1 = _v36.a;
+					var _v37 = _v36.b;
+					var arg2 = _v37.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg2) {
+							if (evaluatedArg2.$ === 'List') {
+								var listItems = evaluatedArg2.b;
+								return A3(
+									$elm$core$List$foldl,
+									F2(
+										function (next, resultSoFar) {
+											return A2(
+												$elm$core$Result$andThen,
+												function (soFar) {
+													return A2(
+														$elm$core$Result$andThen,
+														function (evaluatedNext) {
+															return _eval(
+																A3(
+																	$author$project$Morphir$IR$Value$Apply,
+																	_Utils_Tuple0,
+																	A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, evaluatedNext),
+																	soFar));
+														},
+														_eval(next));
+												},
+												resultSoFar);
+										}),
+									_eval(arg1),
+									listItems);
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg2));
+							}
+						},
+						_eval(arg2));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'foldr',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun = args.a;
+					var _v40 = args.b;
+					var arg1 = _v40.a;
+					var _v41 = _v40.b;
+					var arg2 = _v41.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg2) {
+							if (evaluatedArg2.$ === 'List') {
+								var listItems = evaluatedArg2.b;
+								return A3(
+									$elm$core$List$foldr,
+									F2(
+										function (next, resultSoFar) {
+											return A2(
+												$elm$core$Result$andThen,
+												function (soFar) {
+													return A2(
+														$elm$core$Result$andThen,
+														function (evaluatedNext) {
+															return _eval(
+																A3(
+																	$author$project$Morphir$IR$Value$Apply,
+																	_Utils_Tuple0,
+																	A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, evaluatedNext),
+																	soFar));
+														},
+														_eval(next));
+												},
+												resultSoFar);
+										}),
+									_eval(arg1),
+									listItems);
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg2));
+							}
+						},
+						_eval(arg2));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'length',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$length,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple2(
+		'reverse',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$reverse,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'member',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$member,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple2(
+		'all',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v44 = args.b;
+					var arg1 = _v44.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = function (items) {
+									evaluate:
+									while (true) {
+										if (!items.b) {
+											return $elm$core$Result$Ok(true);
+										} else {
+											var head1 = items.a;
+											var tail1 = items.b;
+											var _v47 = _eval(
+												A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, head1));
+											if (_v47.$ === 'Ok') {
+												if ((_v47.a.$ === 'Literal') && (_v47.a.b.$ === 'BoolLiteral')) {
+													if (_v47.a.b.a) {
+														var _v48 = _v47.a;
+														var $temp$items = tail1;
+														items = $temp$items;
+														continue evaluate;
+													} else {
+														var _v49 = _v47.a;
+														return $elm$core$Result$Ok(false);
+													}
+												} else {
+													var other = _v47.a;
+													return $elm$core$Result$Err(
+														$author$project$Morphir$Value$Error$ExpectedBoolLiteral(other));
+												}
+											} else {
+												var other = _v47.a;
+												return $elm$core$Result$Err(other);
+											}
+										}
+									}
+								};
+								return A2(
+									$elm$core$Result$map,
+									function (val) {
+										return A2(
+											$author$project$Morphir$IR$Value$Literal,
+											_Utils_Tuple0,
+											$author$project$Morphir$IR$Literal$BoolLiteral(val));
+									},
+									evaluate(listItems));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'any',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v51 = args.b;
+					var arg1 = _v51.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = function (items) {
+									evaluate:
+									while (true) {
+										if (!items.b) {
+											return $elm$core$Result$Ok(false);
+										} else {
+											var head1 = items.a;
+											var tail1 = items.b;
+											var _v54 = _eval(
+												A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, head1));
+											if (_v54.$ === 'Ok') {
+												if ((_v54.a.$ === 'Literal') && (_v54.a.b.$ === 'BoolLiteral')) {
+													if (!_v54.a.b.a) {
+														var _v55 = _v54.a;
+														var $temp$items = tail1;
+														items = $temp$items;
+														continue evaluate;
+													} else {
+														var _v56 = _v54.a;
+														return $elm$core$Result$Ok(true);
+													}
+												} else {
+													var other = _v54.a;
+													return $elm$core$Result$Err(
+														$author$project$Morphir$Value$Error$ExpectedBoolLiteral(other));
+												}
+											} else {
+												var other = _v54.a;
+												return $elm$core$Result$Err(other);
+											}
+										}
+									}
+								};
+								return A2(
+									$elm$core$Result$map,
+									function (val) {
+										return A2(
+											$author$project$Morphir$IR$Value$Literal,
+											_Utils_Tuple0,
+											$author$project$Morphir$IR$Literal$BoolLiteral(val));
+									},
+									evaluate(listItems));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'maximum',
+		F2(
+			function (_eval, args) {
+				if (args.b && (!args.b.b)) {
+					var arg1 = args.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = function (items) {
+									if (!items.b) {
+										return $elm$core$Result$Ok(
+											$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+									} else {
+										var head = items.a;
+										var tail = items.b;
+										return A2(
+											$elm$core$Result$map,
+											$author$project$Morphir$IR$SDK$Maybe$just(_Utils_Tuple0),
+											A3(
+												$elm$core$List$foldl,
+												F2(
+													function (next, resultSoFar) {
+														return A2(
+															$elm$core$Result$andThen,
+															function (soFar) {
+																return A2(
+																	$elm$core$Result$andThen,
+																	function (evaluatedNext) {
+																		return A2(
+																			$elm$core$Result$map,
+																			function (order) {
+																				if (order.$ === 'LT') {
+																					return soFar;
+																				} else {
+																					return evaluatedNext;
+																				}
+																			},
+																			A2($author$project$Morphir$Value$Native$Comparable$compareValue, evaluatedNext, soFar));
+																	},
+																	_eval(next));
+															},
+															resultSoFar);
+													}),
+												_eval(head),
+												tail));
+									}
+								};
+								return evaluate(listItems);
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'minimum',
+		F2(
+			function (_eval, args) {
+				if (args.b && (!args.b.b)) {
+					var arg1 = args.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = function (items) {
+									if (!items.b) {
+										return $elm$core$Result$Ok(
+											$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+									} else {
+										var head = items.a;
+										var tail = items.b;
+										return A2(
+											$elm$core$Result$map,
+											$author$project$Morphir$IR$SDK$Maybe$just(_Utils_Tuple0),
+											A3(
+												$elm$core$List$foldl,
+												F2(
+													function (next, resultSoFar) {
+														return A2(
+															$elm$core$Result$andThen,
+															function (soFar) {
+																return A2(
+																	$elm$core$Result$andThen,
+																	function (evaluatedNext) {
+																		return A2(
+																			$elm$core$Result$map,
+																			function (order) {
+																				if (order.$ === 'LT') {
+																					return evaluatedNext;
+																				} else {
+																					return soFar;
+																				}
+																			},
+																			A2($author$project$Morphir$Value$Native$Comparable$compareValue, evaluatedNext, soFar));
+																	},
+																	_eval(next));
+															},
+															resultSoFar);
+													}),
+												_eval(head),
+												tail));
+									}
+								};
+								return evaluate(listItems);
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'sum',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$List$sum,
+					$author$project$Morphir$Value$Native$decodeList(
+						$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral)),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral)),
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$List$sum,
+					$author$project$Morphir$Value$Native$decodeList(
+						$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral)),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))
+				]))),
+		_Utils_Tuple2(
+		'product',
+		$author$project$Morphir$Value$Native$oneOf(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$List$product,
+					$author$project$Morphir$Value$Native$decodeList(
+						$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral)),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral)),
+					A3(
+					$author$project$Morphir$Value$Native$eval1,
+					$elm$core$List$product,
+					$author$project$Morphir$Value$Native$decodeList(
+						$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral)),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))
+				]))),
 		_Utils_Tuple2(
 		'append',
-		A4($author$project$Morphir$Value$Native$eval2, $elm$core$List$append, $author$project$Morphir$Value$Native$expectList, $author$project$Morphir$Value$Native$expectList, $author$project$Morphir$Value$Native$returnList))
-	]);
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
-var $author$project$Morphir$IR$SDK$String$nativeFunctions = _List_fromArray(
-	[
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$append,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
 		_Utils_Tuple2(
 		'concat',
-		$author$project$Morphir$Value$Native$unaryStrict(
-			F2(
-				function (_eval, arg) {
-					if (arg.$ === 'List') {
-						var value = arg.b;
-						return A2(
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$concat,
+			$author$project$Morphir$Value$Native$decodeList(
+				$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw)),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'intersperse',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$intersperse,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'indexedMap',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v66 = args.b;
+					var arg1 = _v66.a;
+					return A2(
+						$elm$core$Result$andThen,
+						$elm$core$Basics$identity,
+						A2(
 							$elm$core$Result$map,
-							A2(
-								$elm$core$Basics$composeR,
-								$elm$core$String$concat,
-								A2(
-									$elm$core$Basics$composeR,
-									$author$project$Morphir$IR$Literal$StringLiteral,
-									$author$project$Morphir$IR$Value$Literal(_Utils_Tuple0))),
-							$author$project$Morphir$ListOfResults$liftFirstError(
-								A2(
-									$elm$core$List$map,
-									function (listItem) {
+							function (evaluatedArg1) {
+								if (evaluatedArg1.$ === 'List') {
+									var listItems1 = evaluatedArg1.b;
+									return A2(
+										$elm$core$Result$map,
+										$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+										$author$project$Morphir$ListOfResults$liftFirstError(
+											A2(
+												$elm$core$List$indexedMap,
+												F2(
+													function (index, item1) {
+														return _eval(
+															A3(
+																$author$project$Morphir$IR$Value$Apply,
+																_Utils_Tuple0,
+																A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, item1),
+																A2(
+																	$author$project$Morphir$IR$Value$Literal,
+																	_Utils_Tuple0,
+																	$author$project$Morphir$IR$Literal$IntLiteral(index))));
+													}),
+												listItems1)));
+								} else {
+									return $elm$core$Result$Err(
+										$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+								}
+							},
+							_eval(arg1)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map2',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun = args.a;
+					var _v69 = args.b;
+					var arg1 = _v69.a;
+					var _v70 = _v69.b;
+					var arg2 = _v70.a;
+					return A2(
+						$elm$core$Result$andThen,
+						$elm$core$Basics$identity,
+						A3(
+							$elm$core$Result$map2,
+							F2(
+								function (evaluatedArg1, evaluatedArg2) {
+									var _v71 = _Utils_Tuple2(evaluatedArg1, evaluatedArg2);
+									if ((_v71.a.$ === 'List') && (_v71.b.$ === 'List')) {
+										var _v72 = _v71.a;
+										var listItems1 = _v72.b;
+										var _v73 = _v71.b;
+										var listItems2 = _v73.b;
 										return A2(
-											$elm$core$Result$andThen,
-											function (evaluatedListItem) {
-												if ((evaluatedListItem.$ === 'Literal') && (evaluatedListItem.b.$ === 'StringLiteral')) {
-													var argument = evaluatedListItem.b.a;
-													return $elm$core$Result$Ok(argument);
+											$elm$core$Result$map,
+											$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+											$author$project$Morphir$ListOfResults$liftFirstError(
+												A3(
+													$elm$core$List$map2,
+													F2(
+														function (item1, item2) {
+															return _eval(
+																A3(
+																	$author$project$Morphir$IR$Value$Apply,
+																	_Utils_Tuple0,
+																	A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, item1),
+																	item2));
+														}),
+													listItems1,
+													listItems2)));
+									} else {
+										return $elm$core$Result$Err(
+											$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+									}
+								}),
+							_eval(arg1),
+							_eval(arg2)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map3',
+		F2(
+			function (_eval, args) {
+				if ((((args.b && args.b.b) && args.b.b.b) && args.b.b.b.b) && (!args.b.b.b.b.b)) {
+					var fun = args.a;
+					var _v75 = args.b;
+					var arg1 = _v75.a;
+					var _v76 = _v75.b;
+					var arg2 = _v76.a;
+					var _v77 = _v76.b;
+					var arg3 = _v77.a;
+					return A2(
+						$elm$core$Result$andThen,
+						$elm$core$Basics$identity,
+						A4(
+							$elm$core$Result$map3,
+							F3(
+								function (evaluatedArg1, evaluatedArg2, evaluatedArg3) {
+									var _v78 = _Utils_Tuple3(evaluatedArg1, evaluatedArg2, evaluatedArg3);
+									if (((_v78.a.$ === 'List') && (_v78.b.$ === 'List')) && (_v78.c.$ === 'List')) {
+										var _v79 = _v78.a;
+										var listItems1 = _v79.b;
+										var _v80 = _v78.b;
+										var listItems2 = _v80.b;
+										var _v81 = _v78.c;
+										var listItems3 = _v81.b;
+										return A2(
+											$elm$core$Result$map,
+											$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+											$author$project$Morphir$ListOfResults$liftFirstError(
+												A4(
+													$elm$core$List$map3,
+													F3(
+														function (item1, item2, item3) {
+															return _eval(
+																A3(
+																	$author$project$Morphir$IR$Value$Apply,
+																	_Utils_Tuple0,
+																	A3(
+																		$author$project$Morphir$IR$Value$Apply,
+																		_Utils_Tuple0,
+																		A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, item1),
+																		item2),
+																	item3));
+														}),
+													listItems1,
+													listItems2,
+													listItems3)));
+									} else {
+										return $elm$core$Result$Err(
+											$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+									}
+								}),
+							_eval(arg1),
+							_eval(arg2),
+							_eval(arg3)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map4',
+		F2(
+			function (_eval, args) {
+				if (((((args.b && args.b.b) && args.b.b.b) && args.b.b.b.b) && args.b.b.b.b.b) && (!args.b.b.b.b.b.b)) {
+					var fun = args.a;
+					var _v83 = args.b;
+					var arg1 = _v83.a;
+					var _v84 = _v83.b;
+					var arg2 = _v84.a;
+					var _v85 = _v84.b;
+					var arg3 = _v85.a;
+					var _v86 = _v85.b;
+					var arg4 = _v86.a;
+					return A2(
+						$elm$core$Result$andThen,
+						$elm$core$Basics$identity,
+						A5(
+							$elm$core$Result$map4,
+							F4(
+								function (evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4) {
+									var _v87 = _List_fromArray(
+										[evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4]);
+									if ((((((((_v87.b && (_v87.a.$ === 'List')) && _v87.b.b) && (_v87.b.a.$ === 'List')) && _v87.b.b.b) && (_v87.b.b.a.$ === 'List')) && _v87.b.b.b.b) && (_v87.b.b.b.a.$ === 'List')) && (!_v87.b.b.b.b.b)) {
+										var _v88 = _v87.a;
+										var listItems1 = _v88.b;
+										var _v89 = _v87.b;
+										var _v90 = _v89.a;
+										var listItems2 = _v90.b;
+										var _v91 = _v89.b;
+										var _v92 = _v91.a;
+										var listItems3 = _v92.b;
+										var _v93 = _v91.b;
+										var _v94 = _v93.a;
+										var listItems4 = _v94.b;
+										return A2(
+											$elm$core$Result$map,
+											$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+											$author$project$Morphir$ListOfResults$liftFirstError(
+												A5(
+													$elm$core$List$map4,
+													F4(
+														function (item1, item2, item3, item4) {
+															return _eval(
+																A3(
+																	$author$project$Morphir$IR$Value$Apply,
+																	_Utils_Tuple0,
+																	A3(
+																		$author$project$Morphir$IR$Value$Apply,
+																		_Utils_Tuple0,
+																		A3(
+																			$author$project$Morphir$IR$Value$Apply,
+																			_Utils_Tuple0,
+																			A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, item1),
+																			item2),
+																		item3),
+																	item4));
+														}),
+													listItems1,
+													listItems2,
+													listItems3,
+													listItems4)));
+									} else {
+										return $elm$core$Result$Err(
+											$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+									}
+								}),
+							_eval(arg1),
+							_eval(arg2),
+							_eval(arg3),
+							_eval(arg4)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map5',
+		F2(
+			function (_eval, args) {
+				if ((((((args.b && args.b.b) && args.b.b.b) && args.b.b.b.b) && args.b.b.b.b.b) && args.b.b.b.b.b.b) && (!args.b.b.b.b.b.b.b)) {
+					var fun = args.a;
+					var _v96 = args.b;
+					var arg1 = _v96.a;
+					var _v97 = _v96.b;
+					var arg2 = _v97.a;
+					var _v98 = _v97.b;
+					var arg3 = _v98.a;
+					var _v99 = _v98.b;
+					var arg4 = _v99.a;
+					var _v100 = _v99.b;
+					var arg5 = _v100.a;
+					return A2(
+						$elm$core$Result$andThen,
+						$elm$core$Basics$identity,
+						A6(
+							$elm$core$Result$map5,
+							F5(
+								function (evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4, evaluatedArg5) {
+									var _v101 = _List_fromArray(
+										[evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4, evaluatedArg5]);
+									if ((((((((((_v101.b && (_v101.a.$ === 'List')) && _v101.b.b) && (_v101.b.a.$ === 'List')) && _v101.b.b.b) && (_v101.b.b.a.$ === 'List')) && _v101.b.b.b.b) && (_v101.b.b.b.a.$ === 'List')) && _v101.b.b.b.b.b) && (_v101.b.b.b.b.a.$ === 'List')) && (!_v101.b.b.b.b.b.b)) {
+										var _v102 = _v101.a;
+										var listItems1 = _v102.b;
+										var _v103 = _v101.b;
+										var _v104 = _v103.a;
+										var listItems2 = _v104.b;
+										var _v105 = _v103.b;
+										var _v106 = _v105.a;
+										var listItems3 = _v106.b;
+										var _v107 = _v105.b;
+										var _v108 = _v107.a;
+										var listItems4 = _v108.b;
+										var _v109 = _v107.b;
+										var _v110 = _v109.a;
+										var listItems5 = _v110.b;
+										return A2(
+											$elm$core$Result$map,
+											$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+											$author$project$Morphir$ListOfResults$liftFirstError(
+												A6(
+													$elm$core$List$map5,
+													F5(
+														function (item1, item2, item3, item4, item5) {
+															return _eval(
+																A3(
+																	$author$project$Morphir$IR$Value$Apply,
+																	_Utils_Tuple0,
+																	A3(
+																		$author$project$Morphir$IR$Value$Apply,
+																		_Utils_Tuple0,
+																		A3(
+																			$author$project$Morphir$IR$Value$Apply,
+																			_Utils_Tuple0,
+																			A3(
+																				$author$project$Morphir$IR$Value$Apply,
+																				_Utils_Tuple0,
+																				A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, item1),
+																				item2),
+																			item3),
+																		item4),
+																	item5));
+														}),
+													listItems1,
+													listItems2,
+													listItems3,
+													listItems4,
+													listItems5)));
+									} else {
+										return $elm$core$Result$Err(
+											$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+									}
+								}),
+							_eval(arg1),
+							_eval(arg2),
+							_eval(arg3),
+							_eval(arg4),
+							_eval(arg5)));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'concatMap',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v112 = args.b;
+					var arg1 = _v112.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = F2(
+									function (resultList, items) {
+										evaluate:
+										while (true) {
+											if (!items.b) {
+												return $elm$core$Result$Ok(resultList);
+											} else {
+												var head1 = items.a;
+												var tail1 = items.b;
+												var _v115 = _eval(
+													A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, head1));
+												if (_v115.$ === 'Ok') {
+													if (_v115.a.$ === 'List') {
+														var _v116 = _v115.a;
+														var list = _v116.b;
+														var $temp$resultList = _Utils_ap(resultList, list),
+															$temp$items = tail1;
+														resultList = $temp$resultList;
+														items = $temp$items;
+														continue evaluate;
+													} else {
+														var other = _v115.a;
+														return $elm$core$Result$Err(
+															$author$project$Morphir$Value$Error$ExpectedList(other));
+													}
 												} else {
+													var other = _v115.a;
+													return $elm$core$Result$Err(other);
+												}
+											}
+										}
+									});
+								return A2(
+									$elm$core$Result$map,
+									$author$project$Morphir$IR$Value$List(_Utils_Tuple0),
+									A2(evaluate, _List_Nil, listItems));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'isEmpty',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$isEmpty,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple2(
+		'head',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$head,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeMaybe($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'tail',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$tail,
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeMaybe(
+				$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw)))),
+		_Utils_Tuple2(
+		'take',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$take,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'drop',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$drop,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeList($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw))),
+		_Utils_Tuple2(
+		'partition',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v118 = args.b;
+					var arg1 = _v118.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if (evaluatedArg1.$ === 'List') {
+								var listItems = evaluatedArg1.b;
+								var evaluate = F3(
+									function (list1, list2, items) {
+										evaluate:
+										while (true) {
+											if (!items.b) {
+												return $elm$core$Result$Ok(
+													_Utils_Tuple2(list1, list2));
+											} else {
+												var head1 = items.a;
+												var tail1 = items.b;
+												var _v121 = _eval(
+													A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, head1));
+												if (_v121.$ === 'Ok') {
+													if ((_v121.a.$ === 'Literal') && (_v121.a.b.$ === 'BoolLiteral')) {
+														if (_v121.a.b.a) {
+															var _v122 = _v121.a;
+															var $temp$list1 = _Utils_ap(
+																list1,
+																_List_fromArray(
+																	[head1])),
+																$temp$list2 = list2,
+																$temp$items = tail1;
+															list1 = $temp$list1;
+															list2 = $temp$list2;
+															items = $temp$items;
+															continue evaluate;
+														} else {
+															var _v123 = _v121.a;
+															var $temp$list1 = list1,
+																$temp$list2 = _Utils_ap(
+																list2,
+																_List_fromArray(
+																	[head1])),
+																$temp$items = tail1;
+															list1 = $temp$list1;
+															list2 = $temp$list2;
+															items = $temp$items;
+															continue evaluate;
+														}
+													} else {
+														var other = _v121.a;
+														return $elm$core$Result$Err(
+															$author$project$Morphir$Value$Error$ExpectedBoolLiteral(other));
+													}
+												} else {
+													var other = _v121.a;
+													return $elm$core$Result$Err(other);
+												}
+											}
+										}
+									});
+								return A2(
+									$elm$core$Result$map,
+									function (_v124) {
+										var list1 = _v124.a;
+										var list2 = _v124.b;
+										return A2(
+											$author$project$Morphir$IR$Value$Tuple,
+											_Utils_Tuple0,
+											_List_fromArray(
+												[
+													A2($author$project$Morphir$IR$Value$List, _Utils_Tuple0, list1),
+													A2($author$project$Morphir$IR$Value$List, _Utils_Tuple0, list2)
+												]));
+									},
+									A3(evaluate, _List_Nil, _List_Nil, listItems));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedList(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'unzip',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$List$unzip,
+			$author$project$Morphir$Value$Native$decodeList(
+				$author$project$Morphir$Value$Native$decodeTuple2(
+					_Utils_Tuple2($author$project$Morphir$Value$Native$decodeRaw, $author$project$Morphir$Value$Native$decodeRaw))),
+			$author$project$Morphir$Value$Native$encodeTuple2(
+				_Utils_Tuple2(
+					$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw),
+					$author$project$Morphir$Value$Native$encodeList($author$project$Morphir$Value$Native$encodeRaw)))))
+	]);
+var $author$project$Morphir$Value$Error$ExpectedMaybe = function (a) {
+	return {$: 'ExpectedMaybe', a: a};
+};
+var $author$project$Morphir$Value$Native$decodeMaybe = F3(
+	function (decodeItem, _eval, value) {
+		var _v0 = _eval(value);
+		_v0$2:
+		while (true) {
+			if (_v0.$ === 'Ok') {
+				switch (_v0.a.$) {
+					case 'Constructor':
+						if ((((((((((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && _v0.a.b.b.b) && _v0.a.b.b.a.b) && (_v0.a.b.b.a.a === 'maybe')) && (!_v0.a.b.b.a.b.b)) && (!_v0.a.b.b.b.b)) && _v0.a.b.c.b) && (_v0.a.b.c.a === 'nothing')) && (!_v0.a.b.c.b.b)) {
+							var _v1 = _v0.a;
+							var _v2 = _v1.b;
+							var _v3 = _v2.a;
+							var _v4 = _v3.a;
+							var _v5 = _v3.b;
+							var _v6 = _v5.a;
+							var _v7 = _v6.b;
+							var _v8 = _v7.b;
+							var _v9 = _v2.b;
+							var _v10 = _v9.a;
+							var _v11 = _v2.c;
+							return $elm$core$Result$Ok($elm$core$Maybe$Nothing);
+						} else {
+							break _v0$2;
+						}
+					case 'Apply':
+						if ((((((((((((((((((((((_v0.a.b.$ === 'Constructor') && _v0.a.b.b.a.b) && _v0.a.b.b.a.a.b) && (_v0.a.b.b.a.a.a === 'morphir')) && (!_v0.a.b.b.a.a.b.b)) && _v0.a.b.b.a.b.b) && _v0.a.b.b.a.b.a.b) && (_v0.a.b.b.a.b.a.a === 's')) && _v0.a.b.b.a.b.a.b.b) && (_v0.a.b.b.a.b.a.b.a === 'd')) && _v0.a.b.b.a.b.a.b.b.b) && (_v0.a.b.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.b.a.b.a.b.b.b.b)) && (!_v0.a.b.b.a.b.b.b)) && _v0.a.b.b.b.b) && _v0.a.b.b.b.a.b) && (_v0.a.b.b.b.a.a === 'maybe')) && (!_v0.a.b.b.b.a.b.b)) && (!_v0.a.b.b.b.b.b)) && _v0.a.b.b.c.b) && (_v0.a.b.b.c.a === 'just')) && (!_v0.a.b.b.c.b.b)) {
+							var _v12 = _v0.a;
+							var _v13 = _v12.b;
+							var _v14 = _v13.b;
+							var _v15 = _v14.a;
+							var _v16 = _v15.a;
+							var _v17 = _v15.b;
+							var _v18 = _v17.a;
+							var _v19 = _v18.b;
+							var _v20 = _v19.b;
+							var _v21 = _v14.b;
+							var _v22 = _v21.a;
+							var _v23 = _v14.c;
+							var val = _v12.c;
+							return A2(
+								$elm$core$Result$map,
+								$elm$core$Maybe$Just,
+								A2(decodeItem, _eval, val));
+						} else {
+							break _v0$2;
+						}
+					default:
+						break _v0$2;
+				}
+			} else {
+				var error = _v0.a;
+				return $elm$core$Result$Err(error);
+			}
+		}
+		return $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$ExpectedMaybe(value));
+	});
+var $author$project$Morphir$Value$Native$encodeMaybeResult = function (maybeResult) {
+	if (maybeResult.$ === 'Just') {
+		if (maybeResult.a.$ === 'Ok') {
+			var value = maybeResult.a.a;
+			return $elm$core$Result$Ok(
+				A3(
+					$author$project$Morphir$IR$Value$Apply,
+					_Utils_Tuple0,
+					A2(
+						$author$project$Morphir$IR$Value$Constructor,
+						_Utils_Tuple0,
+						_Utils_Tuple3(
+							_List_fromArray(
+								[
+									_List_fromArray(
+									['morphir']),
+									_List_fromArray(
+									['s', 'd', 'k'])
+								]),
+							_List_fromArray(
+								[
+									_List_fromArray(
+									['maybe'])
+								]),
+							_List_fromArray(
+								['just']))),
+					value));
+		} else {
+			var error = maybeResult.a.a;
+			return $elm$core$Result$Err(error);
+		}
+	} else {
+		return $elm$core$Result$Ok(
+			A2(
+				$author$project$Morphir$IR$Value$Constructor,
+				_Utils_Tuple0,
+				_Utils_Tuple3(
+					_List_fromArray(
+						[
+							_List_fromArray(
+							['morphir']),
+							_List_fromArray(
+							['s', 'd', 'k'])
+						]),
+					_List_fromArray(
+						[
+							_List_fromArray(
+							['maybe'])
+						]),
+					_List_fromArray(
+						['nothing']))));
+	}
+};
+var $author$project$Morphir$IR$SDK$Maybe$nativeFunctions = _List_fromArray(
+	[
+		_Utils_Tuple2(
+		'andThen',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v1 = args.b;
+					var arg1 = _v1.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							_v2$2:
+							while (true) {
+								switch (evaluatedArg1.$) {
+									case 'Apply':
+										if ((((((((((((((((((((((evaluatedArg1.b.$ === 'Constructor') && evaluatedArg1.b.b.a.b) && evaluatedArg1.b.b.a.a.b) && (evaluatedArg1.b.b.a.a.a === 'morphir')) && (!evaluatedArg1.b.b.a.a.b.b)) && evaluatedArg1.b.b.a.b.b) && evaluatedArg1.b.b.a.b.a.b) && (evaluatedArg1.b.b.a.b.a.a === 's')) && evaluatedArg1.b.b.a.b.a.b.b) && (evaluatedArg1.b.b.a.b.a.b.a === 'd')) && evaluatedArg1.b.b.a.b.a.b.b.b) && (evaluatedArg1.b.b.a.b.a.b.b.a === 'k')) && (!evaluatedArg1.b.b.a.b.a.b.b.b.b)) && (!evaluatedArg1.b.b.a.b.b.b)) && evaluatedArg1.b.b.b.b) && evaluatedArg1.b.b.b.a.b) && (evaluatedArg1.b.b.b.a.a === 'maybe')) && (!evaluatedArg1.b.b.b.a.b.b)) && (!evaluatedArg1.b.b.b.b.b)) && evaluatedArg1.b.b.c.b) && (evaluatedArg1.b.b.c.a === 'just')) && (!evaluatedArg1.b.b.c.b.b)) {
+											var _v3 = evaluatedArg1.b;
+											var _v4 = _v3.b;
+											var _v5 = _v4.a;
+											var _v6 = _v5.a;
+											var _v7 = _v5.b;
+											var _v8 = _v7.a;
+											var _v9 = _v8.b;
+											var _v10 = _v9.b;
+											var _v11 = _v4.b;
+											var _v12 = _v11.a;
+											var _v13 = _v4.c;
+											var value = evaluatedArg1.c;
+											return _eval(
+												A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, value));
+										} else {
+											break _v2$2;
+										}
+									case 'Constructor':
+										if ((((((((((((((((((((evaluatedArg1.b.a.b && evaluatedArg1.b.a.a.b) && (evaluatedArg1.b.a.a.a === 'morphir')) && (!evaluatedArg1.b.a.a.b.b)) && evaluatedArg1.b.a.b.b) && evaluatedArg1.b.a.b.a.b) && (evaluatedArg1.b.a.b.a.a === 's')) && evaluatedArg1.b.a.b.a.b.b) && (evaluatedArg1.b.a.b.a.b.a === 'd')) && evaluatedArg1.b.a.b.a.b.b.b) && (evaluatedArg1.b.a.b.a.b.b.a === 'k')) && (!evaluatedArg1.b.a.b.a.b.b.b.b)) && (!evaluatedArg1.b.a.b.b.b)) && evaluatedArg1.b.b.b) && evaluatedArg1.b.b.a.b) && (evaluatedArg1.b.b.a.a === 'maybe')) && (!evaluatedArg1.b.b.a.b.b)) && (!evaluatedArg1.b.b.b.b)) && evaluatedArg1.b.c.b) && (evaluatedArg1.b.c.a === 'nothing')) && (!evaluatedArg1.b.c.b.b)) {
+											var _v14 = evaluatedArg1.b;
+											var _v15 = _v14.a;
+											var _v16 = _v15.a;
+											var _v17 = _v15.b;
+											var _v18 = _v17.a;
+											var _v19 = _v18.b;
+											var _v20 = _v19.b;
+											var _v21 = _v14.b;
+											var _v22 = _v21.a;
+											var _v23 = _v14.c;
+											return $elm$core$Result$Ok(
+												$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+										} else {
+											break _v2$2;
+										}
+									default:
+										break _v2$2;
+								}
+							}
+							return $elm$core$Result$Err(
+								$author$project$Morphir$Value$Error$UnexpectedArguments(
+									_List_fromArray(
+										[arg1])));
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'withDefault',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Maybe$withDefault,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$decodeMaybe($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeRaw)),
+		_Utils_Tuple2(
+		'map',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Maybe$map,
+			A2($author$project$Morphir$Value$Native$decodeFun1, $author$project$Morphir$Value$Native$encodeRaw, $author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$decodeMaybe($author$project$Morphir$Value$Native$decodeRaw),
+			$author$project$Morphir$Value$Native$encodeMaybeResult)),
+		_Utils_Tuple2(
+		'map2',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun = args.a;
+					var _v25 = args.b;
+					var arg1 = _v25.a;
+					var _v26 = _v25.b;
+					var arg2 = _v26.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							return A2(
+								$elm$core$Result$andThen,
+								function (evaluatedArg2) {
+									var _v27 = _Utils_Tuple2(evaluatedArg1, evaluatedArg2);
+									_v27$1:
+									while (true) {
+										_v27$3:
+										while (true) {
+											switch (_v27.a.$) {
+												case 'Apply':
+													switch (_v27.b.$) {
+														case 'Apply':
+															if ((((((((((((((((((((((((((((((((((((((((((((_v27.a.b.$ === 'Constructor') && _v27.a.b.b.a.b) && _v27.a.b.b.a.a.b) && (_v27.a.b.b.a.a.a === 'morphir')) && (!_v27.a.b.b.a.a.b.b)) && _v27.a.b.b.a.b.b) && _v27.a.b.b.a.b.a.b) && (_v27.a.b.b.a.b.a.a === 's')) && _v27.a.b.b.a.b.a.b.b) && (_v27.a.b.b.a.b.a.b.a === 'd')) && _v27.a.b.b.a.b.a.b.b.b) && (_v27.a.b.b.a.b.a.b.b.a === 'k')) && (!_v27.a.b.b.a.b.a.b.b.b.b)) && (!_v27.a.b.b.a.b.b.b)) && _v27.a.b.b.b.b) && _v27.a.b.b.b.a.b) && (_v27.a.b.b.b.a.a === 'maybe')) && (!_v27.a.b.b.b.a.b.b)) && (!_v27.a.b.b.b.b.b)) && _v27.a.b.b.c.b) && (_v27.a.b.b.c.a === 'just')) && (!_v27.a.b.b.c.b.b)) && (_v27.b.b.$ === 'Constructor')) && _v27.b.b.b.a.b) && _v27.b.b.b.a.a.b) && (_v27.b.b.b.a.a.a === 'morphir')) && (!_v27.b.b.b.a.a.b.b)) && _v27.b.b.b.a.b.b) && _v27.b.b.b.a.b.a.b) && (_v27.b.b.b.a.b.a.a === 's')) && _v27.b.b.b.a.b.a.b.b) && (_v27.b.b.b.a.b.a.b.a === 'd')) && _v27.b.b.b.a.b.a.b.b.b) && (_v27.b.b.b.a.b.a.b.b.a === 'k')) && (!_v27.b.b.b.a.b.a.b.b.b.b)) && (!_v27.b.b.b.a.b.b.b)) && _v27.b.b.b.b.b) && _v27.b.b.b.b.a.b) && (_v27.b.b.b.b.a.a === 'maybe')) && (!_v27.b.b.b.b.a.b.b)) && (!_v27.b.b.b.b.b.b)) && _v27.b.b.b.c.b) && (_v27.b.b.b.c.a === 'just')) && (!_v27.b.b.b.c.b.b)) {
+																var _v28 = _v27.a;
+																var _v29 = _v28.b;
+																var _v30 = _v29.b;
+																var _v31 = _v30.a;
+																var _v32 = _v31.a;
+																var _v33 = _v31.b;
+																var _v34 = _v33.a;
+																var _v35 = _v34.b;
+																var _v36 = _v35.b;
+																var _v37 = _v30.b;
+																var _v38 = _v37.a;
+																var _v39 = _v30.c;
+																var value1 = _v28.c;
+																var _v40 = _v27.b;
+																var _v41 = _v40.b;
+																var _v42 = _v41.b;
+																var _v43 = _v42.a;
+																var _v44 = _v43.a;
+																var _v45 = _v43.b;
+																var _v46 = _v45.a;
+																var _v47 = _v46.b;
+																var _v48 = _v47.b;
+																var _v49 = _v42.b;
+																var _v50 = _v49.a;
+																var _v51 = _v42.c;
+																var value2 = _v40.c;
+																return _eval(
+																	A3(
+																		$author$project$Morphir$IR$Value$Apply,
+																		_Utils_Tuple0,
+																		A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, value1),
+																		value2));
+															} else {
+																break _v27$3;
+															}
+														case 'Constructor':
+															if ((((((((((((((((((((_v27.b.b.a.b && _v27.b.b.a.a.b) && (_v27.b.b.a.a.a === 'morphir')) && (!_v27.b.b.a.a.b.b)) && _v27.b.b.a.b.b) && _v27.b.b.a.b.a.b) && (_v27.b.b.a.b.a.a === 's')) && _v27.b.b.a.b.a.b.b) && (_v27.b.b.a.b.a.b.a === 'd')) && _v27.b.b.a.b.a.b.b.b) && (_v27.b.b.a.b.a.b.b.a === 'k')) && (!_v27.b.b.a.b.a.b.b.b.b)) && (!_v27.b.b.a.b.b.b)) && _v27.b.b.b.b) && _v27.b.b.b.a.b) && (_v27.b.b.b.a.a === 'maybe')) && (!_v27.b.b.b.a.b.b)) && (!_v27.b.b.b.b.b)) && _v27.b.b.c.b) && (_v27.b.b.c.a === 'nothing')) && (!_v27.b.b.c.b.b)) {
+																break _v27$1;
+															} else {
+																break _v27$3;
+															}
+														default:
+															break _v27$3;
+													}
+												case 'Constructor':
+													if ((((((((((((((((((((((_v27.b.$ === 'Constructor') && _v27.b.b.a.b) && _v27.b.b.a.a.b) && (_v27.b.b.a.a.a === 'morphir')) && (!_v27.b.b.a.a.b.b)) && _v27.b.b.a.b.b) && _v27.b.b.a.b.a.b) && (_v27.b.b.a.b.a.a === 's')) && _v27.b.b.a.b.a.b.b) && (_v27.b.b.a.b.a.b.a === 'd')) && _v27.b.b.a.b.a.b.b.b) && (_v27.b.b.a.b.a.b.b.a === 'k')) && (!_v27.b.b.a.b.a.b.b.b.b)) && (!_v27.b.b.a.b.b.b)) && _v27.b.b.b.b) && _v27.b.b.b.a.b) && (_v27.b.b.b.a.a === 'maybe')) && (!_v27.b.b.b.a.b.b)) && (!_v27.b.b.b.b.b)) && _v27.b.b.c.b) && (_v27.b.b.c.a === 'nothing')) && (!_v27.b.b.c.b.b)) {
+														break _v27$1;
+													} else {
+														if ((((((((((((((((((((_v27.a.b.a.b && _v27.a.b.a.a.b) && (_v27.a.b.a.a.a === 'morphir')) && (!_v27.a.b.a.a.b.b)) && _v27.a.b.a.b.b) && _v27.a.b.a.b.a.b) && (_v27.a.b.a.b.a.a === 's')) && _v27.a.b.a.b.a.b.b) && (_v27.a.b.a.b.a.b.a === 'd')) && _v27.a.b.a.b.a.b.b.b) && (_v27.a.b.a.b.a.b.b.a === 'k')) && (!_v27.a.b.a.b.a.b.b.b.b)) && (!_v27.a.b.a.b.b.b)) && _v27.a.b.b.b) && _v27.a.b.b.a.b) && (_v27.a.b.b.a.a === 'maybe')) && (!_v27.a.b.b.a.b.b)) && (!_v27.a.b.b.b.b)) && _v27.a.b.c.b) && (_v27.a.b.c.a === 'nothing')) && (!_v27.a.b.c.b.b)) {
+															var _v63 = _v27.a;
+															var _v64 = _v63.b;
+															var _v65 = _v64.a;
+															var _v66 = _v65.a;
+															var _v67 = _v65.b;
+															var _v68 = _v67.a;
+															var _v69 = _v68.b;
+															var _v70 = _v69.b;
+															var _v71 = _v64.b;
+															var _v72 = _v71.a;
+															var _v73 = _v64.c;
+															return $elm$core$Result$Ok(
+																$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+														} else {
+															break _v27$3;
+														}
+													}
+												default:
+													if ((((((((((((((((((((((_v27.b.$ === 'Constructor') && _v27.b.b.a.b) && _v27.b.b.a.a.b) && (_v27.b.b.a.a.a === 'morphir')) && (!_v27.b.b.a.a.b.b)) && _v27.b.b.a.b.b) && _v27.b.b.a.b.a.b) && (_v27.b.b.a.b.a.a === 's')) && _v27.b.b.a.b.a.b.b) && (_v27.b.b.a.b.a.b.a === 'd')) && _v27.b.b.a.b.a.b.b.b) && (_v27.b.b.a.b.a.b.b.a === 'k')) && (!_v27.b.b.a.b.a.b.b.b.b)) && (!_v27.b.b.a.b.b.b)) && _v27.b.b.b.b) && _v27.b.b.b.a.b) && (_v27.b.b.b.a.a === 'maybe')) && (!_v27.b.b.b.a.b.b)) && (!_v27.b.b.b.b.b)) && _v27.b.b.c.b) && (_v27.b.b.c.a === 'nothing')) && (!_v27.b.b.c.b.b)) {
+														break _v27$1;
+													} else {
+														break _v27$3;
+													}
+											}
+										}
+										return $elm$core$Result$Err(
+											$author$project$Morphir$Value$Error$UnexpectedArguments(
+												_List_fromArray(
+													[evaluatedArg1, evaluatedArg2])));
+									}
+									var _v52 = _v27.b;
+									var _v53 = _v52.b;
+									var _v54 = _v53.a;
+									var _v55 = _v54.a;
+									var _v56 = _v54.b;
+									var _v57 = _v56.a;
+									var _v58 = _v57.b;
+									var _v59 = _v58.b;
+									var _v60 = _v53.b;
+									var _v61 = _v60.a;
+									var _v62 = _v53.c;
+									return $elm$core$Result$Ok(
+										$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+								},
+								_eval(arg2));
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map3',
+		F2(
+			function (_eval, args) {
+				if ((((args.b && args.b.b) && args.b.b.b) && args.b.b.b.b) && (!args.b.b.b.b.b)) {
+					var fun = args.a;
+					var _v75 = args.b;
+					var arg1 = _v75.a;
+					var _v76 = _v75.b;
+					var arg2 = _v76.a;
+					var _v77 = _v76.b;
+					var arg3 = _v77.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							return A2(
+								$elm$core$Result$andThen,
+								function (evaluatedArg2) {
+									return A2(
+										$elm$core$Result$andThen,
+										function (evaluatedArg3) {
+											var _v78 = _Utils_Tuple3(evaluatedArg1, evaluatedArg2, evaluatedArg3);
+											_v78$1:
+											while (true) {
+												_v78$2:
+												while (true) {
+													_v78$4:
+													while (true) {
+														switch (_v78.a.$) {
+															case 'Apply':
+																switch (_v78.b.$) {
+																	case 'Apply':
+																		switch (_v78.c.$) {
+																			case 'Apply':
+																				if ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((_v78.a.b.$ === 'Constructor') && _v78.a.b.b.a.b) && _v78.a.b.b.a.a.b) && (_v78.a.b.b.a.a.a === 'morphir')) && (!_v78.a.b.b.a.a.b.b)) && _v78.a.b.b.a.b.b) && _v78.a.b.b.a.b.a.b) && (_v78.a.b.b.a.b.a.a === 's')) && _v78.a.b.b.a.b.a.b.b) && (_v78.a.b.b.a.b.a.b.a === 'd')) && _v78.a.b.b.a.b.a.b.b.b) && (_v78.a.b.b.a.b.a.b.b.a === 'k')) && (!_v78.a.b.b.a.b.a.b.b.b.b)) && (!_v78.a.b.b.a.b.b.b)) && _v78.a.b.b.b.b) && _v78.a.b.b.b.a.b) && (_v78.a.b.b.b.a.a === 'maybe')) && (!_v78.a.b.b.b.a.b.b)) && (!_v78.a.b.b.b.b.b)) && _v78.a.b.b.c.b) && (_v78.a.b.b.c.a === 'just')) && (!_v78.a.b.b.c.b.b)) && (_v78.b.b.$ === 'Constructor')) && _v78.b.b.b.a.b) && _v78.b.b.b.a.a.b) && (_v78.b.b.b.a.a.a === 'morphir')) && (!_v78.b.b.b.a.a.b.b)) && _v78.b.b.b.a.b.b) && _v78.b.b.b.a.b.a.b) && (_v78.b.b.b.a.b.a.a === 's')) && _v78.b.b.b.a.b.a.b.b) && (_v78.b.b.b.a.b.a.b.a === 'd')) && _v78.b.b.b.a.b.a.b.b.b) && (_v78.b.b.b.a.b.a.b.b.a === 'k')) && (!_v78.b.b.b.a.b.a.b.b.b.b)) && (!_v78.b.b.b.a.b.b.b)) && _v78.b.b.b.b.b) && _v78.b.b.b.b.a.b) && (_v78.b.b.b.b.a.a === 'maybe')) && (!_v78.b.b.b.b.a.b.b)) && (!_v78.b.b.b.b.b.b)) && _v78.b.b.b.c.b) && (_v78.b.b.b.c.a === 'just')) && (!_v78.b.b.b.c.b.b)) && (_v78.c.b.$ === 'Constructor')) && _v78.c.b.b.a.b) && _v78.c.b.b.a.a.b) && (_v78.c.b.b.a.a.a === 'morphir')) && (!_v78.c.b.b.a.a.b.b)) && _v78.c.b.b.a.b.b) && _v78.c.b.b.a.b.a.b) && (_v78.c.b.b.a.b.a.a === 's')) && _v78.c.b.b.a.b.a.b.b) && (_v78.c.b.b.a.b.a.b.a === 'd')) && _v78.c.b.b.a.b.a.b.b.b) && (_v78.c.b.b.a.b.a.b.b.a === 'k')) && (!_v78.c.b.b.a.b.a.b.b.b.b)) && (!_v78.c.b.b.a.b.b.b)) && _v78.c.b.b.b.b) && _v78.c.b.b.b.a.b) && (_v78.c.b.b.b.a.a === 'maybe')) && (!_v78.c.b.b.b.a.b.b)) && (!_v78.c.b.b.b.b.b)) && _v78.c.b.b.c.b) && (_v78.c.b.b.c.a === 'just')) && (!_v78.c.b.b.c.b.b)) {
+																					var _v79 = _v78.a;
+																					var _v80 = _v79.b;
+																					var _v81 = _v80.b;
+																					var _v82 = _v81.a;
+																					var _v83 = _v82.a;
+																					var _v84 = _v82.b;
+																					var _v85 = _v84.a;
+																					var _v86 = _v85.b;
+																					var _v87 = _v86.b;
+																					var _v88 = _v81.b;
+																					var _v89 = _v88.a;
+																					var _v90 = _v81.c;
+																					var value1 = _v79.c;
+																					var _v91 = _v78.b;
+																					var _v92 = _v91.b;
+																					var _v93 = _v92.b;
+																					var _v94 = _v93.a;
+																					var _v95 = _v94.a;
+																					var _v96 = _v94.b;
+																					var _v97 = _v96.a;
+																					var _v98 = _v97.b;
+																					var _v99 = _v98.b;
+																					var _v100 = _v93.b;
+																					var _v101 = _v100.a;
+																					var _v102 = _v93.c;
+																					var value2 = _v91.c;
+																					var _v103 = _v78.c;
+																					var _v104 = _v103.b;
+																					var _v105 = _v104.b;
+																					var _v106 = _v105.a;
+																					var _v107 = _v106.a;
+																					var _v108 = _v106.b;
+																					var _v109 = _v108.a;
+																					var _v110 = _v109.b;
+																					var _v111 = _v110.b;
+																					var _v112 = _v105.b;
+																					var _v113 = _v112.a;
+																					var _v114 = _v105.c;
+																					var value3 = _v103.c;
+																					return _eval(
+																						A3(
+																							$author$project$Morphir$IR$Value$Apply,
+																							_Utils_Tuple0,
+																							A3(
+																								$author$project$Morphir$IR$Value$Apply,
+																								_Utils_Tuple0,
+																								A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, value1),
+																								value2),
+																							value3));
+																				} else {
+																					break _v78$4;
+																				}
+																			case 'Constructor':
+																				if ((((((((((((((((((((_v78.c.b.a.b && _v78.c.b.a.a.b) && (_v78.c.b.a.a.a === 'morphir')) && (!_v78.c.b.a.a.b.b)) && _v78.c.b.a.b.b) && _v78.c.b.a.b.a.b) && (_v78.c.b.a.b.a.a === 's')) && _v78.c.b.a.b.a.b.b) && (_v78.c.b.a.b.a.b.a === 'd')) && _v78.c.b.a.b.a.b.b.b) && (_v78.c.b.a.b.a.b.b.a === 'k')) && (!_v78.c.b.a.b.a.b.b.b.b)) && (!_v78.c.b.a.b.b.b)) && _v78.c.b.b.b) && _v78.c.b.b.a.b) && (_v78.c.b.b.a.a === 'maybe')) && (!_v78.c.b.b.a.b.b)) && (!_v78.c.b.b.b.b)) && _v78.c.b.c.b) && (_v78.c.b.c.a === 'nothing')) && (!_v78.c.b.c.b.b)) {
+																					break _v78$1;
+																				} else {
+																					break _v78$4;
+																				}
+																			default:
+																				break _v78$4;
+																		}
+																	case 'Constructor':
+																		if ((((((((((((((((((((((_v78.c.$ === 'Constructor') && _v78.c.b.a.b) && _v78.c.b.a.a.b) && (_v78.c.b.a.a.a === 'morphir')) && (!_v78.c.b.a.a.b.b)) && _v78.c.b.a.b.b) && _v78.c.b.a.b.a.b) && (_v78.c.b.a.b.a.a === 's')) && _v78.c.b.a.b.a.b.b) && (_v78.c.b.a.b.a.b.a === 'd')) && _v78.c.b.a.b.a.b.b.b) && (_v78.c.b.a.b.a.b.b.a === 'k')) && (!_v78.c.b.a.b.a.b.b.b.b)) && (!_v78.c.b.a.b.b.b)) && _v78.c.b.b.b) && _v78.c.b.b.a.b) && (_v78.c.b.b.a.a === 'maybe')) && (!_v78.c.b.b.a.b.b)) && (!_v78.c.b.b.b.b)) && _v78.c.b.c.b) && (_v78.c.b.c.a === 'nothing')) && (!_v78.c.b.c.b.b)) {
+																			break _v78$1;
+																		} else {
+																			if ((((((((((((((((((((_v78.b.b.a.b && _v78.b.b.a.a.b) && (_v78.b.b.a.a.a === 'morphir')) && (!_v78.b.b.a.a.b.b)) && _v78.b.b.a.b.b) && _v78.b.b.a.b.a.b) && (_v78.b.b.a.b.a.a === 's')) && _v78.b.b.a.b.a.b.b) && (_v78.b.b.a.b.a.b.a === 'd')) && _v78.b.b.a.b.a.b.b.b) && (_v78.b.b.a.b.a.b.b.a === 'k')) && (!_v78.b.b.a.b.a.b.b.b.b)) && (!_v78.b.b.a.b.b.b)) && _v78.b.b.b.b) && _v78.b.b.b.a.b) && (_v78.b.b.b.a.a === 'maybe')) && (!_v78.b.b.b.a.b.b)) && (!_v78.b.b.b.b.b)) && _v78.b.b.c.b) && (_v78.b.b.c.a === 'nothing')) && (!_v78.b.b.c.b.b)) {
+																				break _v78$2;
+																			} else {
+																				break _v78$4;
+																			}
+																		}
+																	default:
+																		if ((((((((((((((((((((((_v78.c.$ === 'Constructor') && _v78.c.b.a.b) && _v78.c.b.a.a.b) && (_v78.c.b.a.a.a === 'morphir')) && (!_v78.c.b.a.a.b.b)) && _v78.c.b.a.b.b) && _v78.c.b.a.b.a.b) && (_v78.c.b.a.b.a.a === 's')) && _v78.c.b.a.b.a.b.b) && (_v78.c.b.a.b.a.b.a === 'd')) && _v78.c.b.a.b.a.b.b.b) && (_v78.c.b.a.b.a.b.b.a === 'k')) && (!_v78.c.b.a.b.a.b.b.b.b)) && (!_v78.c.b.a.b.b.b)) && _v78.c.b.b.b) && _v78.c.b.b.a.b) && (_v78.c.b.b.a.a === 'maybe')) && (!_v78.c.b.b.a.b.b)) && (!_v78.c.b.b.b.b)) && _v78.c.b.c.b) && (_v78.c.b.c.a === 'nothing')) && (!_v78.c.b.c.b.b)) {
+																			break _v78$1;
+																		} else {
+																			break _v78$4;
+																		}
+																}
+															case 'Constructor':
+																if ((((((((((((((((((((((_v78.c.$ === 'Constructor') && _v78.c.b.a.b) && _v78.c.b.a.a.b) && (_v78.c.b.a.a.a === 'morphir')) && (!_v78.c.b.a.a.b.b)) && _v78.c.b.a.b.b) && _v78.c.b.a.b.a.b) && (_v78.c.b.a.b.a.a === 's')) && _v78.c.b.a.b.a.b.b) && (_v78.c.b.a.b.a.b.a === 'd')) && _v78.c.b.a.b.a.b.b.b) && (_v78.c.b.a.b.a.b.b.a === 'k')) && (!_v78.c.b.a.b.a.b.b.b.b)) && (!_v78.c.b.a.b.b.b)) && _v78.c.b.b.b) && _v78.c.b.b.a.b) && (_v78.c.b.b.a.a === 'maybe')) && (!_v78.c.b.b.a.b.b)) && (!_v78.c.b.b.b.b)) && _v78.c.b.c.b) && (_v78.c.b.c.a === 'nothing')) && (!_v78.c.b.c.b.b)) {
+																	break _v78$1;
+																} else {
+																	if ((((((((((((((((((((((_v78.b.$ === 'Constructor') && _v78.b.b.a.b) && _v78.b.b.a.a.b) && (_v78.b.b.a.a.a === 'morphir')) && (!_v78.b.b.a.a.b.b)) && _v78.b.b.a.b.b) && _v78.b.b.a.b.a.b) && (_v78.b.b.a.b.a.a === 's')) && _v78.b.b.a.b.a.b.b) && (_v78.b.b.a.b.a.b.a === 'd')) && _v78.b.b.a.b.a.b.b.b) && (_v78.b.b.a.b.a.b.b.a === 'k')) && (!_v78.b.b.a.b.a.b.b.b.b)) && (!_v78.b.b.a.b.b.b)) && _v78.b.b.b.b) && _v78.b.b.b.a.b) && (_v78.b.b.b.a.a === 'maybe')) && (!_v78.b.b.b.a.b.b)) && (!_v78.b.b.b.b.b)) && _v78.b.b.c.b) && (_v78.b.b.c.a === 'nothing')) && (!_v78.b.b.c.b.b)) {
+																		break _v78$2;
+																	} else {
+																		if ((((((((((((((((((((_v78.a.b.a.b && _v78.a.b.a.a.b) && (_v78.a.b.a.a.a === 'morphir')) && (!_v78.a.b.a.a.b.b)) && _v78.a.b.a.b.b) && _v78.a.b.a.b.a.b) && (_v78.a.b.a.b.a.a === 's')) && _v78.a.b.a.b.a.b.b) && (_v78.a.b.a.b.a.b.a === 'd')) && _v78.a.b.a.b.a.b.b.b) && (_v78.a.b.a.b.a.b.b.a === 'k')) && (!_v78.a.b.a.b.a.b.b.b.b)) && (!_v78.a.b.a.b.b.b)) && _v78.a.b.b.b) && _v78.a.b.b.a.b) && (_v78.a.b.b.a.a === 'maybe')) && (!_v78.a.b.b.a.b.b)) && (!_v78.a.b.b.b.b)) && _v78.a.b.c.b) && (_v78.a.b.c.a === 'nothing')) && (!_v78.a.b.c.b.b)) {
+																			var _v137 = _v78.a;
+																			var _v138 = _v137.b;
+																			var _v139 = _v138.a;
+																			var _v140 = _v139.a;
+																			var _v141 = _v139.b;
+																			var _v142 = _v141.a;
+																			var _v143 = _v142.b;
+																			var _v144 = _v143.b;
+																			var _v145 = _v138.b;
+																			var _v146 = _v145.a;
+																			var _v147 = _v138.c;
+																			return $elm$core$Result$Ok(
+																				$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+																		} else {
+																			break _v78$4;
+																		}
+																	}
+																}
+															default:
+																if ((((((((((((((((((((((_v78.c.$ === 'Constructor') && _v78.c.b.a.b) && _v78.c.b.a.a.b) && (_v78.c.b.a.a.a === 'morphir')) && (!_v78.c.b.a.a.b.b)) && _v78.c.b.a.b.b) && _v78.c.b.a.b.a.b) && (_v78.c.b.a.b.a.a === 's')) && _v78.c.b.a.b.a.b.b) && (_v78.c.b.a.b.a.b.a === 'd')) && _v78.c.b.a.b.a.b.b.b) && (_v78.c.b.a.b.a.b.b.a === 'k')) && (!_v78.c.b.a.b.a.b.b.b.b)) && (!_v78.c.b.a.b.b.b)) && _v78.c.b.b.b) && _v78.c.b.b.a.b) && (_v78.c.b.b.a.a === 'maybe')) && (!_v78.c.b.b.a.b.b)) && (!_v78.c.b.b.b.b)) && _v78.c.b.c.b) && (_v78.c.b.c.a === 'nothing')) && (!_v78.c.b.c.b.b)) {
+																	break _v78$1;
+																} else {
+																	if ((((((((((((((((((((((_v78.b.$ === 'Constructor') && _v78.b.b.a.b) && _v78.b.b.a.a.b) && (_v78.b.b.a.a.a === 'morphir')) && (!_v78.b.b.a.a.b.b)) && _v78.b.b.a.b.b) && _v78.b.b.a.b.a.b) && (_v78.b.b.a.b.a.a === 's')) && _v78.b.b.a.b.a.b.b) && (_v78.b.b.a.b.a.b.a === 'd')) && _v78.b.b.a.b.a.b.b.b) && (_v78.b.b.a.b.a.b.b.a === 'k')) && (!_v78.b.b.a.b.a.b.b.b.b)) && (!_v78.b.b.a.b.b.b)) && _v78.b.b.b.b) && _v78.b.b.b.a.b) && (_v78.b.b.b.a.a === 'maybe')) && (!_v78.b.b.b.a.b.b)) && (!_v78.b.b.b.b.b)) && _v78.b.b.c.b) && (_v78.b.b.c.a === 'nothing')) && (!_v78.b.b.c.b.b)) {
+																		break _v78$2;
+																	} else {
+																		break _v78$4;
+																	}
+																}
+														}
+													}
 													return $elm$core$Result$Err(
 														$author$project$Morphir$Value$Error$UnexpectedArguments(
 															_List_fromArray(
-																[arg])));
+																[evaluatedArg1, evaluatedArg2, evaluatedArg3])));
 												}
-											},
-											_eval(listItem));
+												var _v126 = _v78.b;
+												var _v127 = _v126.b;
+												var _v128 = _v127.a;
+												var _v129 = _v128.a;
+												var _v130 = _v128.b;
+												var _v131 = _v130.a;
+												var _v132 = _v131.b;
+												var _v133 = _v132.b;
+												var _v134 = _v127.b;
+												var _v135 = _v134.a;
+												var _v136 = _v127.c;
+												return $elm$core$Result$Ok(
+													$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+											}
+											var _v115 = _v78.c;
+											var _v116 = _v115.b;
+											var _v117 = _v116.a;
+											var _v118 = _v117.a;
+											var _v119 = _v117.b;
+											var _v120 = _v119.a;
+											var _v121 = _v120.b;
+											var _v122 = _v121.b;
+											var _v123 = _v116.b;
+											var _v124 = _v123.a;
+											var _v125 = _v116.c;
+											return $elm$core$Result$Ok(
+												$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+										},
+										_eval(arg3));
+								},
+								_eval(arg2));
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map4',
+		F2(
+			function (_eval, args) {
+				if (((((args.b && args.b.b) && args.b.b.b) && args.b.b.b.b) && args.b.b.b.b.b) && (!args.b.b.b.b.b.b)) {
+					var fun = args.a;
+					var _v149 = args.b;
+					var arg1 = _v149.a;
+					var _v150 = _v149.b;
+					var arg2 = _v150.a;
+					var _v151 = _v150.b;
+					var arg3 = _v151.a;
+					var _v152 = _v151.b;
+					var arg4 = _v152.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							return A2(
+								$elm$core$Result$andThen,
+								function (evaluatedArg2) {
+									return A2(
+										$elm$core$Result$andThen,
+										function (evaluatedArg3) {
+											return A2(
+												$elm$core$Result$andThen,
+												function (evaluatedArg4) {
+													var _v153 = _List_fromArray(
+														[evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4]);
+													_v153$1:
+													while (true) {
+														_v153$2:
+														while (true) {
+															_v153$3:
+															while (true) {
+																_v153$5:
+																while (true) {
+																	if ((((_v153.b && _v153.b.b) && _v153.b.b.b) && _v153.b.b.b.b) && (!_v153.b.b.b.b.b)) {
+																		switch (_v153.a.$) {
+																			case 'Apply':
+																				switch (_v153.b.a.$) {
+																					case 'Apply':
+																						switch (_v153.b.b.a.$) {
+																							case 'Apply':
+																								switch (_v153.b.b.b.a.$) {
+																									case 'Apply':
+																										if ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((_v153.a.b.$ === 'Constructor') && _v153.a.b.b.a.b) && _v153.a.b.b.a.a.b) && (_v153.a.b.b.a.a.a === 'morphir')) && (!_v153.a.b.b.a.a.b.b)) && _v153.a.b.b.a.b.b) && _v153.a.b.b.a.b.a.b) && (_v153.a.b.b.a.b.a.a === 's')) && _v153.a.b.b.a.b.a.b.b) && (_v153.a.b.b.a.b.a.b.a === 'd')) && _v153.a.b.b.a.b.a.b.b.b) && (_v153.a.b.b.a.b.a.b.b.a === 'k')) && (!_v153.a.b.b.a.b.a.b.b.b.b)) && (!_v153.a.b.b.a.b.b.b)) && _v153.a.b.b.b.b) && _v153.a.b.b.b.a.b) && (_v153.a.b.b.b.a.a === 'maybe')) && (!_v153.a.b.b.b.a.b.b)) && (!_v153.a.b.b.b.b.b)) && _v153.a.b.b.c.b) && (_v153.a.b.b.c.a === 'just')) && (!_v153.a.b.b.c.b.b)) && (_v153.b.a.b.$ === 'Constructor')) && _v153.b.a.b.b.a.b) && _v153.b.a.b.b.a.a.b) && (_v153.b.a.b.b.a.a.a === 'morphir')) && (!_v153.b.a.b.b.a.a.b.b)) && _v153.b.a.b.b.a.b.b) && _v153.b.a.b.b.a.b.a.b) && (_v153.b.a.b.b.a.b.a.a === 's')) && _v153.b.a.b.b.a.b.a.b.b) && (_v153.b.a.b.b.a.b.a.b.a === 'd')) && _v153.b.a.b.b.a.b.a.b.b.b) && (_v153.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v153.b.a.b.b.a.b.a.b.b.b.b)) && (!_v153.b.a.b.b.a.b.b.b)) && _v153.b.a.b.b.b.b) && _v153.b.a.b.b.b.a.b) && (_v153.b.a.b.b.b.a.a === 'maybe')) && (!_v153.b.a.b.b.b.a.b.b)) && (!_v153.b.a.b.b.b.b.b)) && _v153.b.a.b.b.c.b) && (_v153.b.a.b.b.c.a === 'just')) && (!_v153.b.a.b.b.c.b.b)) && (_v153.b.b.a.b.$ === 'Constructor')) && _v153.b.b.a.b.b.a.b) && _v153.b.b.a.b.b.a.a.b) && (_v153.b.b.a.b.b.a.a.a === 'morphir')) && (!_v153.b.b.a.b.b.a.a.b.b)) && _v153.b.b.a.b.b.a.b.b) && _v153.b.b.a.b.b.a.b.a.b) && (_v153.b.b.a.b.b.a.b.a.a === 's')) && _v153.b.b.a.b.b.a.b.a.b.b) && (_v153.b.b.a.b.b.a.b.a.b.a === 'd')) && _v153.b.b.a.b.b.a.b.a.b.b.b) && (_v153.b.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.a.b.b.a.b.a.b.b.b.b)) && (!_v153.b.b.a.b.b.a.b.b.b)) && _v153.b.b.a.b.b.b.b) && _v153.b.b.a.b.b.b.a.b) && (_v153.b.b.a.b.b.b.a.a === 'maybe')) && (!_v153.b.b.a.b.b.b.a.b.b)) && (!_v153.b.b.a.b.b.b.b.b)) && _v153.b.b.a.b.b.c.b) && (_v153.b.b.a.b.b.c.a === 'just')) && (!_v153.b.b.a.b.b.c.b.b)) && (_v153.b.b.b.a.b.$ === 'Constructor')) && _v153.b.b.b.a.b.b.a.b) && _v153.b.b.b.a.b.b.a.a.b) && (_v153.b.b.b.a.b.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.b.a.a.b.b)) && _v153.b.b.b.a.b.b.a.b.b) && _v153.b.b.b.a.b.b.a.b.a.b) && (_v153.b.b.b.a.b.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.b.a.b.a.b.b) && (_v153.b.b.b.a.b.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b.b) && _v153.b.b.b.a.b.b.b.a.b) && (_v153.b.b.b.a.b.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b.b)) && _v153.b.b.b.a.b.b.c.b) && (_v153.b.b.b.a.b.b.c.a === 'just')) && (!_v153.b.b.b.a.b.b.c.b.b)) {
+																											var _v154 = _v153.a;
+																											var _v155 = _v154.b;
+																											var _v156 = _v155.b;
+																											var _v157 = _v156.a;
+																											var _v158 = _v157.a;
+																											var _v159 = _v157.b;
+																											var _v160 = _v159.a;
+																											var _v161 = _v160.b;
+																											var _v162 = _v161.b;
+																											var _v163 = _v156.b;
+																											var _v164 = _v163.a;
+																											var _v165 = _v156.c;
+																											var value1 = _v154.c;
+																											var _v166 = _v153.b;
+																											var _v167 = _v166.a;
+																											var _v168 = _v167.b;
+																											var _v169 = _v168.b;
+																											var _v170 = _v169.a;
+																											var _v171 = _v170.a;
+																											var _v172 = _v170.b;
+																											var _v173 = _v172.a;
+																											var _v174 = _v173.b;
+																											var _v175 = _v174.b;
+																											var _v176 = _v169.b;
+																											var _v177 = _v176.a;
+																											var _v178 = _v169.c;
+																											var value2 = _v167.c;
+																											var _v179 = _v166.b;
+																											var _v180 = _v179.a;
+																											var _v181 = _v180.b;
+																											var _v182 = _v181.b;
+																											var _v183 = _v182.a;
+																											var _v184 = _v183.a;
+																											var _v185 = _v183.b;
+																											var _v186 = _v185.a;
+																											var _v187 = _v186.b;
+																											var _v188 = _v187.b;
+																											var _v189 = _v182.b;
+																											var _v190 = _v189.a;
+																											var _v191 = _v182.c;
+																											var value3 = _v180.c;
+																											var _v192 = _v179.b;
+																											var _v193 = _v192.a;
+																											var _v194 = _v193.b;
+																											var _v195 = _v194.b;
+																											var _v196 = _v195.a;
+																											var _v197 = _v196.a;
+																											var _v198 = _v196.b;
+																											var _v199 = _v198.a;
+																											var _v200 = _v199.b;
+																											var _v201 = _v200.b;
+																											var _v202 = _v195.b;
+																											var _v203 = _v202.a;
+																											var _v204 = _v195.c;
+																											var value4 = _v193.c;
+																											return _eval(
+																												A3(
+																													$author$project$Morphir$IR$Value$Apply,
+																													_Utils_Tuple0,
+																													A3(
+																														$author$project$Morphir$IR$Value$Apply,
+																														_Utils_Tuple0,
+																														A3(
+																															$author$project$Morphir$IR$Value$Apply,
+																															_Utils_Tuple0,
+																															A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, value1),
+																															value2),
+																														value3),
+																													value4));
+																										} else {
+																											break _v153$5;
+																										}
+																									case 'Constructor':
+																										if ((((((((((((((((((((_v153.b.b.b.a.b.a.b && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																											break _v153$1;
+																										} else {
+																											break _v153$5;
+																										}
+																									default:
+																										break _v153$5;
+																								}
+																							case 'Constructor':
+																								if ((((((((((((((((((((((_v153.b.b.b.a.$ === 'Constructor') && _v153.b.b.b.a.b.a.b) && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																									break _v153$1;
+																								} else {
+																									if ((((((((((((((((((((_v153.b.b.a.b.a.b && _v153.b.b.a.b.a.a.b) && (_v153.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.a.b.a.a.b.b)) && _v153.b.b.a.b.a.b.b) && _v153.b.b.a.b.a.b.a.b) && (_v153.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.a.b.a.b.a.b.b) && (_v153.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.a.b.a.b.b.b)) && _v153.b.b.a.b.b.b) && _v153.b.b.a.b.b.a.b) && (_v153.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.a.b.b.a.b.b)) && (!_v153.b.b.a.b.b.b.b)) && _v153.b.b.a.b.c.b) && (_v153.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.a.b.c.b.b)) {
+																										break _v153$2;
+																									} else {
+																										break _v153$5;
+																									}
+																								}
+																							default:
+																								if ((((((((((((((((((((((_v153.b.b.b.a.$ === 'Constructor') && _v153.b.b.b.a.b.a.b) && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																									break _v153$1;
+																								} else {
+																									break _v153$5;
+																								}
+																						}
+																					case 'Constructor':
+																						if ((((((((((((((((((((((_v153.b.b.b.a.$ === 'Constructor') && _v153.b.b.b.a.b.a.b) && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																							break _v153$1;
+																						} else {
+																							if ((((((((((((((((((((((_v153.b.b.a.$ === 'Constructor') && _v153.b.b.a.b.a.b) && _v153.b.b.a.b.a.a.b) && (_v153.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.a.b.a.a.b.b)) && _v153.b.b.a.b.a.b.b) && _v153.b.b.a.b.a.b.a.b) && (_v153.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.a.b.a.b.a.b.b) && (_v153.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.a.b.a.b.b.b)) && _v153.b.b.a.b.b.b) && _v153.b.b.a.b.b.a.b) && (_v153.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.a.b.b.a.b.b)) && (!_v153.b.b.a.b.b.b.b)) && _v153.b.b.a.b.c.b) && (_v153.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.a.b.c.b.b)) {
+																								break _v153$2;
+																							} else {
+																								if ((((((((((((((((((((_v153.b.a.b.a.b && _v153.b.a.b.a.a.b) && (_v153.b.a.b.a.a.a === 'morphir')) && (!_v153.b.a.b.a.a.b.b)) && _v153.b.a.b.a.b.b) && _v153.b.a.b.a.b.a.b) && (_v153.b.a.b.a.b.a.a === 's')) && _v153.b.a.b.a.b.a.b.b) && (_v153.b.a.b.a.b.a.b.a === 'd')) && _v153.b.a.b.a.b.a.b.b.b) && (_v153.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.a.b.a.b.b.b)) && _v153.b.a.b.b.b) && _v153.b.a.b.b.a.b) && (_v153.b.a.b.b.a.a === 'maybe')) && (!_v153.b.a.b.b.a.b.b)) && (!_v153.b.a.b.b.b.b)) && _v153.b.a.b.c.b) && (_v153.b.a.b.c.a === 'nothing')) && (!_v153.b.a.b.c.b.b)) {
+																									break _v153$3;
+																								} else {
+																									break _v153$5;
+																								}
+																							}
+																						}
+																					default:
+																						if ((((((((((((((((((((((_v153.b.b.b.a.$ === 'Constructor') && _v153.b.b.b.a.b.a.b) && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																							break _v153$1;
+																						} else {
+																							if ((((((((((((((((((((((_v153.b.b.a.$ === 'Constructor') && _v153.b.b.a.b.a.b) && _v153.b.b.a.b.a.a.b) && (_v153.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.a.b.a.a.b.b)) && _v153.b.b.a.b.a.b.b) && _v153.b.b.a.b.a.b.a.b) && (_v153.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.a.b.a.b.a.b.b) && (_v153.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.a.b.a.b.b.b)) && _v153.b.b.a.b.b.b) && _v153.b.b.a.b.b.a.b) && (_v153.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.a.b.b.a.b.b)) && (!_v153.b.b.a.b.b.b.b)) && _v153.b.b.a.b.c.b) && (_v153.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.a.b.c.b.b)) {
+																								break _v153$2;
+																							} else {
+																								break _v153$5;
+																							}
+																						}
+																				}
+																			case 'Constructor':
+																				if ((((((((((((((((((((((_v153.b.b.b.a.$ === 'Constructor') && _v153.b.b.b.a.b.a.b) && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																					break _v153$1;
+																				} else {
+																					if ((((((((((((((((((((((_v153.b.b.a.$ === 'Constructor') && _v153.b.b.a.b.a.b) && _v153.b.b.a.b.a.a.b) && (_v153.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.a.b.a.a.b.b)) && _v153.b.b.a.b.a.b.b) && _v153.b.b.a.b.a.b.a.b) && (_v153.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.a.b.a.b.a.b.b) && (_v153.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.a.b.a.b.b.b)) && _v153.b.b.a.b.b.b) && _v153.b.b.a.b.b.a.b) && (_v153.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.a.b.b.a.b.b)) && (!_v153.b.b.a.b.b.b.b)) && _v153.b.b.a.b.c.b) && (_v153.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.a.b.c.b.b)) {
+																						break _v153$2;
+																					} else {
+																						if ((((((((((((((((((((((_v153.b.a.$ === 'Constructor') && _v153.b.a.b.a.b) && _v153.b.a.b.a.a.b) && (_v153.b.a.b.a.a.a === 'morphir')) && (!_v153.b.a.b.a.a.b.b)) && _v153.b.a.b.a.b.b) && _v153.b.a.b.a.b.a.b) && (_v153.b.a.b.a.b.a.a === 's')) && _v153.b.a.b.a.b.a.b.b) && (_v153.b.a.b.a.b.a.b.a === 'd')) && _v153.b.a.b.a.b.a.b.b.b) && (_v153.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.a.b.a.b.b.b)) && _v153.b.a.b.b.b) && _v153.b.a.b.b.a.b) && (_v153.b.a.b.b.a.a === 'maybe')) && (!_v153.b.a.b.b.a.b.b)) && (!_v153.b.a.b.b.b.b)) && _v153.b.a.b.c.b) && (_v153.b.a.b.c.a === 'nothing')) && (!_v153.b.a.b.c.b.b)) {
+																							break _v153$3;
+																						} else {
+																							if ((((((((((((((((((((_v153.a.b.a.b && _v153.a.b.a.a.b) && (_v153.a.b.a.a.a === 'morphir')) && (!_v153.a.b.a.a.b.b)) && _v153.a.b.a.b.b) && _v153.a.b.a.b.a.b) && (_v153.a.b.a.b.a.a === 's')) && _v153.a.b.a.b.a.b.b) && (_v153.a.b.a.b.a.b.a === 'd')) && _v153.a.b.a.b.a.b.b.b) && (_v153.a.b.a.b.a.b.b.a === 'k')) && (!_v153.a.b.a.b.a.b.b.b.b)) && (!_v153.a.b.a.b.b.b)) && _v153.a.b.b.b) && _v153.a.b.b.a.b) && (_v153.a.b.b.a.a === 'maybe')) && (!_v153.a.b.b.a.b.b)) && (!_v153.a.b.b.b.b)) && _v153.a.b.c.b) && (_v153.a.b.c.a === 'nothing')) && (!_v153.a.b.c.b.b)) {
+																								var _v247 = _v153.a;
+																								var _v248 = _v247.b;
+																								var _v249 = _v248.a;
+																								var _v250 = _v249.a;
+																								var _v251 = _v249.b;
+																								var _v252 = _v251.a;
+																								var _v253 = _v252.b;
+																								var _v254 = _v253.b;
+																								var _v255 = _v248.b;
+																								var _v256 = _v255.a;
+																								var _v257 = _v248.c;
+																								var _v258 = _v153.b;
+																								var _v259 = _v258.b;
+																								var _v260 = _v259.b;
+																								return $elm$core$Result$Ok(
+																									$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+																							} else {
+																								break _v153$5;
+																							}
+																						}
+																					}
+																				}
+																			default:
+																				if ((((((((((((((((((((((_v153.b.b.b.a.$ === 'Constructor') && _v153.b.b.b.a.b.a.b) && _v153.b.b.b.a.b.a.a.b) && (_v153.b.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.b.a.b.a.a.b.b)) && _v153.b.b.b.a.b.a.b.b) && _v153.b.b.b.a.b.a.b.a.b) && (_v153.b.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.b.a.b.a.b.a.b.b) && (_v153.b.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.b.a.b.a.b.b.b)) && _v153.b.b.b.a.b.b.b) && _v153.b.b.b.a.b.b.a.b) && (_v153.b.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.b.a.b.b.a.b.b)) && (!_v153.b.b.b.a.b.b.b.b)) && _v153.b.b.b.a.b.c.b) && (_v153.b.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.b.a.b.c.b.b)) {
+																					break _v153$1;
+																				} else {
+																					if ((((((((((((((((((((((_v153.b.b.a.$ === 'Constructor') && _v153.b.b.a.b.a.b) && _v153.b.b.a.b.a.a.b) && (_v153.b.b.a.b.a.a.a === 'morphir')) && (!_v153.b.b.a.b.a.a.b.b)) && _v153.b.b.a.b.a.b.b) && _v153.b.b.a.b.a.b.a.b) && (_v153.b.b.a.b.a.b.a.a === 's')) && _v153.b.b.a.b.a.b.a.b.b) && (_v153.b.b.a.b.a.b.a.b.a === 'd')) && _v153.b.b.a.b.a.b.a.b.b.b) && (_v153.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.b.a.b.a.b.b.b)) && _v153.b.b.a.b.b.b) && _v153.b.b.a.b.b.a.b) && (_v153.b.b.a.b.b.a.a === 'maybe')) && (!_v153.b.b.a.b.b.a.b.b)) && (!_v153.b.b.a.b.b.b.b)) && _v153.b.b.a.b.c.b) && (_v153.b.b.a.b.c.a === 'nothing')) && (!_v153.b.b.a.b.c.b.b)) {
+																						break _v153$2;
+																					} else {
+																						if ((((((((((((((((((((((_v153.b.a.$ === 'Constructor') && _v153.b.a.b.a.b) && _v153.b.a.b.a.a.b) && (_v153.b.a.b.a.a.a === 'morphir')) && (!_v153.b.a.b.a.a.b.b)) && _v153.b.a.b.a.b.b) && _v153.b.a.b.a.b.a.b) && (_v153.b.a.b.a.b.a.a === 's')) && _v153.b.a.b.a.b.a.b.b) && (_v153.b.a.b.a.b.a.b.a === 'd')) && _v153.b.a.b.a.b.a.b.b.b) && (_v153.b.a.b.a.b.a.b.b.a === 'k')) && (!_v153.b.a.b.a.b.a.b.b.b.b)) && (!_v153.b.a.b.a.b.b.b)) && _v153.b.a.b.b.b) && _v153.b.a.b.b.a.b) && (_v153.b.a.b.b.a.a === 'maybe')) && (!_v153.b.a.b.b.a.b.b)) && (!_v153.b.a.b.b.b.b)) && _v153.b.a.b.c.b) && (_v153.b.a.b.c.a === 'nothing')) && (!_v153.b.a.b.c.b.b)) {
+																							break _v153$3;
+																						} else {
+																							break _v153$5;
+																						}
+																					}
+																				}
+																		}
+																	} else {
+																		break _v153$5;
+																	}
+																}
+																return $elm$core$Result$Err(
+																	$author$project$Morphir$Value$Error$UnexpectedArguments(
+																		_List_fromArray(
+																			[evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4])));
+															}
+															var _v233 = _v153.b;
+															var _v234 = _v233.a;
+															var _v235 = _v234.b;
+															var _v236 = _v235.a;
+															var _v237 = _v236.a;
+															var _v238 = _v236.b;
+															var _v239 = _v238.a;
+															var _v240 = _v239.b;
+															var _v241 = _v240.b;
+															var _v242 = _v235.b;
+															var _v243 = _v242.a;
+															var _v244 = _v235.c;
+															var _v245 = _v233.b;
+															var _v246 = _v245.b;
+															return $elm$core$Result$Ok(
+																$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+														}
+														var _v219 = _v153.b;
+														var _v220 = _v219.b;
+														var _v221 = _v220.a;
+														var _v222 = _v221.b;
+														var _v223 = _v222.a;
+														var _v224 = _v223.a;
+														var _v225 = _v223.b;
+														var _v226 = _v225.a;
+														var _v227 = _v226.b;
+														var _v228 = _v227.b;
+														var _v229 = _v222.b;
+														var _v230 = _v229.a;
+														var _v231 = _v222.c;
+														var _v232 = _v220.b;
+														return $elm$core$Result$Ok(
+															$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+													}
+													var _v205 = _v153.b;
+													var _v206 = _v205.b;
+													var _v207 = _v206.b;
+													var _v208 = _v207.a;
+													var _v209 = _v208.b;
+													var _v210 = _v209.a;
+													var _v211 = _v210.a;
+													var _v212 = _v210.b;
+													var _v213 = _v212.a;
+													var _v214 = _v213.b;
+													var _v215 = _v214.b;
+													var _v216 = _v209.b;
+													var _v217 = _v216.a;
+													var _v218 = _v209.c;
+													return $elm$core$Result$Ok(
+														$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+												},
+												_eval(arg4));
+										},
+										_eval(arg3));
+								},
+								_eval(arg2));
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'map5',
+		F2(
+			function (_eval, args) {
+				if ((((((args.b && args.b.b) && args.b.b.b) && args.b.b.b.b) && args.b.b.b.b.b) && args.b.b.b.b.b.b) && (!args.b.b.b.b.b.b.b)) {
+					var fun = args.a;
+					var _v262 = args.b;
+					var arg1 = _v262.a;
+					var _v263 = _v262.b;
+					var arg2 = _v263.a;
+					var _v264 = _v263.b;
+					var arg3 = _v264.a;
+					var _v265 = _v264.b;
+					var arg4 = _v265.a;
+					var _v266 = _v265.b;
+					var arg5 = _v266.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							return A2(
+								$elm$core$Result$andThen,
+								function (evaluatedArg2) {
+									return A2(
+										$elm$core$Result$andThen,
+										function (evaluatedArg3) {
+											return A2(
+												$elm$core$Result$andThen,
+												function (evaluatedArg4) {
+													return A2(
+														$elm$core$Result$andThen,
+														function (evaluatedArg5) {
+															var _v267 = _List_fromArray(
+																[evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4, evaluatedArg5]);
+															_v267$1:
+															while (true) {
+																_v267$2:
+																while (true) {
+																	_v267$3:
+																	while (true) {
+																		_v267$4:
+																		while (true) {
+																			_v267$6:
+																			while (true) {
+																				if (((((_v267.b && _v267.b.b) && _v267.b.b.b) && _v267.b.b.b.b) && _v267.b.b.b.b.b) && (!_v267.b.b.b.b.b.b)) {
+																					switch (_v267.a.$) {
+																						case 'Apply':
+																							switch (_v267.b.a.$) {
+																								case 'Apply':
+																									switch (_v267.b.b.a.$) {
+																										case 'Apply':
+																											switch (_v267.b.b.b.a.$) {
+																												case 'Apply':
+																													switch (_v267.b.b.b.b.a.$) {
+																														case 'Apply':
+																															if ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((_v267.a.b.$ === 'Constructor') && _v267.a.b.b.a.b) && _v267.a.b.b.a.a.b) && (_v267.a.b.b.a.a.a === 'morphir')) && (!_v267.a.b.b.a.a.b.b)) && _v267.a.b.b.a.b.b) && _v267.a.b.b.a.b.a.b) && (_v267.a.b.b.a.b.a.a === 's')) && _v267.a.b.b.a.b.a.b.b) && (_v267.a.b.b.a.b.a.b.a === 'd')) && _v267.a.b.b.a.b.a.b.b.b) && (_v267.a.b.b.a.b.a.b.b.a === 'k')) && (!_v267.a.b.b.a.b.a.b.b.b.b)) && (!_v267.a.b.b.a.b.b.b)) && _v267.a.b.b.b.b) && _v267.a.b.b.b.a.b) && (_v267.a.b.b.b.a.a === 'maybe')) && (!_v267.a.b.b.b.a.b.b)) && (!_v267.a.b.b.b.b.b)) && _v267.a.b.b.c.b) && (_v267.a.b.b.c.a === 'just')) && (!_v267.a.b.b.c.b.b)) && (_v267.b.a.b.$ === 'Constructor')) && _v267.b.a.b.b.a.b) && _v267.b.a.b.b.a.a.b) && (_v267.b.a.b.b.a.a.a === 'morphir')) && (!_v267.b.a.b.b.a.a.b.b)) && _v267.b.a.b.b.a.b.b) && _v267.b.a.b.b.a.b.a.b) && (_v267.b.a.b.b.a.b.a.a === 's')) && _v267.b.a.b.b.a.b.a.b.b) && (_v267.b.a.b.b.a.b.a.b.a === 'd')) && _v267.b.a.b.b.a.b.a.b.b.b) && (_v267.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v267.b.a.b.b.a.b.a.b.b.b.b)) && (!_v267.b.a.b.b.a.b.b.b)) && _v267.b.a.b.b.b.b) && _v267.b.a.b.b.b.a.b) && (_v267.b.a.b.b.b.a.a === 'maybe')) && (!_v267.b.a.b.b.b.a.b.b)) && (!_v267.b.a.b.b.b.b.b)) && _v267.b.a.b.b.c.b) && (_v267.b.a.b.b.c.a === 'just')) && (!_v267.b.a.b.b.c.b.b)) && (_v267.b.b.a.b.$ === 'Constructor')) && _v267.b.b.a.b.b.a.b) && _v267.b.b.a.b.b.a.a.b) && (_v267.b.b.a.b.b.a.a.a === 'morphir')) && (!_v267.b.b.a.b.b.a.a.b.b)) && _v267.b.b.a.b.b.a.b.b) && _v267.b.b.a.b.b.a.b.a.b) && (_v267.b.b.a.b.b.a.b.a.a === 's')) && _v267.b.b.a.b.b.a.b.a.b.b) && (_v267.b.b.a.b.b.a.b.a.b.a === 'd')) && _v267.b.b.a.b.b.a.b.a.b.b.b) && (_v267.b.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.a.b.b.a.b.a.b.b.b.b)) && (!_v267.b.b.a.b.b.a.b.b.b)) && _v267.b.b.a.b.b.b.b) && _v267.b.b.a.b.b.b.a.b) && (_v267.b.b.a.b.b.b.a.a === 'maybe')) && (!_v267.b.b.a.b.b.b.a.b.b)) && (!_v267.b.b.a.b.b.b.b.b)) && _v267.b.b.a.b.b.c.b) && (_v267.b.b.a.b.b.c.a === 'just')) && (!_v267.b.b.a.b.b.c.b.b)) && (_v267.b.b.b.a.b.$ === 'Constructor')) && _v267.b.b.b.a.b.b.a.b) && _v267.b.b.b.a.b.b.a.a.b) && (_v267.b.b.b.a.b.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.b.a.a.b.b)) && _v267.b.b.b.a.b.b.a.b.b) && _v267.b.b.b.a.b.b.a.b.a.b) && (_v267.b.b.b.a.b.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.b.a.b.a.b.b) && (_v267.b.b.b.a.b.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b.b) && _v267.b.b.b.a.b.b.b.a.b) && (_v267.b.b.b.a.b.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b.b)) && _v267.b.b.b.a.b.b.c.b) && (_v267.b.b.b.a.b.b.c.a === 'just')) && (!_v267.b.b.b.a.b.b.c.b.b)) && (_v267.b.b.b.b.a.b.$ === 'Constructor')) && _v267.b.b.b.b.a.b.b.a.b) && _v267.b.b.b.b.a.b.b.a.a.b) && (_v267.b.b.b.b.a.b.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.b.a.a.b.b)) && _v267.b.b.b.b.a.b.b.a.b.b) && _v267.b.b.b.b.a.b.b.a.b.a.b) && (_v267.b.b.b.b.a.b.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b.b) && _v267.b.b.b.b.a.b.b.b.a.b) && (_v267.b.b.b.b.a.b.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b.b)) && _v267.b.b.b.b.a.b.b.c.b) && (_v267.b.b.b.b.a.b.b.c.a === 'just')) && (!_v267.b.b.b.b.a.b.b.c.b.b)) {
+																																var _v268 = _v267.a;
+																																var _v269 = _v268.b;
+																																var _v270 = _v269.b;
+																																var _v271 = _v270.a;
+																																var _v272 = _v271.a;
+																																var _v273 = _v271.b;
+																																var _v274 = _v273.a;
+																																var _v275 = _v274.b;
+																																var _v276 = _v275.b;
+																																var _v277 = _v270.b;
+																																var _v278 = _v277.a;
+																																var _v279 = _v270.c;
+																																var value1 = _v268.c;
+																																var _v280 = _v267.b;
+																																var _v281 = _v280.a;
+																																var _v282 = _v281.b;
+																																var _v283 = _v282.b;
+																																var _v284 = _v283.a;
+																																var _v285 = _v284.a;
+																																var _v286 = _v284.b;
+																																var _v287 = _v286.a;
+																																var _v288 = _v287.b;
+																																var _v289 = _v288.b;
+																																var _v290 = _v283.b;
+																																var _v291 = _v290.a;
+																																var _v292 = _v283.c;
+																																var value2 = _v281.c;
+																																var _v293 = _v280.b;
+																																var _v294 = _v293.a;
+																																var _v295 = _v294.b;
+																																var _v296 = _v295.b;
+																																var _v297 = _v296.a;
+																																var _v298 = _v297.a;
+																																var _v299 = _v297.b;
+																																var _v300 = _v299.a;
+																																var _v301 = _v300.b;
+																																var _v302 = _v301.b;
+																																var _v303 = _v296.b;
+																																var _v304 = _v303.a;
+																																var _v305 = _v296.c;
+																																var value3 = _v294.c;
+																																var _v306 = _v293.b;
+																																var _v307 = _v306.a;
+																																var _v308 = _v307.b;
+																																var _v309 = _v308.b;
+																																var _v310 = _v309.a;
+																																var _v311 = _v310.a;
+																																var _v312 = _v310.b;
+																																var _v313 = _v312.a;
+																																var _v314 = _v313.b;
+																																var _v315 = _v314.b;
+																																var _v316 = _v309.b;
+																																var _v317 = _v316.a;
+																																var _v318 = _v309.c;
+																																var value4 = _v307.c;
+																																var _v319 = _v306.b;
+																																var _v320 = _v319.a;
+																																var _v321 = _v320.b;
+																																var _v322 = _v321.b;
+																																var _v323 = _v322.a;
+																																var _v324 = _v323.a;
+																																var _v325 = _v323.b;
+																																var _v326 = _v325.a;
+																																var _v327 = _v326.b;
+																																var _v328 = _v327.b;
+																																var _v329 = _v322.b;
+																																var _v330 = _v329.a;
+																																var _v331 = _v322.c;
+																																var value5 = _v320.c;
+																																return _eval(
+																																	A3(
+																																		$author$project$Morphir$IR$Value$Apply,
+																																		_Utils_Tuple0,
+																																		A3(
+																																			$author$project$Morphir$IR$Value$Apply,
+																																			_Utils_Tuple0,
+																																			A3(
+																																				$author$project$Morphir$IR$Value$Apply,
+																																				_Utils_Tuple0,
+																																				A3(
+																																					$author$project$Morphir$IR$Value$Apply,
+																																					_Utils_Tuple0,
+																																					A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, value1),
+																																					value2),
+																																				value3),
+																																			value4),
+																																		value5));
+																															} else {
+																																break _v267$6;
+																															}
+																														case 'Constructor':
+																															if ((((((((((((((((((((_v267.b.b.b.b.a.b.a.b && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																																break _v267$1;
+																															} else {
+																																break _v267$6;
+																															}
+																														default:
+																															break _v267$6;
+																													}
+																												case 'Constructor':
+																													if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																														break _v267$1;
+																													} else {
+																														if ((((((((((((((((((((_v267.b.b.b.a.b.a.b && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																															break _v267$2;
+																														} else {
+																															break _v267$6;
+																														}
+																													}
+																												default:
+																													if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																														break _v267$1;
+																													} else {
+																														break _v267$6;
+																													}
+																											}
+																										case 'Constructor':
+																											if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																												break _v267$1;
+																											} else {
+																												if ((((((((((((((((((((((_v267.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.a.b.a.b) && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																													break _v267$2;
+																												} else {
+																													if ((((((((((((((((((((_v267.b.b.a.b.a.b && _v267.b.b.a.b.a.a.b) && (_v267.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.a.b.a.a.b.b)) && _v267.b.b.a.b.a.b.b) && _v267.b.b.a.b.a.b.a.b) && (_v267.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.a.b.a.b.a.b.b) && (_v267.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.a.b.a.b.b.b)) && _v267.b.b.a.b.b.b) && _v267.b.b.a.b.b.a.b) && (_v267.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.a.b.b.a.b.b)) && (!_v267.b.b.a.b.b.b.b)) && _v267.b.b.a.b.c.b) && (_v267.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.a.b.c.b.b)) {
+																														break _v267$3;
+																													} else {
+																														break _v267$6;
+																													}
+																												}
+																											}
+																										default:
+																											if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																												break _v267$1;
+																											} else {
+																												if ((((((((((((((((((((((_v267.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.a.b.a.b) && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																													break _v267$2;
+																												} else {
+																													break _v267$6;
+																												}
+																											}
+																									}
+																								case 'Constructor':
+																									if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																										break _v267$1;
+																									} else {
+																										if ((((((((((((((((((((((_v267.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.a.b.a.b) && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																											break _v267$2;
+																										} else {
+																											if ((((((((((((((((((((((_v267.b.b.a.$ === 'Constructor') && _v267.b.b.a.b.a.b) && _v267.b.b.a.b.a.a.b) && (_v267.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.a.b.a.a.b.b)) && _v267.b.b.a.b.a.b.b) && _v267.b.b.a.b.a.b.a.b) && (_v267.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.a.b.a.b.a.b.b) && (_v267.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.a.b.a.b.b.b)) && _v267.b.b.a.b.b.b) && _v267.b.b.a.b.b.a.b) && (_v267.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.a.b.b.a.b.b)) && (!_v267.b.b.a.b.b.b.b)) && _v267.b.b.a.b.c.b) && (_v267.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.a.b.c.b.b)) {
+																												break _v267$3;
+																											} else {
+																												if ((((((((((((((((((((_v267.b.a.b.a.b && _v267.b.a.b.a.a.b) && (_v267.b.a.b.a.a.a === 'morphir')) && (!_v267.b.a.b.a.a.b.b)) && _v267.b.a.b.a.b.b) && _v267.b.a.b.a.b.a.b) && (_v267.b.a.b.a.b.a.a === 's')) && _v267.b.a.b.a.b.a.b.b) && (_v267.b.a.b.a.b.a.b.a === 'd')) && _v267.b.a.b.a.b.a.b.b.b) && (_v267.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.a.b.a.b.b.b)) && _v267.b.a.b.b.b) && _v267.b.a.b.b.a.b) && (_v267.b.a.b.b.a.a === 'maybe')) && (!_v267.b.a.b.b.a.b.b)) && (!_v267.b.a.b.b.b.b)) && _v267.b.a.b.c.b) && (_v267.b.a.b.c.a === 'nothing')) && (!_v267.b.a.b.c.b.b)) {
+																													break _v267$4;
+																												} else {
+																													break _v267$6;
+																												}
+																											}
+																										}
+																									}
+																								default:
+																									if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																										break _v267$1;
+																									} else {
+																										if ((((((((((((((((((((((_v267.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.a.b.a.b) && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																											break _v267$2;
+																										} else {
+																											if ((((((((((((((((((((((_v267.b.b.a.$ === 'Constructor') && _v267.b.b.a.b.a.b) && _v267.b.b.a.b.a.a.b) && (_v267.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.a.b.a.a.b.b)) && _v267.b.b.a.b.a.b.b) && _v267.b.b.a.b.a.b.a.b) && (_v267.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.a.b.a.b.a.b.b) && (_v267.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.a.b.a.b.b.b)) && _v267.b.b.a.b.b.b) && _v267.b.b.a.b.b.a.b) && (_v267.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.a.b.b.a.b.b)) && (!_v267.b.b.a.b.b.b.b)) && _v267.b.b.a.b.c.b) && (_v267.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.a.b.c.b.b)) {
+																												break _v267$3;
+																											} else {
+																												break _v267$6;
+																											}
+																										}
+																									}
+																							}
+																						case 'Constructor':
+																							if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																								break _v267$1;
+																							} else {
+																								if ((((((((((((((((((((((_v267.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.a.b.a.b) && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																									break _v267$2;
+																								} else {
+																									if ((((((((((((((((((((((_v267.b.b.a.$ === 'Constructor') && _v267.b.b.a.b.a.b) && _v267.b.b.a.b.a.a.b) && (_v267.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.a.b.a.a.b.b)) && _v267.b.b.a.b.a.b.b) && _v267.b.b.a.b.a.b.a.b) && (_v267.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.a.b.a.b.a.b.b) && (_v267.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.a.b.a.b.b.b)) && _v267.b.b.a.b.b.b) && _v267.b.b.a.b.b.a.b) && (_v267.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.a.b.b.a.b.b)) && (!_v267.b.b.a.b.b.b.b)) && _v267.b.b.a.b.c.b) && (_v267.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.a.b.c.b.b)) {
+																										break _v267$3;
+																									} else {
+																										if ((((((((((((((((((((((_v267.b.a.$ === 'Constructor') && _v267.b.a.b.a.b) && _v267.b.a.b.a.a.b) && (_v267.b.a.b.a.a.a === 'morphir')) && (!_v267.b.a.b.a.a.b.b)) && _v267.b.a.b.a.b.b) && _v267.b.a.b.a.b.a.b) && (_v267.b.a.b.a.b.a.a === 's')) && _v267.b.a.b.a.b.a.b.b) && (_v267.b.a.b.a.b.a.b.a === 'd')) && _v267.b.a.b.a.b.a.b.b.b) && (_v267.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.a.b.a.b.b.b)) && _v267.b.a.b.b.b) && _v267.b.a.b.b.a.b) && (_v267.b.a.b.b.a.a === 'maybe')) && (!_v267.b.a.b.b.a.b.b)) && (!_v267.b.a.b.b.b.b)) && _v267.b.a.b.c.b) && (_v267.b.a.b.c.a === 'nothing')) && (!_v267.b.a.b.c.b.b)) {
+																											break _v267$4;
+																										} else {
+																											if ((((((((((((((((((((_v267.a.b.a.b && _v267.a.b.a.a.b) && (_v267.a.b.a.a.a === 'morphir')) && (!_v267.a.b.a.a.b.b)) && _v267.a.b.a.b.b) && _v267.a.b.a.b.a.b) && (_v267.a.b.a.b.a.a === 's')) && _v267.a.b.a.b.a.b.b) && (_v267.a.b.a.b.a.b.a === 'd')) && _v267.a.b.a.b.a.b.b.b) && (_v267.a.b.a.b.a.b.b.a === 'k')) && (!_v267.a.b.a.b.a.b.b.b.b)) && (!_v267.a.b.a.b.b.b)) && _v267.a.b.b.b) && _v267.a.b.b.a.b) && (_v267.a.b.b.a.a === 'maybe')) && (!_v267.a.b.b.a.b.b)) && (!_v267.a.b.b.b.b)) && _v267.a.b.c.b) && (_v267.a.b.c.a === 'nothing')) && (!_v267.a.b.c.b.b)) {
+																												var _v392 = _v267.a;
+																												var _v393 = _v392.b;
+																												var _v394 = _v393.a;
+																												var _v395 = _v394.a;
+																												var _v396 = _v394.b;
+																												var _v397 = _v396.a;
+																												var _v398 = _v397.b;
+																												var _v399 = _v398.b;
+																												var _v400 = _v393.b;
+																												var _v401 = _v400.a;
+																												var _v402 = _v393.c;
+																												var _v403 = _v267.b;
+																												var _v404 = _v403.b;
+																												var _v405 = _v404.b;
+																												var _v406 = _v405.b;
+																												return $elm$core$Result$Ok(
+																													$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+																											} else {
+																												break _v267$6;
+																											}
+																										}
+																									}
+																								}
+																							}
+																						default:
+																							if ((((((((((((((((((((((_v267.b.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.b.a.b.a.b) && _v267.b.b.b.b.a.b.a.a.b) && (_v267.b.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.b.a.b.a.b.b) && _v267.b.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.b.a.b.b.b) && _v267.b.b.b.b.a.b.b.a.b) && (_v267.b.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.b.a.b.b.b.b)) && _v267.b.b.b.b.a.b.c.b) && (_v267.b.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.b.a.b.c.b.b)) {
+																								break _v267$1;
+																							} else {
+																								if ((((((((((((((((((((((_v267.b.b.b.a.$ === 'Constructor') && _v267.b.b.b.a.b.a.b) && _v267.b.b.b.a.b.a.a.b) && (_v267.b.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.b.a.b.a.a.b.b)) && _v267.b.b.b.a.b.a.b.b) && _v267.b.b.b.a.b.a.b.a.b) && (_v267.b.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.b.a.b.a.b.a.b.b) && (_v267.b.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.b.a.b.a.b.b.b)) && _v267.b.b.b.a.b.b.b) && _v267.b.b.b.a.b.b.a.b) && (_v267.b.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.b.a.b.b.a.b.b)) && (!_v267.b.b.b.a.b.b.b.b)) && _v267.b.b.b.a.b.c.b) && (_v267.b.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.b.a.b.c.b.b)) {
+																									break _v267$2;
+																								} else {
+																									if ((((((((((((((((((((((_v267.b.b.a.$ === 'Constructor') && _v267.b.b.a.b.a.b) && _v267.b.b.a.b.a.a.b) && (_v267.b.b.a.b.a.a.a === 'morphir')) && (!_v267.b.b.a.b.a.a.b.b)) && _v267.b.b.a.b.a.b.b) && _v267.b.b.a.b.a.b.a.b) && (_v267.b.b.a.b.a.b.a.a === 's')) && _v267.b.b.a.b.a.b.a.b.b) && (_v267.b.b.a.b.a.b.a.b.a === 'd')) && _v267.b.b.a.b.a.b.a.b.b.b) && (_v267.b.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.b.a.b.a.b.b.b)) && _v267.b.b.a.b.b.b) && _v267.b.b.a.b.b.a.b) && (_v267.b.b.a.b.b.a.a === 'maybe')) && (!_v267.b.b.a.b.b.a.b.b)) && (!_v267.b.b.a.b.b.b.b)) && _v267.b.b.a.b.c.b) && (_v267.b.b.a.b.c.a === 'nothing')) && (!_v267.b.b.a.b.c.b.b)) {
+																										break _v267$3;
+																									} else {
+																										if ((((((((((((((((((((((_v267.b.a.$ === 'Constructor') && _v267.b.a.b.a.b) && _v267.b.a.b.a.a.b) && (_v267.b.a.b.a.a.a === 'morphir')) && (!_v267.b.a.b.a.a.b.b)) && _v267.b.a.b.a.b.b) && _v267.b.a.b.a.b.a.b) && (_v267.b.a.b.a.b.a.a === 's')) && _v267.b.a.b.a.b.a.b.b) && (_v267.b.a.b.a.b.a.b.a === 'd')) && _v267.b.a.b.a.b.a.b.b.b) && (_v267.b.a.b.a.b.a.b.b.a === 'k')) && (!_v267.b.a.b.a.b.a.b.b.b.b)) && (!_v267.b.a.b.a.b.b.b)) && _v267.b.a.b.b.b) && _v267.b.a.b.b.a.b) && (_v267.b.a.b.b.a.a === 'maybe')) && (!_v267.b.a.b.b.a.b.b)) && (!_v267.b.a.b.b.b.b)) && _v267.b.a.b.c.b) && (_v267.b.a.b.c.a === 'nothing')) && (!_v267.b.a.b.c.b.b)) {
+																											break _v267$4;
+																										} else {
+																											break _v267$6;
+																										}
+																									}
+																								}
+																							}
+																					}
+																				} else {
+																					break _v267$6;
+																				}
+																			}
+																			return $elm$core$Result$Err(
+																				$author$project$Morphir$Value$Error$UnexpectedArguments(
+																					_List_fromArray(
+																						[evaluatedArg1, evaluatedArg2, evaluatedArg3, evaluatedArg4, evaluatedArg5])));
+																		}
+																		var _v377 = _v267.b;
+																		var _v378 = _v377.a;
+																		var _v379 = _v378.b;
+																		var _v380 = _v379.a;
+																		var _v381 = _v380.a;
+																		var _v382 = _v380.b;
+																		var _v383 = _v382.a;
+																		var _v384 = _v383.b;
+																		var _v385 = _v384.b;
+																		var _v386 = _v379.b;
+																		var _v387 = _v386.a;
+																		var _v388 = _v379.c;
+																		var _v389 = _v377.b;
+																		var _v390 = _v389.b;
+																		var _v391 = _v390.b;
+																		return $elm$core$Result$Ok(
+																			$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+																	}
+																	var _v362 = _v267.b;
+																	var _v363 = _v362.b;
+																	var _v364 = _v363.a;
+																	var _v365 = _v364.b;
+																	var _v366 = _v365.a;
+																	var _v367 = _v366.a;
+																	var _v368 = _v366.b;
+																	var _v369 = _v368.a;
+																	var _v370 = _v369.b;
+																	var _v371 = _v370.b;
+																	var _v372 = _v365.b;
+																	var _v373 = _v372.a;
+																	var _v374 = _v365.c;
+																	var _v375 = _v363.b;
+																	var _v376 = _v375.b;
+																	return $elm$core$Result$Ok(
+																		$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+																}
+																var _v347 = _v267.b;
+																var _v348 = _v347.b;
+																var _v349 = _v348.b;
+																var _v350 = _v349.a;
+																var _v351 = _v350.b;
+																var _v352 = _v351.a;
+																var _v353 = _v352.a;
+																var _v354 = _v352.b;
+																var _v355 = _v354.a;
+																var _v356 = _v355.b;
+																var _v357 = _v356.b;
+																var _v358 = _v351.b;
+																var _v359 = _v358.a;
+																var _v360 = _v351.c;
+																var _v361 = _v349.b;
+																return $elm$core$Result$Ok(
+																	$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+															}
+															var _v332 = _v267.b;
+															var _v333 = _v332.b;
+															var _v334 = _v333.b;
+															var _v335 = _v334.b;
+															var _v336 = _v335.a;
+															var _v337 = _v336.b;
+															var _v338 = _v337.a;
+															var _v339 = _v338.a;
+															var _v340 = _v338.b;
+															var _v341 = _v340.a;
+															var _v342 = _v341.b;
+															var _v343 = _v342.b;
+															var _v344 = _v337.b;
+															var _v345 = _v344.a;
+															var _v346 = _v337.c;
+															return $elm$core$Result$Ok(
+																$author$project$Morphir$IR$SDK$Maybe$nothing(_Utils_Tuple0));
+														},
+														_eval(arg5));
+												},
+												_eval(arg4));
+										},
+										_eval(arg3));
+								},
+								_eval(arg2));
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			}))
+	]);
+var $elm$core$Basics$acos = _Basics_acos;
+var $elm$core$String$append = _String_append;
+var $elm$core$Basics$asin = _Basics_asin;
+var $elm$core$Basics$atan = _Basics_atan;
+var $elm$core$Basics$atan2 = _Basics_atan2;
+var $author$project$Morphir$Value$Error$ExpectedCharLiteral = function (a) {
+	return {$: 'ExpectedCharLiteral', a: a};
+};
+var $author$project$Morphir$Value$Native$charLiteral = function (lit) {
+	if (lit.$ === 'CharLiteral') {
+		var v = lit.a;
+		return $elm$core$Result$Ok(v);
+	} else {
+		return $elm$core$Result$Err(
+			$author$project$Morphir$Value$Error$ExpectedCharLiteral(
+				A2($author$project$Morphir$IR$Value$Literal, _Utils_Tuple0, lit)));
+	}
+};
+var $elm$core$Basics$cos = _Basics_cos;
+var $elm$core$Basics$pi = _Basics_pi;
+var $elm$core$Basics$degrees = function (angleInDegrees) {
+	return (angleInDegrees * $elm$core$Basics$pi) / 180;
+};
+var $elm$core$String$dropRight = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3($elm$core$String$slice, 0, -n, string);
+	});
+var $elm$core$Basics$e = _Basics_e;
+var $elm$core$String$endsWith = _String_endsWith;
+var $author$project$Morphir$Value$Native$eval0 = F2(
+	function (r, encodeR) {
+		return F2(
+			function (_eval, args) {
+				if (!args.b) {
+					return encodeR(r);
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			});
+	});
+var $elm$core$String$fromChar = function (_char) {
+	return A2($elm$core$String$cons, _char, '');
+};
+var $elm$core$Char$fromCode = _Char_fromCode;
+var $elm$core$String$fromList = _String_fromList;
+var $elm$core$Basics$sin = _Basics_sin;
+var $elm$core$Basics$fromPolar = function (_v0) {
+	var radius = _v0.a;
+	var theta = _v0.b;
+	return _Utils_Tuple2(
+		radius * $elm$core$Basics$cos(theta),
+		radius * $elm$core$Basics$sin(theta));
+};
+var $elm$core$String$indices = _String_indexes;
+var $elm$core$Char$isHexDigit = function (_char) {
+	var code = $elm$core$Char$toCode(_char);
+	return ((48 <= code) && (code <= 57)) || (((65 <= code) && (code <= 70)) || ((97 <= code) && (code <= 102)));
+};
+var $elm$core$Basics$isInfinite = _Basics_isInfinite;
+var $elm$core$Basics$isNaN = _Basics_isNaN;
+var $elm$core$Char$isOctDigit = function (_char) {
+	var code = $elm$core$Char$toCode(_char);
+	return (code <= 55) && (48 <= code);
+};
+var $elm$core$String$lines = _String_lines;
+var $elm$core$Basics$modBy = _Basics_modBy;
+var $elm$core$Bitwise$shiftRightBy = _Bitwise_shiftRightBy;
+var $elm$core$String$repeatHelp = F3(
+	function (n, chunk, result) {
+		return (n <= 0) ? result : A3(
+			$elm$core$String$repeatHelp,
+			n >> 1,
+			_Utils_ap(chunk, chunk),
+			(!(n & 1)) ? result : _Utils_ap(result, chunk));
+	});
+var $elm$core$String$repeat = F2(
+	function (n, chunk) {
+		return A3($elm$core$String$repeatHelp, n, chunk, '');
+	});
+var $elm$core$String$pad = F3(
+	function (n, _char, string) {
+		var half = (n - $elm$core$String$length(string)) / 2;
+		return _Utils_ap(
+			A2(
+				$elm$core$String$repeat,
+				$elm$core$Basics$ceiling(half),
+				$elm$core$String$fromChar(_char)),
+			_Utils_ap(
+				string,
+				A2(
+					$elm$core$String$repeat,
+					$elm$core$Basics$floor(half),
+					$elm$core$String$fromChar(_char))));
+	});
+var $elm$core$String$padLeft = F3(
+	function (n, _char, string) {
+		return _Utils_ap(
+			A2(
+				$elm$core$String$repeat,
+				n - $elm$core$String$length(string),
+				$elm$core$String$fromChar(_char)),
+			string);
+	});
+var $elm$core$String$padRight = F3(
+	function (n, _char, string) {
+		return _Utils_ap(
+			string,
+			A2(
+				$elm$core$String$repeat,
+				n - $elm$core$String$length(string),
+				$elm$core$String$fromChar(_char)));
+	});
+var $elm$core$Basics$radians = function (angleInRadians) {
+	return angleInRadians;
+};
+var $elm$core$String$replace = F3(
+	function (before, after, string) {
+		return A2(
+			$elm$core$String$join,
+			after,
+			A2($elm$core$String$split, before, string));
+	});
+var $elm$core$String$reverse = _String_reverse;
+var $elm$core$String$right = F2(
+	function (n, string) {
+		return (n < 1) ? '' : A3(
+			$elm$core$String$slice,
+			-n,
+			$elm$core$String$length(string),
+			string);
+	});
+var $elm$core$Basics$sqrt = _Basics_sqrt;
+var $elm$core$Basics$tan = _Basics_tan;
+var $elm$core$String$toFloat = _String_toFloat;
+var $elm$core$String$foldr = _String_foldr;
+var $elm$core$String$toList = function (string) {
+	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
+};
+var $elm$core$Char$toLocaleLower = _Char_toLocaleLower;
+var $elm$core$Char$toLocaleUpper = _Char_toLocaleUpper;
+var $elm$core$Char$toLower = _Char_toLower;
+var $elm$core$Basics$toPolar = function (_v0) {
+	var x = _v0.a;
+	var y = _v0.b;
+	return _Utils_Tuple2(
+		$elm$core$Basics$sqrt((x * x) + (y * y)),
+		A2($elm$core$Basics$atan2, y, x));
+};
+var $elm$core$String$toUpper = _String_toUpper;
+var $elm$core$String$trim = _String_trim;
+var $elm$core$String$trimLeft = _String_trimLeft;
+var $elm$core$String$trimRight = _String_trimRight;
+var $elm$core$Basics$truncate = _Basics_truncate;
+var $elm$core$Basics$turns = function (angleInTurns) {
+	return (2 * $elm$core$Basics$pi) * angleInTurns;
+};
+var $author$project$Morphir$IR$SDK$SDKNativeFunctions$nativeFunctions = _List_fromArray(
+	[
+		_Utils_Tuple3(
+		'Basics',
+		'acos',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$acos,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'and',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$and,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'asin',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$asin,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'atan',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$atan,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'atan2',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$atan2,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'ceiling',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$ceiling,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'cos',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$cos,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'degrees',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$degrees,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'divide',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$fdiv,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'e',
+		A2(
+			$author$project$Morphir$Value$Native$eval0,
+			$elm$core$Basics$e,
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'floor',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$floor,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'fromPolar',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$fromPolar,
+			$author$project$Morphir$Value$Native$decodeTuple2(
+				_Utils_Tuple2(
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral))),
+			$author$project$Morphir$Value$Native$encodeTuple2(
+				_Utils_Tuple2(
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))))),
+		_Utils_Tuple3(
+		'Basics',
+		'integerDivide',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$idiv,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'isInfinite',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$isInfinite,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'isNaN',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$isNaN,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'logBase',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$logBase,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'modBy',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$modBy,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'not',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$not,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'or',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$or,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'pi',
+		A2(
+			$author$project$Morphir$Value$Native$eval0,
+			$elm$core$Basics$pi,
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'radians',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$radians,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'remainderBy',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$remainderBy,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'round',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$round,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'sin',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$sin,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'sqrt',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$sqrt,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'tan',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$tan,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'toFloat',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$toFloat,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'toPolar',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$toPolar,
+			$author$project$Morphir$Value$Native$decodeTuple2(
+				_Utils_Tuple2(
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+					$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral))),
+			$author$project$Morphir$Value$Native$encodeTuple2(
+				_Utils_Tuple2(
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral),
+					$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))))),
+		_Utils_Tuple3(
+		'Basics',
+		'truncate',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$truncate,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'turns',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Basics$turns,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral))),
+		_Utils_Tuple3(
+		'Basics',
+		'xor',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Basics$xor,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$boolLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'fromCode',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$fromCode,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isAlpha',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isAlpha,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isAlphaNum',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isAlphaNum,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isDigit',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isDigit,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isHexDigit',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isHexDigit,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isLower',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isLower,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isOctDigit',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isOctDigit,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'isUpper',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$isUpper,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'toCode',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$toCode,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'toLocaleLower',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$toLocaleLower,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'toLocaleUpper',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$toLocaleUpper,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'toLower',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$toLower,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral))),
+		_Utils_Tuple3(
+		'Char',
+		'toUpper',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Char$toUpper,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral))),
+		_Utils_Tuple3(
+		'List',
+		'range',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$List$range,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'append',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$append,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'concat',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$concat,
+			$author$project$Morphir$Value$Native$decodeList(
+				$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral)),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'cons',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$cons,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'contains',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$contains,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'dropLeft',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$dropLeft,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'dropRight',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$dropRight,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'endsWith',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$endsWith,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'fromChar',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$fromChar,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'fromFloat',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$fromFloat,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$floatLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'fromInt',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$fromInt,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'fromList',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$fromList,
+			$author$project$Morphir$Value$Native$decodeList(
+				$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral)),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'indexes',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$indexes,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'indices',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$indices,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'isEmpty',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$isEmpty,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'join',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$join,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeList(
+				$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral)),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'left',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$left,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'length',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$length,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'lines',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$lines,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'pad',
+		A5(
+			$author$project$Morphir$Value$Native$eval3,
+			$elm$core$String$pad,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'padLeft',
+		A5(
+			$author$project$Morphir$Value$Native$eval3,
+			$elm$core$String$padLeft,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'padRight',
+		A5(
+			$author$project$Morphir$Value$Native$eval3,
+			$elm$core$String$padRight,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$charLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'repeat',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$repeat,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'replace',
+		A5(
+			$author$project$Morphir$Value$Native$eval3,
+			$elm$core$String$replace,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'reverse',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$reverse,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'right',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$right,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'slice',
+		A5(
+			$author$project$Morphir$Value$Native$eval3,
+			$elm$core$String$slice,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$intLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'split',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$split,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'startsWith',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$String$startsWith,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$BoolLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'toFloat',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$toFloat,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeMaybe(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$FloatLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'toInt',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$toInt,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeMaybe(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$IntLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'toList',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$toList,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral)))),
+		_Utils_Tuple3(
+		'String',
+		'toLower',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$toLower,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'toUpper',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$toUpper,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'trim',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$trim,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'trimLeft',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$trimLeft,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'trimRight',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$trimRight,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))),
+		_Utils_Tuple3(
+		'String',
+		'uncons',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$uncons,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeMaybe(
+				$author$project$Morphir$Value$Native$encodeTuple2(
+					_Utils_Tuple2(
+						$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$CharLiteral),
+						$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral)))))),
+		_Utils_Tuple3(
+		'String',
+		'words',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$String$words,
+			$author$project$Morphir$Value$Native$decodeLiteral($author$project$Morphir$Value$Native$stringLiteral),
+			$author$project$Morphir$Value$Native$encodeList(
+				$author$project$Morphir$Value$Native$encodeLiteral($author$project$Morphir$IR$Literal$StringLiteral))))
+	]);
+var $author$project$Morphir$IR$SDK$Tuple$nativeFunctions = _List_fromArray(
+	[
+		_Utils_Tuple2(
+		'pair',
+		A4(
+			$author$project$Morphir$Value$Native$eval2,
+			$elm$core$Tuple$pair,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$decodeRaw,
+			$author$project$Morphir$Value$Native$encodeTuple2(
+				_Utils_Tuple2($author$project$Morphir$Value$Native$encodeRaw, $author$project$Morphir$Value$Native$encodeRaw)))),
+		_Utils_Tuple2(
+		'first',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Tuple$first,
+			$author$project$Morphir$Value$Native$decodeTuple2(
+				_Utils_Tuple2($author$project$Morphir$Value$Native$decodeRaw, $author$project$Morphir$Value$Native$decodeRaw)),
+			$author$project$Morphir$Value$Native$encodeRaw)),
+		_Utils_Tuple2(
+		'second',
+		A3(
+			$author$project$Morphir$Value$Native$eval1,
+			$elm$core$Tuple$second,
+			$author$project$Morphir$Value$Native$decodeTuple2(
+				_Utils_Tuple2($author$project$Morphir$Value$Native$decodeRaw, $author$project$Morphir$Value$Native$decodeRaw)),
+			$author$project$Morphir$Value$Native$encodeRaw)),
+		_Utils_Tuple2(
+		'mapFirst',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v1 = args.b;
+					var arg1 = _v1.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if ((((evaluatedArg1.$ === 'Tuple') && evaluatedArg1.b.b) && evaluatedArg1.b.b.b) && (!evaluatedArg1.b.b.b.b)) {
+								var _v3 = evaluatedArg1.b;
+								var val1 = _v3.a;
+								var _v4 = _v3.b;
+								var val2 = _v4.a;
+								return A2(
+									$elm$core$Result$andThen,
+									function (evaluatedValue1) {
+										return $elm$core$Result$Ok(
+											A2(
+												$author$project$Morphir$IR$Value$Tuple,
+												_Utils_Tuple0,
+												_List_fromArray(
+													[evaluatedValue1, val2])));
 									},
-									value)));
-					} else {
-						return $elm$core$Result$Err(
-							$author$project$Morphir$Value$Error$UnexpectedArguments(
-								_List_fromArray(
-									[arg])));
-					}
-				})))
+									_eval(
+										A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, val1)));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedTuple(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'mapSecond',
+		F2(
+			function (_eval, args) {
+				if ((args.b && args.b.b) && (!args.b.b.b)) {
+					var fun = args.a;
+					var _v6 = args.b;
+					var arg1 = _v6.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if ((((evaluatedArg1.$ === 'Tuple') && evaluatedArg1.b.b) && evaluatedArg1.b.b.b) && (!evaluatedArg1.b.b.b.b)) {
+								var _v8 = evaluatedArg1.b;
+								var val1 = _v8.a;
+								var _v9 = _v8.b;
+								var val2 = _v9.a;
+								return A2(
+									$elm$core$Result$andThen,
+									function (evaluatedValue2) {
+										return $elm$core$Result$Ok(
+											A2(
+												$author$project$Morphir$IR$Value$Tuple,
+												_Utils_Tuple0,
+												_List_fromArray(
+													[val1, evaluatedValue2])));
+									},
+									_eval(
+										A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun, val2)));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedTuple(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			})),
+		_Utils_Tuple2(
+		'mapBoth',
+		F2(
+			function (_eval, args) {
+				if (((args.b && args.b.b) && args.b.b.b) && (!args.b.b.b.b)) {
+					var fun1 = args.a;
+					var _v11 = args.b;
+					var fun2 = _v11.a;
+					var _v12 = _v11.b;
+					var arg1 = _v12.a;
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArg1) {
+							if ((((evaluatedArg1.$ === 'Tuple') && evaluatedArg1.b.b) && evaluatedArg1.b.b.b) && (!evaluatedArg1.b.b.b.b)) {
+								var _v14 = evaluatedArg1.b;
+								var val1 = _v14.a;
+								var _v15 = _v14.b;
+								var val2 = _v15.a;
+								return A2(
+									$elm$core$Result$andThen,
+									$elm$core$Basics$identity,
+									A3(
+										$elm$core$Result$map2,
+										F2(
+											function (evaluatedValue1, evaluatedValue2) {
+												return $elm$core$Result$Ok(
+													A2(
+														$author$project$Morphir$IR$Value$Tuple,
+														_Utils_Tuple0,
+														_List_fromArray(
+															[evaluatedValue1, evaluatedValue2])));
+											}),
+										_eval(
+											A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun1, val1)),
+										_eval(
+											A3($author$project$Morphir$IR$Value$Apply, _Utils_Tuple0, fun2, val2))));
+							} else {
+								return $elm$core$Result$Err(
+									$author$project$Morphir$Value$Error$ExpectedTuple(evaluatedArg1));
+							}
+						},
+						_eval(arg1));
+				} else {
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Value$Error$UnexpectedArguments(args));
+				}
+			}))
 	]);
 var $author$project$Morphir$IR$SDK$packageName = $author$project$Morphir$IR$Path$fromString('Morphir.SDK');
 var $elm$core$Dict$foldl = F3(
@@ -14656,9 +18836,9 @@ var $author$project$Morphir$IR$SDK$nativeFunctions = function () {
 			return $elm$core$Dict$fromList(
 				A2(
 					$elm$core$List$map,
-					function (_v0) {
-						var localName = _v0.a;
-						var fun = _v0.b;
+					function (_v1) {
+						var localName = _v1.a;
+						var fun = _v1.b;
 						return _Utils_Tuple2(
 							_Utils_Tuple3(
 								$author$project$Morphir$IR$SDK$packageName,
@@ -14671,12 +18851,27 @@ var $author$project$Morphir$IR$SDK$nativeFunctions = function () {
 	return A3(
 		$elm$core$List$foldl,
 		$elm$core$Dict$union,
-		$elm$core$Dict$empty,
+		$elm$core$Dict$fromList(
+			A2(
+				$elm$core$List$map,
+				function (_v0) {
+					var moduleName = _v0.a;
+					var localName = _v0.b;
+					var fun = _v0.c;
+					return _Utils_Tuple2(
+						_Utils_Tuple3(
+							$author$project$Morphir$IR$SDK$packageName,
+							$author$project$Morphir$IR$Path$fromString(moduleName),
+							$author$project$Morphir$IR$Name$fromString(localName)),
+						fun);
+				},
+				$author$project$Morphir$IR$SDK$SDKNativeFunctions$nativeFunctions)),
 		_List_fromArray(
 			[
 				A2(moduleFunctions, 'Basics', $author$project$Morphir$IR$SDK$Basics$nativeFunctions),
-				A2(moduleFunctions, 'String', $author$project$Morphir$IR$SDK$String$nativeFunctions),
-				A2(moduleFunctions, 'List', $author$project$Morphir$IR$SDK$List$nativeFunctions)
+				A2(moduleFunctions, 'List', $author$project$Morphir$IR$SDK$List$nativeFunctions),
+				A2(moduleFunctions, 'Maybe', $author$project$Morphir$IR$SDK$Maybe$nativeFunctions),
+				A2(moduleFunctions, 'Tuple', $author$project$Morphir$IR$SDK$Tuple$nativeFunctions)
 			]));
 }();
 var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
@@ -14703,7 +18898,6 @@ var $mdgriffith$elm_ui$Element$Font$size = function (i) {
 		$mdgriffith$elm_ui$Internal$Flag$fontSize,
 		$mdgriffith$elm_ui$Internal$Model$FontSize(i));
 };
-var $elm$core$Basics$pow = _Basics_pow;
 var $mdgriffith$elm_ui$Element$modular = F3(
 	function (normal, ratio, rescale) {
 		return (!rescale) ? normal : ((rescale < 0) ? (normal * A2($elm$core$Basics$pow, ratio, rescale)) : (normal * A2($elm$core$Basics$pow, ratio, rescale - 1)));
@@ -14923,8 +19117,6 @@ var $elm$core$Dict$isEmpty = function (dict) {
 		return false;
 	}
 };
-var $elm$core$Debug$log = _Debug_log;
-var $elm$core$String$toUpper = _String_toUpper;
 var $author$project$Morphir$IR$Name$toHumanWords = function (name) {
 	var words = $author$project$Morphir$IR$Name$toList(name);
 	var join = function (abbrev) {
@@ -15001,11 +19193,6 @@ var $author$project$Morphir$Visual$Common$nameToText = function (name) {
 };
 var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -15539,7 +19726,6 @@ var $mdgriffith$elm_ui$Element$createNearby = F2(
 var $mdgriffith$elm_ui$Element$below = function (element) {
 	return A2($mdgriffith$elm_ui$Element$createNearby, $mdgriffith$elm_ui$Internal$Model$Below, element);
 };
-var $author$project$Morphir$IR$SDK$Basics$moduleName = $author$project$Morphir$IR$Path$fromString('Basics');
 var $author$project$Morphir$IR$SDK$Basics$boolType = function (attributes) {
 	return A3(
 		$author$project$Morphir$IR$Type$Reference,
@@ -15612,6 +19798,11 @@ var $author$project$Morphir$Value$Error$ReferenceNotFound = function (a) {
 var $author$project$Morphir$Value$Error$VariableNotFound = function (a) {
 	return {$: 'VariableNotFound', a: a};
 };
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
 var $author$project$Morphir$IR$lookupValueDefinition = F2(
 	function (fqn, ir) {
 		return A2($elm$core$Dict$get, fqn, ir.valueDefinitions);
@@ -16126,6 +20317,35 @@ var $author$project$Morphir$IR$Value$toRawValue = function (value) {
 		$elm$core$Basics$always(_Utils_Tuple0),
 		value);
 };
+var $author$project$Morphir$Value$Interpreter$evaluateFunctionValue = F4(
+	function (nativeFunctions, ir, fQName, variableValues) {
+		return A2(
+			$elm$core$Result$andThen,
+			function (valueDef) {
+				return A5(
+					$author$project$Morphir$Value$Interpreter$evaluateValue,
+					nativeFunctions,
+					ir,
+					$elm$core$Dict$fromList(
+						A3(
+							$elm$core$List$map2,
+							$elm$core$Tuple$pair,
+							A2(
+								$elm$core$List$map,
+								function (_v18) {
+									var name = _v18.a;
+									return name;
+								},
+								valueDef.inputTypes),
+							variableValues)),
+					_List_Nil,
+					$author$project$Morphir$IR$Value$toRawValue(valueDef.body));
+			},
+			A2(
+				$elm$core$Result$fromMaybe,
+				$author$project$Morphir$Value$Error$ReferenceNotFound(fQName),
+				A2($author$project$Morphir$IR$lookupValueDefinition, fQName, ir)));
+	});
 var $author$project$Morphir$Value$Interpreter$evaluateValue = F5(
 	function (nativeFunctions, ir, variables, _arguments, value) {
 		evaluateValue:
@@ -16135,49 +20355,58 @@ var $author$project$Morphir$Value$Interpreter$evaluateValue = F5(
 					return $elm$core$Result$Ok(value);
 				case 'Constructor':
 					var fQName = value.b;
-					var _v1 = A2(
-						$author$project$Morphir$IR$lookupTypeSpecification,
-						A2($author$project$Morphir$IR$resolveAliases, fQName, ir),
-						ir);
-					if (((_v1.$ === 'Just') && (_v1.a.$ === 'TypeAliasSpecification')) && (_v1.a.b.$ === 'Record')) {
-						var _v2 = _v1.a;
-						var _v3 = _v2.b;
-						var fields = _v3.b;
-						return $elm$core$Result$Ok(
-							A2(
-								$author$project$Morphir$IR$Value$Record,
-								_Utils_Tuple0,
-								A3(
-									$elm$core$List$map2,
-									$elm$core$Tuple$pair,
+					return A2(
+						$elm$core$Result$andThen,
+						function (evaluatedArgs) {
+							var _v1 = A2(
+								$author$project$Morphir$IR$lookupTypeSpecification,
+								A2($author$project$Morphir$IR$resolveAliases, fQName, ir),
+								ir);
+							if (((_v1.$ === 'Just') && (_v1.a.$ === 'TypeAliasSpecification')) && (_v1.a.b.$ === 'Record')) {
+								var _v2 = _v1.a;
+								var _v3 = _v2.b;
+								var fields = _v3.b;
+								return $elm$core$Result$Ok(
 									A2(
-										$elm$core$List$map,
-										function ($) {
-											return $.name;
-										},
-										fields),
-									_arguments)));
-					} else {
-						var applyArgs = F2(
-							function (subject, argsReversed) {
-								if (!argsReversed.b) {
-									return subject;
-								} else {
-									var lastArg = argsReversed.a;
-									var restOfArgsReversed = argsReversed.b;
-									return A3(
-										$author$project$Morphir$IR$Value$Apply,
+										$author$project$Morphir$IR$Value$Record,
 										_Utils_Tuple0,
-										A2(applyArgs, subject, restOfArgsReversed),
-										lastArg);
-								}
-							});
-						return $elm$core$Result$Ok(
+										A3(
+											$elm$core$List$map2,
+											$elm$core$Tuple$pair,
+											A2(
+												$elm$core$List$map,
+												function ($) {
+													return $.name;
+												},
+												fields),
+											evaluatedArgs)));
+							} else {
+								var applyArgs = F2(
+									function (subject, argsReversed) {
+										if (!argsReversed.b) {
+											return subject;
+										} else {
+											var lastArg = argsReversed.a;
+											var restOfArgsReversed = argsReversed.b;
+											return A3(
+												$author$project$Morphir$IR$Value$Apply,
+												_Utils_Tuple0,
+												A2(applyArgs, subject, restOfArgsReversed),
+												lastArg);
+										}
+									});
+								return $elm$core$Result$Ok(
+									A2(
+										applyArgs,
+										value,
+										$elm$core$List$reverse(evaluatedArgs)));
+							}
+						},
+						$author$project$Morphir$ListOfResults$liftFirstError(
 							A2(
-								applyArgs,
-								value,
-								$elm$core$List$reverse(_arguments)));
-					}
+								$elm$core$List$map,
+								A4($author$project$Morphir$Value$Interpreter$evaluateValue, nativeFunctions, ir, variables, _List_Nil),
+								_arguments)));
 				case 'Tuple':
 					var elems = value.b;
 					return A2(
@@ -16246,32 +20475,7 @@ var $author$project$Morphir$Value$Interpreter$evaluateValue = F5(
 								A4($author$project$Morphir$Value$Interpreter$evaluateValue, nativeFunctions, ir, variables, _List_Nil),
 								_arguments));
 					} else {
-						return A2(
-							$elm$core$Result$andThen,
-							function (referredValue) {
-								var rawValue = $author$project$Morphir$IR$Value$toRawValue(referredValue.body);
-								return A2(
-									$elm$core$Result$andThen,
-									function (evaluatedArgs) {
-										return A5($author$project$Morphir$Value$Interpreter$evaluateValue, nativeFunctions, ir, $elm$core$Dict$empty, evaluatedArgs, rawValue);
-									},
-									A2(
-										$elm$core$Result$mapError,
-										$author$project$Morphir$Value$Error$ErrorWhileEvaluatingReference(fQName),
-										$author$project$Morphir$ListOfResults$liftFirstError(
-											A2(
-												$elm$core$List$map,
-												A4($author$project$Morphir$Value$Interpreter$evaluateValue, nativeFunctions, ir, variables, _List_Nil),
-												_arguments))));
-							},
-							A2(
-								$elm$core$Result$fromMaybe,
-								$author$project$Morphir$Value$Error$ReferenceNotFound(
-									_Utils_Tuple3(packageName, moduleName, localName)),
-								A2(
-									$author$project$Morphir$IR$lookupValueDefinition,
-									_Utils_Tuple3(packageName, moduleName, localName),
-									ir)));
+						return A4($author$project$Morphir$Value$Interpreter$evaluateFunctionValue, nativeFunctions, ir, fQName, _arguments);
 					}
 				case 'Field':
 					var subjectValue = value.b;
@@ -16346,7 +20550,10 @@ var $author$project$Morphir$Value$Interpreter$evaluateValue = F5(
 								nativeFunctions,
 								ir,
 								A2($elm$core$Dict$union, argumentVariables, variables),
-								_List_Nil,
+								A2(
+									$elm$core$Maybe$withDefault,
+									_List_Nil,
+									$elm$core$List$tail(_arguments)),
 								body);
 						},
 						A2(
@@ -16540,6 +20747,7 @@ var $author$project$Morphir$Value$Interpreter$evaluateValue = F5(
 			}
 		}
 	});
+var $elm$core$Debug$log = _Debug_log;
 var $elm$core$Debug$toString = _Debug_toString;
 var $author$project$Morphir$Visual$Config$evaluate = F2(
 	function (value, config) {
@@ -16928,6 +21136,95 @@ var $author$project$Morphir$IR$SDK$Basics$floatType = function (attributes) {
 		A2($author$project$Morphir$IR$SDK$Common$toFQName, $author$project$Morphir$IR$SDK$Basics$moduleName, 'Float'),
 		_List_Nil);
 };
+var $author$project$Morphir$IR$resolveType = F2(
+	function (tpe, ir) {
+		switch (tpe.$) {
+			case 'Variable':
+				var a = tpe.a;
+				var name = tpe.b;
+				return A2($author$project$Morphir$IR$Type$Variable, a, name);
+			case 'Reference':
+				var fQName = tpe.b;
+				var typeParams = tpe.c;
+				return A2(
+					$elm$core$Maybe$withDefault,
+					tpe,
+					A2(
+						$elm$core$Maybe$map,
+						function (typeSpec) {
+							if (typeSpec.$ === 'TypeAliasSpecification') {
+								var typeParamNames = typeSpec.a;
+								var targetType = typeSpec.b;
+								return A2(
+									$author$project$Morphir$IR$Type$substituteTypeVariables,
+									$elm$core$Dict$fromList(
+										A3($elm$core$List$map2, $elm$core$Tuple$pair, typeParamNames, typeParams)),
+									targetType);
+							} else {
+								return tpe;
+							}
+						},
+						A2($author$project$Morphir$IR$lookupTypeSpecification, fQName, ir)));
+			case 'Tuple':
+				var a = tpe.a;
+				var elemTypes = tpe.b;
+				return A2(
+					$author$project$Morphir$IR$Type$Tuple,
+					a,
+					A2(
+						$elm$core$List$map,
+						function (t) {
+							return A2($author$project$Morphir$IR$resolveType, t, ir);
+						},
+						elemTypes));
+			case 'Record':
+				var a = tpe.a;
+				var fields = tpe.b;
+				return A2(
+					$author$project$Morphir$IR$Type$Record,
+					a,
+					A2(
+						$elm$core$List$map,
+						function (f) {
+							return _Utils_update(
+								f,
+								{
+									tpe: A2($author$project$Morphir$IR$resolveType, f.tpe, ir)
+								});
+						},
+						fields));
+			case 'ExtensibleRecord':
+				var a = tpe.a;
+				var varName = tpe.b;
+				var fields = tpe.c;
+				return A3(
+					$author$project$Morphir$IR$Type$ExtensibleRecord,
+					a,
+					varName,
+					A2(
+						$elm$core$List$map,
+						function (f) {
+							return _Utils_update(
+								f,
+								{
+									tpe: A2($author$project$Morphir$IR$resolveType, f.tpe, ir)
+								});
+						},
+						fields));
+			case 'Function':
+				var a = tpe.a;
+				var argType = tpe.b;
+				var returnType = tpe.c;
+				return A3(
+					$author$project$Morphir$IR$Type$Function,
+					a,
+					A2($author$project$Morphir$IR$resolveType, argType, ir),
+					A2($author$project$Morphir$IR$resolveType, returnType, ir));
+			default:
+				var a = tpe.a;
+				return $author$project$Morphir$IR$Type$Unit(a);
+		}
+	});
 var $author$project$Morphir$IR$Value$rewriteValue = F2(
 	function (f, value) {
 		var _v0 = f(value);
@@ -17096,28 +21393,29 @@ var $author$project$Morphir$IR$Value$rewriteValue = F2(
 			}
 		}
 	});
-var $author$project$Morphir$Type$Infer$fixNumberLiterals = function (typedValue) {
-	return A2(
-		$author$project$Morphir$IR$Value$rewriteValue,
-		function (value) {
-			if ((value.$ === 'Literal') && (value.b.$ === 'IntLiteral')) {
-				var _v1 = value.a;
-				var va = _v1.a;
-				var tpe = _v1.b;
-				var v = value.b.a;
-				return _Utils_eq(
-					tpe,
-					$author$project$Morphir$IR$SDK$Basics$floatType(_Utils_Tuple0)) ? $elm$core$Maybe$Just(
-					A2(
-						$author$project$Morphir$IR$Value$Literal,
-						_Utils_Tuple2(va, tpe),
-						$author$project$Morphir$IR$Literal$FloatLiteral(v))) : $elm$core$Maybe$Nothing;
-			} else {
-				return $elm$core$Maybe$Nothing;
-			}
-		},
-		typedValue);
-};
+var $author$project$Morphir$Type$Infer$fixNumberLiterals = F2(
+	function (ir, typedValue) {
+		return A2(
+			$author$project$Morphir$IR$Value$rewriteValue,
+			function (value) {
+				if ((value.$ === 'Literal') && (value.b.$ === 'IntLiteral')) {
+					var _v1 = value.a;
+					var va = _v1.a;
+					var tpe = _v1.b;
+					var v = value.b.a;
+					return _Utils_eq(
+						A2($author$project$Morphir$IR$resolveType, tpe, ir),
+						$author$project$Morphir$IR$SDK$Basics$floatType(_Utils_Tuple0)) ? $elm$core$Maybe$Just(
+						A2(
+							$author$project$Morphir$IR$Value$Literal,
+							_Utils_Tuple2(va, tpe),
+							$author$project$Morphir$IR$Literal$FloatLiteral(v))) : $elm$core$Maybe$Nothing;
+				} else {
+					return $elm$core$Maybe$Nothing;
+				}
+			},
+			typedValue);
+	});
 var $author$project$Morphir$Type$Solve$get = F2(
 	function (_var, _v0) {
 		var dict = _v0.a;
@@ -17223,11 +21521,13 @@ var $author$project$Morphir$Type$MetaTypeMapping$metaTypeToConcreteType = F2(
 				return $author$project$Morphir$IR$Type$Unit(_Utils_Tuple0);
 		}
 	});
-var $author$project$Morphir$Type$Infer$applySolutionToAnnotatedValue = F2(
-	function (annotatedValue, _v0) {
+var $author$project$Morphir$Type$Infer$applySolutionToAnnotatedValue = F3(
+	function (ir, annotatedValue, _v0) {
 		var residualConstraints = _v0.a;
 		var solutionMap = _v0.b;
-		return $author$project$Morphir$Type$Infer$fixNumberLiterals(
+		return A2(
+			$author$project$Morphir$Type$Infer$fixNumberLiterals,
+			ir,
 			A3(
 				$author$project$Morphir$IR$Value$mapValueAttributes,
 				$elm$core$Basics$identity,
@@ -17248,6 +21548,14 @@ var $author$project$Morphir$Type$Infer$applySolutionToAnnotatedValue = F2(
 								A2($author$project$Morphir$Type$Solve$get, metaVar, solutionMap))));
 				},
 				annotatedValue));
+	});
+var $author$project$Morphir$IR$FQName$fqn = F3(
+	function (packageName, moduleName, localName) {
+		return A3(
+			$author$project$Morphir$IR$FQName$fQName,
+			$author$project$Morphir$IR$Path$fromString(packageName),
+			$author$project$Morphir$IR$Path$fromString(moduleName),
+			$author$project$Morphir$IR$Name$fromString(localName));
 	});
 var $author$project$Morphir$Type$MetaType$MetaRef = F4(
 	function (a, b, c, d) {
@@ -17413,14 +21721,19 @@ var $author$project$Morphir$Type$MetaTypeMapping$ExpectedAlias = function (a) {
 	return {$: 'ExpectedAlias', a: a};
 };
 var $author$project$Morphir$Type$MetaTypeMapping$lookupAliasedType = F3(
-	function (baseVar, ir, typeFQN) {
+	function (ir, typeFQN, concreteTypeParams) {
 		return A2(
 			$elm$core$Result$andThen,
 			function (typeSpec) {
 				if (typeSpec.$ === 'TypeAliasSpecification') {
-					var paramNames = typeSpec.a;
+					var typeParamNames = typeSpec.a;
 					var tpe = typeSpec.b;
-					return $elm$core$Result$Ok(tpe);
+					return $elm$core$Result$Ok(
+						A2(
+							$author$project$Morphir$IR$Type$substituteTypeVariables,
+							$elm$core$Dict$fromList(
+								A3($elm$core$List$map2, $elm$core$Tuple$pair, typeParamNames, concreteTypeParams)),
+							tpe));
 				} else {
 					return $elm$core$Result$Err(
 						$author$project$Morphir$Type$MetaTypeMapping$ExpectedAlias(typeFQN));
@@ -17527,24 +21840,22 @@ var $author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType = F4(
 				var args = tpe.c;
 				var resolveAliases = F2(
 					function (fqn, ars) {
+						var metaArgs = A2(
+							$elm$core$List$map,
+							A3($author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType, baseVar, ir, varToMeta),
+							ars);
 						return A2(
 							$elm$core$Result$withDefault,
-							A2($author$project$Morphir$Type$MetaType$metaRef, fqn, ars),
+							A2($author$project$Morphir$Type$MetaType$metaRef, fqn, metaArgs),
 							A2(
 								$elm$core$Result$map,
 								A2(
 									$elm$core$Basics$composeR,
 									A3($author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType, baseVar, ir, varToMeta),
-									A2($author$project$Morphir$Type$MetaType$metaAlias, fqn, ars)),
-								A3($author$project$Morphir$Type$MetaTypeMapping$lookupAliasedType, baseVar, ir, fqn)));
+									A2($author$project$Morphir$Type$MetaType$metaAlias, fqn, metaArgs)),
+								A3($author$project$Morphir$Type$MetaTypeMapping$lookupAliasedType, ir, fqn, ars)));
 					});
-				return A2(
-					resolveAliases,
-					fQName,
-					A2(
-						$elm$core$List$map,
-						A3($author$project$Morphir$Type$MetaTypeMapping$concreteTypeToMetaType, baseVar, ir, varToMeta),
-						args));
+				return A2(resolveAliases, fQName, args);
 			case 'Tuple':
 				var elemTypes = tpe.b;
 				return $author$project$Morphir$Type$MetaType$metaTuple(
@@ -17778,23 +22089,6 @@ var $author$project$Morphir$IR$Value$patternAttribute = function (p) {
 var $author$project$Morphir$Type$Infer$metaTypeVarForPattern = function (pattern) {
 	return $author$project$Morphir$Type$MetaType$metaVar(
 		$author$project$Morphir$IR$Value$patternAttribute(pattern).b);
-};
-var $elm$core$List$unzip = function (pairs) {
-	var step = F2(
-		function (_v0, _v1) {
-			var x = _v0.a;
-			var y = _v0.b;
-			var xs = _v1.a;
-			var ys = _v1.b;
-			return _Utils_Tuple2(
-				A2($elm$core$List$cons, x, xs),
-				A2($elm$core$List$cons, y, ys));
-		});
-	return A3(
-		$elm$core$List$foldr,
-		step,
-		_Utils_Tuple2(_List_Nil, _List_Nil),
-		pairs);
 };
 var $author$project$Morphir$Type$Infer$constrainPattern = F2(
 	function (ir, pattern) {
@@ -18748,7 +23042,7 @@ var $author$project$Morphir$Type$MetaType$substituteVariable = F3(
 			return original;
 		}
 	});
-var $author$project$Morphir$Type$Constraint$substitute = F3(
+var $author$project$Morphir$Type$Constraint$substituteVariable = F3(
 	function (_var, replacement, constraint) {
 		if (constraint.$ === 'Equality') {
 			var metaType1 = constraint.a;
@@ -18773,7 +23067,7 @@ var $author$project$Morphir$Type$ConstraintSet$substituteVariable = F3(
 			A2(
 				$elm$core$List$filterMap,
 				function (constraint) {
-					var newConstraint = A3($author$project$Morphir$Type$Constraint$substitute, _var, replacement, constraint);
+					var newConstraint = A3($author$project$Morphir$Type$Constraint$substituteVariable, _var, replacement, constraint);
 					return $author$project$Morphir$Type$Constraint$isTrivial(newConstraint) ? $elm$core$Maybe$Nothing : $elm$core$Maybe$Just(newConstraint);
 				},
 				constraints));
@@ -18878,18 +23172,112 @@ var $author$project$Morphir$Type$Solve$substituteVariable = F3(
 					}),
 				solutions));
 	});
+var $elm$core$Set$intersect = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$intersect, dict1, dict2));
+	});
+var $elm$core$Set$isEmpty = function (_v0) {
+	var dict = _v0.a;
+	return $elm$core$Dict$isEmpty(dict);
+};
 var $author$project$Morphir$Type$MetaType$substituteVariables = F2(
 	function (replacements, original) {
-		return A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v0, soFar) {
-					var _var = _v0.a;
-					var replacement = _v0.b;
-					return A3($author$project$Morphir$Type$MetaType$substituteVariable, _var, replacement, soFar);
-				}),
-			original,
-			replacements);
+		if ($elm$core$Set$isEmpty(
+			A2(
+				$elm$core$Set$intersect,
+				$elm$core$Set$fromList(
+					$elm$core$Dict$keys(replacements)),
+				$author$project$Morphir$Type$MetaType$variables(original)))) {
+			return original;
+		} else {
+			switch (original.$) {
+				case 'MetaVar':
+					var thisVar = original.a;
+					var _v1 = A2($elm$core$Dict$get, thisVar, replacements);
+					if (_v1.$ === 'Just') {
+						var replacement = _v1.a;
+						return replacement;
+					} else {
+						return original;
+					}
+				case 'MetaTuple':
+					var metaElems = original.b;
+					return $author$project$Morphir$Type$MetaType$metaTuple(
+						A2(
+							$elm$core$List$map,
+							$author$project$Morphir$Type$MetaType$substituteVariables(replacements),
+							metaElems));
+				case 'MetaRecord':
+					if (original.b.$ === 'Just') {
+						var _extends = original.b.a;
+						var metaFields = original.c;
+						var _v2 = A2($elm$core$Dict$get, _extends, replacements);
+						if (_v2.$ === 'Just') {
+							var replacement = _v2.a;
+							return replacement;
+						} else {
+							return A2(
+								$author$project$Morphir$Type$MetaType$metaRecord,
+								$elm$core$Maybe$Just(_extends),
+								A2(
+									$elm$core$Dict$map,
+									F2(
+										function (_v3, fieldType) {
+											return A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, fieldType);
+										}),
+									metaFields));
+						}
+					} else {
+						var _v4 = original.b;
+						var metaFields = original.c;
+						return A2(
+							$author$project$Morphir$Type$MetaType$metaRecord,
+							$elm$core$Maybe$Nothing,
+							A2(
+								$elm$core$Dict$map,
+								F2(
+									function (_v5, fieldType) {
+										return A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, fieldType);
+									}),
+								metaFields));
+					}
+				case 'MetaFun':
+					var metaFunc = original.b;
+					var metaArg = original.c;
+					return A2(
+						$author$project$Morphir$Type$MetaType$metaFun,
+						A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, metaFunc),
+						A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, metaArg));
+				case 'MetaRef':
+					var fQName = original.b;
+					var args = original.c;
+					var maybeAliasedType = original.d;
+					if (maybeAliasedType.$ === 'Just') {
+						var aliasedType = maybeAliasedType.a;
+						return A3(
+							$author$project$Morphir$Type$MetaType$metaAlias,
+							fQName,
+							A2(
+								$elm$core$List$map,
+								$author$project$Morphir$Type$MetaType$substituteVariables(replacements),
+								args),
+							A2($author$project$Morphir$Type$MetaType$substituteVariables, replacements, aliasedType));
+					} else {
+						return A2(
+							$author$project$Morphir$Type$MetaType$metaRef,
+							fQName,
+							A2(
+								$elm$core$List$map,
+								$author$project$Morphir$Type$MetaType$substituteVariables(replacements),
+								args));
+					}
+				default:
+					return original;
+			}
+		}
 	});
 var $author$project$Morphir$Type$Solve$unifyUnit = F2(
 	function (aliases, metaType2) {
@@ -18923,16 +23311,7 @@ var $author$project$Morphir$Type$Solve$unifyVariable = F3(
 var $author$project$Morphir$Type$Solve$addSolution = F4(
 	function (ir, _var, newSolution, _v14) {
 		var currentSolutions = _v14.a;
-		var substitutedNewSolution = A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v17, soFar) {
-					var currentVar = _v17.a;
-					var currentMetaType = _v17.b;
-					return A3($author$project$Morphir$Type$MetaType$substituteVariable, currentVar, currentMetaType, soFar);
-				}),
-			newSolution,
-			$elm$core$Dict$toList(currentSolutions));
+		var substitutedNewSolution = A2($author$project$Morphir$Type$MetaType$substituteVariables, currentSolutions, newSolution);
 		var _v15 = A2($elm$core$Dict$get, _var, currentSolutions);
 		if (_v15.$ === 'Just') {
 			var existingSolution = _v15.a;
@@ -18951,10 +23330,7 @@ var $author$project$Morphir$Type$Solve$addSolution = F4(
 								A3(
 									$elm$core$Dict$insert,
 									_var,
-									A2(
-										$author$project$Morphir$Type$MetaType$substituteVariables,
-										$elm$core$Dict$toList(newSubstitutions),
-										existingSolution),
+									A2($author$project$Morphir$Type$MetaType$substituteVariables, newSubstitutions, existingSolution),
 									currentSolutions))));
 				},
 				A4($author$project$Morphir$Type$Solve$unifyMetaType, ir, _List_Nil, existingSolution, substitutedNewSolution));
@@ -19336,15 +23712,127 @@ var $author$project$Morphir$Type$Infer$ClassConstraintViolation = F2(
 	function (a, b) {
 		return {$: 'ClassConstraintViolation', a: a, b: b};
 	});
-var $elm$core$List$member = F2(
-	function (x, xs) {
-		return A2(
-			$elm$core$List$any,
-			function (a) {
-				return _Utils_eq(a, x);
-			},
-			xs);
+var $author$project$Morphir$Type$Infer$RecursiveConstraint = F2(
+	function (a, b) {
+		return {$: 'RecursiveConstraint', a: a, b: b};
 	});
+var $elm$core$Dict$values = function (dict) {
+	return A3(
+		$elm$core$Dict$foldr,
+		F3(
+			function (key, value, valueList) {
+				return A2($elm$core$List$cons, value, valueList);
+			}),
+		_List_Nil,
+		dict);
+};
+var $author$project$Morphir$Type$MetaType$contains = F2(
+	function (innerType, outerType) {
+		if (_Utils_eq(innerType, outerType)) {
+			return true;
+		} else {
+			switch (outerType.$) {
+				case 'MetaVar':
+					return false;
+				case 'MetaTuple':
+					var metaElems = outerType.b;
+					return A2(
+						$elm$core$List$any,
+						$author$project$Morphir$Type$MetaType$contains(innerType),
+						metaElems);
+				case 'MetaRecord':
+					var metaFields = outerType.c;
+					return A2(
+						$elm$core$List$any,
+						$author$project$Morphir$Type$MetaType$contains(innerType),
+						$elm$core$Dict$values(metaFields));
+				case 'MetaFun':
+					var metaFunc = outerType.b;
+					var metaArg = outerType.c;
+					return A2($author$project$Morphir$Type$MetaType$contains, innerType, metaFunc) || A2($author$project$Morphir$Type$MetaType$contains, innerType, metaArg);
+				case 'MetaRef':
+					var args = outerType.c;
+					var maybeAliasedType = outerType.d;
+					if (maybeAliasedType.$ === 'Just') {
+						var aliasedType = maybeAliasedType.a;
+						return A2($author$project$Morphir$Type$MetaType$contains, innerType, aliasedType) || A2(
+							$elm$core$List$any,
+							$author$project$Morphir$Type$MetaType$contains(innerType),
+							args);
+					} else {
+						return A2(
+							$elm$core$List$any,
+							$author$project$Morphir$Type$MetaType$contains(innerType),
+							args);
+					}
+				default:
+					return false;
+			}
+		}
+	});
+var $author$project$Morphir$Type$MetaType$removeAliases = function (original) {
+	removeAliases:
+	while (true) {
+		switch (original.$) {
+			case 'MetaVar':
+				return original;
+			case 'MetaTuple':
+				var metaElems = original.b;
+				return $author$project$Morphir$Type$MetaType$metaTuple(
+					A2($elm$core$List$map, $author$project$Morphir$Type$MetaType$removeAliases, metaElems));
+			case 'MetaRecord':
+				var _extends = original.b;
+				var metaFields = original.c;
+				return A2(
+					$author$project$Morphir$Type$MetaType$metaRecord,
+					_extends,
+					A2(
+						$elm$core$Dict$map,
+						F2(
+							function (_v1, fieldType) {
+								return $author$project$Morphir$Type$MetaType$removeAliases(fieldType);
+							}),
+						metaFields));
+			case 'MetaFun':
+				var metaFunc = original.b;
+				var metaArg = original.c;
+				return A2(
+					$author$project$Morphir$Type$MetaType$metaFun,
+					$author$project$Morphir$Type$MetaType$removeAliases(metaFunc),
+					$author$project$Morphir$Type$MetaType$removeAliases(metaArg));
+			case 'MetaRef':
+				var fQName = original.b;
+				var args = original.c;
+				var maybeAliasedType = original.d;
+				if (maybeAliasedType.$ === 'Just') {
+					var aliasedType = maybeAliasedType.a;
+					var $temp$original = aliasedType;
+					original = $temp$original;
+					continue removeAliases;
+				} else {
+					return A2(
+						$author$project$Morphir$Type$MetaType$metaRef,
+						fQName,
+						A2($elm$core$List$map, $author$project$Morphir$Type$MetaType$removeAliases, args));
+				}
+			default:
+				return original;
+		}
+	}
+};
+var $author$project$Morphir$Type$Constraint$isRecursive = function (constraint) {
+	if (constraint.$ === 'Equality') {
+		var metaType1 = constraint.a;
+		var metaType2 = constraint.b;
+		var rawMetaType2 = $author$project$Morphir$Type$MetaType$removeAliases(metaType2);
+		var rawMetaType1 = $author$project$Morphir$Type$MetaType$removeAliases(metaType1);
+		return (!_Utils_eq(rawMetaType1, rawMetaType2)) && ((!$elm$core$Set$isEmpty(
+			$author$project$Morphir$Type$MetaType$variables(rawMetaType1))) && ((!$elm$core$Set$isEmpty(
+			$author$project$Morphir$Type$MetaType$variables(rawMetaType2))) && (A2($author$project$Morphir$Type$MetaType$contains, rawMetaType1, rawMetaType2) || A2($author$project$Morphir$Type$MetaType$contains, rawMetaType2, rawMetaType1))));
+	} else {
+		return false;
+	}
+};
 var $author$project$Morphir$Type$MetaType$intType = A2(
 	$author$project$Morphir$Type$MetaType$metaRef,
 	A3($author$project$Morphir$IR$FQName$fqn, 'Morphir.SDK', 'Basics', 'Int'),
@@ -19400,48 +23888,58 @@ var $author$project$Morphir$Type$Infer$validateConstraints = function (constrain
 								A2($author$project$Morphir$Type$Infer$ClassConstraintViolation, metaType, _class));
 						}
 					} else {
-						return $elm$core$Result$Ok(constraint);
+						var metaType1 = constraint.a;
+						var metaType2 = constraint.b;
+						return $author$project$Morphir$Type$Constraint$isRecursive(constraint) ? $elm$core$Result$Err(
+							A2($author$project$Morphir$Type$Infer$RecursiveConstraint, metaType1, metaType2)) : $elm$core$Result$Ok(constraint);
 					}
 				},
 				constraints)));
 };
 var $author$project$Morphir$Type$Infer$solveHelp = F3(
 	function (refs, solutionsSoFar, constraintSet) {
-		var constraints = constraintSet.a;
-		return A2(
-			$elm$core$Result$andThen,
-			function (nonTrivialConstraints) {
-				return A2(
-					$elm$core$Result$andThen,
-					function (maybeNewSolutions) {
-						if (maybeNewSolutions.$ === 'Nothing') {
-							return $elm$core$Result$Ok(
-								_Utils_Tuple2(
-									$author$project$Morphir$Type$ConstraintSet$fromList(nonTrivialConstraints),
-									solutionsSoFar));
+		solveHelp:
+		while (true) {
+			var constraints = constraintSet.a;
+			var _v0 = $author$project$Morphir$Type$Infer$validateConstraints(constraints);
+			if (_v0.$ === 'Ok') {
+				var nonTrivialConstraints = _v0.a;
+				var _v1 = A2($author$project$Morphir$Type$Solve$findSubstitution, refs, nonTrivialConstraints);
+				if (_v1.$ === 'Ok') {
+					var maybeNewSolutions = _v1.a;
+					if (maybeNewSolutions.$ === 'Nothing') {
+						return $elm$core$Result$Ok(
+							_Utils_Tuple2(
+								$author$project$Morphir$Type$ConstraintSet$fromList(nonTrivialConstraints),
+								solutionsSoFar));
+					} else {
+						var newSolutions = maybeNewSolutions.a;
+						var _v3 = A3($author$project$Morphir$Type$Solve$mergeSolutions, refs, newSolutions, solutionsSoFar);
+						if (_v3.$ === 'Ok') {
+							var mergedSolutions = _v3.a;
+							var $temp$refs = refs,
+								$temp$solutionsSoFar = mergedSolutions,
+								$temp$constraintSet = A2($author$project$Morphir$Type$ConstraintSet$applySubstitutions, mergedSolutions, constraintSet);
+							refs = $temp$refs;
+							solutionsSoFar = $temp$solutionsSoFar;
+							constraintSet = $temp$constraintSet;
+							continue solveHelp;
 						} else {
-							var newSolutions = maybeNewSolutions.a;
-							return A2(
-								$elm$core$Result$andThen,
-								function (mergedSolutions) {
-									return A3(
-										$author$project$Morphir$Type$Infer$solveHelp,
-										refs,
-										mergedSolutions,
-										A2($author$project$Morphir$Type$ConstraintSet$applySubstitutions, mergedSolutions, constraintSet));
-								},
-								A2(
-									$elm$core$Result$mapError,
-									$author$project$Morphir$Type$Infer$UnifyError,
-									A3($author$project$Morphir$Type$Solve$mergeSolutions, refs, newSolutions, solutionsSoFar)));
+							var error = _v3.a;
+							return $elm$core$Result$Err(
+								$author$project$Morphir$Type$Infer$UnifyError(error));
 						}
-					},
-					A2(
-						$elm$core$Result$mapError,
-						$author$project$Morphir$Type$Infer$UnifyError,
-						A2($author$project$Morphir$Type$Solve$findSubstitution, refs, nonTrivialConstraints)));
-			},
-			$author$project$Morphir$Type$Infer$validateConstraints(constraints));
+					}
+				} else {
+					var error = _v1.a;
+					return $elm$core$Result$Err(
+						$author$project$Morphir$Type$Infer$UnifyError(error));
+				}
+			} else {
+				var error = _v0.a;
+				return $elm$core$Result$Err(error);
+			}
+		}
 	});
 var $author$project$Morphir$Type$Infer$solve = F2(
 	function (refs, constraintSet) {
@@ -19456,7 +23954,7 @@ var $author$project$Morphir$Type$Infer$inferValue = F2(
 		var solution = A2($author$project$Morphir$Type$Infer$solve, ir, constraints);
 		return A2(
 			$elm$core$Result$map,
-			$author$project$Morphir$Type$Infer$applySolutionToAnnotatedValue(annotatedValue),
+			A2($author$project$Morphir$Type$Infer$applySolutionToAnnotatedValue, ir, annotatedValue),
 			solution);
 	});
 var $author$project$Morphir$Visual$VisualTypedValue$rawToVisualTypedValue = F2(
@@ -19681,7 +24179,7 @@ var $author$project$Morphir$Type$Infer$typeErrorToMessage = function (typeError)
 			return $elm$core$String$concat(
 				_List_fromArray(
 					['Unknown error: ', message]));
-		default:
+		case 'UnifyError':
 			var unificationError = typeError.a;
 			var mapUnificationError = function (uniError) {
 				switch (uniError.$) {
@@ -19729,6 +24227,18 @@ var $author$project$Morphir$Type$Infer$typeErrorToMessage = function (typeError)
 				}
 			};
 			return mapUnificationError(unificationError);
+		default:
+			var metaType1 = typeError.a;
+			var metaType2 = typeError.b;
+			return $elm$core$String$concat(
+				_List_fromArray(
+					[
+						'Recursive constraint: \'',
+						$author$project$Morphir$Type$MetaType$toString(metaType1),
+						'\' == \'',
+						$author$project$Morphir$Type$MetaType$toString(metaType2),
+						'\''
+					]));
 	}
 };
 var $mdgriffith$elm_ui$Internal$Model$AlignX = function (a) {
@@ -19748,7 +24258,9 @@ var $author$project$Morphir$Visual$ViewApply$inlineBinaryOperators = $elm$core$D
 			_Utils_Tuple2('Basics.subtract', '-'),
 			_Utils_Tuple2('Basics.multiply', '*'),
 			_Utils_Tuple2('Basics.divide', '/'),
-			_Utils_Tuple2('List.append', '+')
+			_Utils_Tuple2('List.append', '+'),
+			_Utils_Tuple2('Basics.notEqual', '≠'),
+			_Utils_Tuple2('Basics.power', '^')
 		]));
 var $mdgriffith$elm_ui$Internal$Model$MoveY = function (a) {
 	return {$: 'MoveY', a: a};
@@ -19764,306 +24276,294 @@ var $mdgriffith$elm_ui$Element$moveUp = function (y) {
 		$mdgriffith$elm_ui$Internal$Flag$moveY,
 		$mdgriffith$elm_ui$Internal$Model$MoveY(-y));
 };
-var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
-	function (a, b, c, d, e) {
-		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
-	});
-var $mdgriffith$elm_ui$Element$Border$width = function (v) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-			'b-' + $elm$core$String$fromInt(v),
-			v,
-			v,
-			v,
-			v));
-};
-var $mdgriffith$elm_ui$Element$Border$widthXY = F2(
-	function (x, y) {
-		return A2(
-			$mdgriffith$elm_ui$Internal$Model$StyleClass,
-			$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-			A5(
-				$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-				'b-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y))),
-				y,
-				x,
-				y,
-				x));
-	});
-var $mdgriffith$elm_ui$Element$Border$widthEach = function (_v0) {
-	var bottom = _v0.bottom;
-	var top = _v0.top;
-	var left = _v0.left;
-	var right = _v0.right;
-	return (_Utils_eq(top, bottom) && _Utils_eq(left, right)) ? (_Utils_eq(top, right) ? $mdgriffith$elm_ui$Element$Border$width(top) : A2($mdgriffith$elm_ui$Element$Border$widthXY, left, top)) : A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-			'b-' + ($elm$core$String$fromInt(top) + ('-' + ($elm$core$String$fromInt(right) + ('-' + ($elm$core$String$fromInt(bottom) + ('-' + $elm$core$String$fromInt(left))))))),
-			top,
-			right,
-			bottom,
-			left));
-};
 var $author$project$Morphir$Visual$ViewApply$view = F4(
 	function (config, viewValue, functionValue, argValues) {
 		var _v0 = _Utils_Tuple2(functionValue, argValues);
-		_v0$4:
+		_v0$0:
 		while (true) {
-			if ((_v0.a.$ === 'Reference') && _v0.b.b) {
-				if (!_v0.b.b.b) {
-					if (_v0.a.b.c.b) {
-						switch (_v0.a.b.c.a) {
-							case 'is':
-								var _v1 = _v0.a;
-								var _v2 = _v1.b;
-								var localName = _v2.c;
-								var _v3 = _v0.b;
-								var argValue = _v3.a;
-								return A2(
+			_v0$3:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if ((_v0.a.$ === 'Reference') && _v0.b.b) {
+						if (!_v0.b.b.b) {
+							if (_v0.a.b.c.b) {
+								if (((((((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && _v0.a.b.b.b) && _v0.a.b.b.a.b) && (_v0.a.b.b.a.a === 'basics')) && (!_v0.a.b.b.a.b.b)) && (!_v0.a.b.b.b.b)) {
+									switch (_v0.a.b.c.a) {
+										case 'is':
+											break _v0$0;
+										case 'negate':
+											if (!_v0.a.b.c.b.b) {
+												var _v4 = _v0.a;
+												var _v5 = _v4.b;
+												var _v6 = _v5.a;
+												var _v7 = _v6.a;
+												var _v8 = _v6.b;
+												var _v9 = _v8.a;
+												var _v10 = _v9.b;
+												var _v11 = _v10.b;
+												var _v12 = _v5.b;
+												var _v13 = _v12.a;
+												var _v14 = _v5.c;
+												var _v15 = _v0.b;
+												var argValue = _v15.a;
+												return A2(
+													$mdgriffith$elm_ui$Element$row,
+													_List_fromArray(
+														[
+															$mdgriffith$elm_ui$Element$spacing(
+															$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+														]),
+													_List_fromArray(
+														[
+															$mdgriffith$elm_ui$Element$text('- ('),
+															viewValue(argValue),
+															$mdgriffith$elm_ui$Element$text(')')
+														]));
+											} else {
+												break _v0$3;
+											}
+										case 'abs':
+											if (!_v0.a.b.c.b.b) {
+												var _v16 = _v0.a;
+												var _v17 = _v16.b;
+												var _v18 = _v17.a;
+												var _v19 = _v18.a;
+												var _v20 = _v18.b;
+												var _v21 = _v20.a;
+												var _v22 = _v21.b;
+												var _v23 = _v22.b;
+												var _v24 = _v17.b;
+												var _v25 = _v24.a;
+												var _v26 = _v17.c;
+												var _v27 = _v0.b;
+												var argValue = _v27.a;
+												return A2(
+													$mdgriffith$elm_ui$Element$row,
+													_List_fromArray(
+														[
+															$mdgriffith$elm_ui$Element$spacing(
+															$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+														]),
+													_List_fromArray(
+														[
+															$mdgriffith$elm_ui$Element$text('abs ('),
+															viewValue(argValue),
+															$mdgriffith$elm_ui$Element$text(')')
+														]));
+											} else {
+												break _v0$3;
+											}
+										default:
+											break _v0$3;
+									}
+								} else {
+									if (_v0.a.b.c.a === 'is') {
+										break _v0$0;
+									} else {
+										break _v0$5;
+									}
+								}
+							} else {
+								if (((((((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && _v0.a.b.b.b) && _v0.a.b.b.a.b) && (_v0.a.b.b.a.a === 'basics')) && (!_v0.a.b.b.a.b.b)) && (!_v0.a.b.b.b.b)) {
+									break _v0$3;
+								} else {
+									break _v0$5;
+								}
+							}
+						} else {
+							if (((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && (!_v0.b.b.b.b)) {
+								var _v39 = _v0.a;
+								var _v40 = _v39.b;
+								var _v41 = _v40.a;
+								var _v42 = _v41.a;
+								var _v43 = _v41.b;
+								var _v44 = _v43.a;
+								var _v45 = _v44.b;
+								var _v46 = _v45.b;
+								var moduleName = _v40.b;
+								var localName = _v40.c;
+								var _v47 = _v0.b;
+								var argValues1 = _v47.a;
+								var _v48 = _v47.b;
+								var argValues2 = _v48.a;
+								var functionName = A2(
+									$elm$core$String$join,
+									'.',
+									_List_fromArray(
+										[
+											A3($author$project$Morphir$IR$Path$toString, $author$project$Morphir$IR$Name$toTitleCase, '.', moduleName),
+											$author$project$Morphir$IR$Name$toCamelCase(localName)
+										]));
+								return (_Utils_eq(
+									moduleName,
+									_List_fromArray(
+										[
+											_List_fromArray(
+											['basics'])
+										])) && (_Utils_eq(
+									localName,
+									_List_fromArray(
+										['min'])) || _Utils_eq(
+									localName,
+									_List_fromArray(
+										['max'])))) ? A2(
 									$mdgriffith$elm_ui$Element$row,
 									_List_fromArray(
 										[
-											$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
 											$mdgriffith$elm_ui$Element$spacing(
 											$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
 										]),
 									_List_fromArray(
 										[
-											viewValue(argValue),
-											$mdgriffith$elm_ui$Element$text(
-											$author$project$Morphir$Visual$Common$nameToText(localName))
-										]));
-							case 'negate':
-								if ((((((((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && _v0.a.b.b.b) && _v0.a.b.b.a.b) && (_v0.a.b.b.a.a === 'basics')) && (!_v0.a.b.b.a.b.b)) && (!_v0.a.b.b.b.b)) && (!_v0.a.b.c.b.b)) {
-									var _v4 = _v0.a;
-									var _v5 = _v4.b;
-									var _v6 = _v5.a;
-									var _v7 = _v6.a;
-									var _v8 = _v6.b;
-									var _v9 = _v8.a;
-									var _v10 = _v9.b;
-									var _v11 = _v10.b;
-									var _v12 = _v5.b;
-									var _v13 = _v12.a;
-									var _v14 = _v5.c;
-									var _v15 = _v0.b;
-									var argValue = _v15.a;
-									return A2(
-										$mdgriffith$elm_ui$Element$row,
-										_List_fromArray(
-											[
-												$mdgriffith$elm_ui$Element$spacing(
-												$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
-											]),
-										_List_fromArray(
-											[
-												$mdgriffith$elm_ui$Element$text('- ('),
-												viewValue(argValue),
-												$mdgriffith$elm_ui$Element$text(')')
-											]));
-								} else {
-									break _v0$4;
-								}
-							case 'abs':
-								if ((((((((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && _v0.a.b.b.b) && _v0.a.b.b.a.b) && (_v0.a.b.b.a.a === 'basics')) && (!_v0.a.b.b.a.b.b)) && (!_v0.a.b.b.b.b)) && (!_v0.a.b.c.b.b)) {
-									var _v16 = _v0.a;
-									var _v17 = _v16.b;
-									var _v18 = _v17.a;
-									var _v19 = _v18.a;
-									var _v20 = _v18.b;
-									var _v21 = _v20.a;
-									var _v22 = _v21.b;
-									var _v23 = _v22.b;
-									var _v24 = _v17.b;
-									var _v25 = _v24.a;
-									var _v26 = _v17.c;
-									var _v27 = _v0.b;
-									var argValue = _v27.a;
-									return A2(
-										$mdgriffith$elm_ui$Element$row,
-										_List_fromArray(
-											[
-												$mdgriffith$elm_ui$Element$spacing(
-												$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
-											]),
-										_List_fromArray(
-											[
-												$mdgriffith$elm_ui$Element$text('abs ('),
-												viewValue(argValue),
-												$mdgriffith$elm_ui$Element$text(')')
-											]));
-								} else {
-									break _v0$4;
-								}
-							default:
-								break _v0$4;
-						}
-					} else {
-						break _v0$4;
-					}
-				} else {
-					if (((((((((((((_v0.a.b.a.b && _v0.a.b.a.a.b) && (_v0.a.b.a.a.a === 'morphir')) && (!_v0.a.b.a.a.b.b)) && _v0.a.b.a.b.b) && _v0.a.b.a.b.a.b) && (_v0.a.b.a.b.a.a === 's')) && _v0.a.b.a.b.a.b.b) && (_v0.a.b.a.b.a.b.a === 'd')) && _v0.a.b.a.b.a.b.b.b) && (_v0.a.b.a.b.a.b.b.a === 'k')) && (!_v0.a.b.a.b.a.b.b.b.b)) && (!_v0.a.b.a.b.b.b)) && (!_v0.b.b.b.b)) {
-						var _v28 = _v0.a;
-						var _v29 = _v28.b;
-						var _v30 = _v29.a;
-						var _v31 = _v30.a;
-						var _v32 = _v30.b;
-						var _v33 = _v32.a;
-						var _v34 = _v33.b;
-						var _v35 = _v34.b;
-						var moduleName = _v29.b;
-						var localName = _v29.c;
-						var _v36 = _v0.b;
-						var argValues1 = _v36.a;
-						var _v37 = _v36.b;
-						var argValues2 = _v37.a;
-						var functionName = A2(
-							$elm$core$String$join,
-							'.',
-							_List_fromArray(
-								[
-									A3($author$project$Morphir$IR$Path$toString, $author$project$Morphir$IR$Name$toTitleCase, '.', moduleName),
-									$author$project$Morphir$IR$Name$toCamelCase(localName)
-								]));
-						return (A2(
-							$elm$core$Maybe$withDefault,
-							'',
-							A2($elm$core$Dict$get, functionName, $author$project$Morphir$Visual$ViewApply$inlineBinaryOperators)) === '/') ? A2(
-							$mdgriffith$elm_ui$Element$row,
-							_List_fromArray(
-								[
-									$mdgriffith$elm_ui$Element$centerX,
-									$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-									$mdgriffith$elm_ui$Element$spacing(5)
-								]),
-							_List_fromArray(
-								[
-									A2(
-									$mdgriffith$elm_ui$Element$column,
+											viewValue(functionValue),
+											$mdgriffith$elm_ui$Element$text(' ('),
+											viewValue(argValues1),
+											$mdgriffith$elm_ui$Element$text(','),
+											viewValue(argValues2),
+											$mdgriffith$elm_ui$Element$text(')')
+										])) : ((_Utils_eq(
+									moduleName,
 									_List_fromArray(
 										[
-											$mdgriffith$elm_ui$Element$centerX,
-											$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+											_List_fromArray(
+											['basics'])
+										])) && _Utils_eq(
+									localName,
+									_List_fromArray(
+										['power']))) ? A2(
+									$mdgriffith$elm_ui$Element$row,
+									_List_fromArray(
+										[
+											$mdgriffith$elm_ui$Element$spacing(
+											$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
 										]),
 									_List_fromArray(
 										[
+											viewValue(argValues1),
 											A2(
-											$mdgriffith$elm_ui$Element$row,
+											$mdgriffith$elm_ui$Element$el,
 											_List_fromArray(
 												[
-													$mdgriffith$elm_ui$Element$centerX,
-													$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+													$mdgriffith$elm_ui$Element$Font$bold,
+													$mdgriffith$elm_ui$Element$Font$size(
+													$elm$core$Basics$ceiling(config.state.theme.fontSize / 1.3)),
+													$mdgriffith$elm_ui$Element$moveUp((config.state.theme.fontSize / 4) | 0)
 												]),
-											_List_fromArray(
-												[
-													A2(
-													$mdgriffith$elm_ui$Element$row,
-													_List_fromArray(
-														[
-															$mdgriffith$elm_ui$Element$spacing(
-															$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme)),
-															$mdgriffith$elm_ui$Element$padding(
-															$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme)),
-															$mdgriffith$elm_ui$Element$Border$widthEach(
-															{bottom: 1, left: 0, right: 0, top: 0}),
-															$mdgriffith$elm_ui$Element$centerX
-														]),
-													_List_fromArray(
-														[
-															viewValue(argValues1)
-														]))
-												])),
-											A2(
-											$mdgriffith$elm_ui$Element$row,
-											_List_fromArray(
-												[
-													$mdgriffith$elm_ui$Element$centerX,
-													$mdgriffith$elm_ui$Element$Border$solid,
-													$mdgriffith$elm_ui$Element$Border$widthEach(
-													{bottom: 0, left: 0, right: 0, top: 1}),
-													$mdgriffith$elm_ui$Element$moveUp(1),
-													$mdgriffith$elm_ui$Element$padding(
-													$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
-												]),
-											_List_fromArray(
-												[
-													viewValue(argValues2)
-												]))
-										]))
-								])) : (A2($elm$core$Dict$member, functionName, $author$project$Morphir$Visual$ViewApply$inlineBinaryOperators) ? A2(
-							$mdgriffith$elm_ui$Element$row,
-							_List_fromArray(
-								[
-									$mdgriffith$elm_ui$Element$spacing(
-									$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
-								]),
-							_List_fromArray(
-								[
-									viewValue(argValues1),
-									$mdgriffith$elm_ui$Element$text(
-									A2(
-										$elm$core$Maybe$withDefault,
-										'',
-										A2($elm$core$Dict$get, functionName, $author$project$Morphir$Visual$ViewApply$inlineBinaryOperators))),
-									viewValue(argValues2)
-								])) : A2(
-							$mdgriffith$elm_ui$Element$row,
-							_List_fromArray(
-								[
-									$mdgriffith$elm_ui$Element$spacing(
-									$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
-								]),
-							_List_fromArray(
-								[
-									viewValue(argValues1),
-									viewValue(functionValue),
-									viewValue(argValues2)
-								])));
+											viewValue(argValues2))
+										])) : A2(
+									$mdgriffith$elm_ui$Element$row,
+									_List_fromArray(
+										[
+											$mdgriffith$elm_ui$Element$spacing(
+											$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme)),
+											$mdgriffith$elm_ui$Element$padding(
+											$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
+										]),
+									_List_fromArray(
+										[
+											viewValue(argValues1),
+											function () {
+											var _v49 = A2($elm$core$Dict$get, functionName, $author$project$Morphir$Visual$ViewApply$inlineBinaryOperators);
+											if (_v49.$ === 'Just') {
+												var string = _v49.a;
+												return $mdgriffith$elm_ui$Element$text(string);
+											} else {
+												return viewValue(functionValue);
+											}
+										}(),
+											viewValue(argValues2)
+										])));
+							} else {
+								break _v0$5;
+							}
+						}
 					} else {
-						break _v0$4;
+						break _v0$5;
 					}
 				}
-			} else {
-				break _v0$4;
+				return A2(
+					$mdgriffith$elm_ui$Element$column,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$spacing(
+							$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Element$column,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+									$mdgriffith$elm_ui$Element$centerX,
+									$mdgriffith$elm_ui$Element$spacing(
+									$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+								]),
+							_List_fromArray(
+								[
+									viewValue(functionValue)
+								])),
+							A2(
+							$mdgriffith$elm_ui$Element$column,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+									$mdgriffith$elm_ui$Element$centerX,
+									$mdgriffith$elm_ui$Element$spacing(
+									$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+								]),
+							A2($elm$core$List$map, viewValue, argValues))
+						]));
 			}
+			var _v28 = _v0.a;
+			var _v29 = _v28.b;
+			var _v30 = _v29.a;
+			var _v31 = _v30.a;
+			var _v32 = _v30.b;
+			var _v33 = _v32.a;
+			var _v34 = _v33.b;
+			var _v35 = _v34.b;
+			var _v36 = _v29.b;
+			var _v37 = _v36.a;
+			var localName = _v29.c;
+			var _v38 = _v0.b;
+			var argValue = _v38.a;
+			return A2(
+				$mdgriffith$elm_ui$Element$row,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$spacing(
+						$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme)),
+						$mdgriffith$elm_ui$Element$padding(
+						$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
+					]),
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$text(
+						$author$project$Morphir$IR$Name$toCamelCase(localName) + ' ('),
+						viewValue(argValue),
+						$mdgriffith$elm_ui$Element$text(')')
+					]));
 		}
+		var _v1 = _v0.a;
+		var _v2 = _v1.b;
+		var localName = _v2.c;
+		var _v3 = _v0.b;
+		var argValue = _v3.a;
 		return A2(
-			$mdgriffith$elm_ui$Element$column,
+			$mdgriffith$elm_ui$Element$row,
 			_List_fromArray(
 				[
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
 					$mdgriffith$elm_ui$Element$spacing(
 					$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
 				]),
 			_List_fromArray(
 				[
-					A2(
-					$mdgriffith$elm_ui$Element$column,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-							$mdgriffith$elm_ui$Element$centerX,
-							$mdgriffith$elm_ui$Element$spacing(
-							$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
-						]),
-					_List_fromArray(
-						[
-							viewValue(functionValue)
-						])),
-					A2(
-					$mdgriffith$elm_ui$Element$column,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-							$mdgriffith$elm_ui$Element$centerX,
-							$mdgriffith$elm_ui$Element$spacing(
-							$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
-						]),
-					A2($elm$core$List$map, viewValue, argValues))
+					viewValue(argValue),
+					$mdgriffith$elm_ui$Element$text(
+					$author$project$Morphir$Visual$Common$nameToText(localName))
 				]));
 	});
 var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
@@ -20091,27 +24591,6 @@ var $author$project$Morphir$Visual$ViewArithmetic$currentPrecedence = function (
 			return 0;
 	}
 };
-var $elm$core$List$drop = F2(
-	function (n, list) {
-		drop:
-		while (true) {
-			if (n <= 0) {
-				return list;
-			} else {
-				if (!list.b) {
-					return list;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs;
-					n = $temp$n;
-					list = $temp$list;
-					continue drop;
-				}
-			}
-		}
-	});
 var $author$project$Morphir$Visual$ViewArithmetic$functionName = function (ao) {
 	switch (ao.$) {
 		case 'Add':
@@ -20268,6 +24747,51 @@ var $author$project$Morphir$Visual$ViewArithmetic$riseInPrecedence = F5(
 			}
 		}
 	});
+var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
+	function (a, b, c, d, e) {
+		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Element$Border$width = function (v) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
+			'b-' + $elm$core$String$fromInt(v),
+			v,
+			v,
+			v,
+			v));
+};
+var $mdgriffith$elm_ui$Element$Border$widthXY = F2(
+	function (x, y) {
+		return A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+			A5(
+				$mdgriffith$elm_ui$Internal$Model$BorderWidth,
+				'b-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y))),
+				y,
+				x,
+				y,
+				x));
+	});
+var $mdgriffith$elm_ui$Element$Border$widthEach = function (_v0) {
+	var bottom = _v0.bottom;
+	var top = _v0.top;
+	var left = _v0.left;
+	var right = _v0.right;
+	return (_Utils_eq(top, bottom) && _Utils_eq(left, right)) ? (_Utils_eq(top, right) ? $mdgriffith$elm_ui$Element$Border$width(top) : A2($mdgriffith$elm_ui$Element$Border$widthXY, left, top)) : A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
+			'b-' + ($elm$core$String$fromInt(top) + ('-' + ($elm$core$String$fromInt(right) + ('-' + ($elm$core$String$fromInt(bottom) + ('-' + $elm$core$String$fromInt(left))))))),
+			top,
+			right,
+			bottom,
+			left));
+};
 var $author$project$Morphir$Visual$ViewArithmetic$view = F3(
 	function (config, viewValue, arithmeticOperatorTree) {
 		switch (arithmeticOperatorTree.$) {
@@ -20700,24 +25224,6 @@ var $author$project$Morphir$Visual$ViewBoolOperatorTree$flipLayoutDirection = fu
 		return $author$project$Morphir$Visual$ViewBoolOperatorTree$Horizontal;
 	}
 };
-var $elm$core$List$intersperse = F2(
-	function (sep, xs) {
-		if (!xs.b) {
-			return _List_Nil;
-		} else {
-			var hd = xs.a;
-			var tl = xs.b;
-			var step = F2(
-				function (x, rest) {
-					return A2(
-						$elm$core$List$cons,
-						sep,
-						A2($elm$core$List$cons, x, rest));
-				});
-			var spersed = A3($elm$core$List$foldr, step, _List_Nil, tl);
-			return A2($elm$core$List$cons, hd, spersed);
-		}
-	});
 var $author$project$Morphir$Visual$ViewBoolOperatorTree$operatorToString = function (operator) {
 	if (operator.$ === 'Or') {
 		return 'OR';
@@ -20878,40 +25384,6 @@ var $author$project$Morphir$Visual$ViewBoolOperatorTree$viewTreeNode = F4(
 var $author$project$Morphir$Visual$ViewBoolOperatorTree$view = F3(
 	function (config, viewValue, boolOperatorTree) {
 		return A4($author$project$Morphir$Visual$ViewBoolOperatorTree$viewTreeNode, config, viewValue, $author$project$Morphir$Visual$ViewBoolOperatorTree$Vertical, boolOperatorTree);
-	});
-var $author$project$Morphir$Visual$ViewField$view = F3(
-	function (viewValue, subjectValue, fieldName) {
-		if (subjectValue.$ === 'Variable') {
-			var variableName = subjectValue.b;
-			return $mdgriffith$elm_ui$Element$text(
-				$elm$core$String$concat(
-					_List_fromArray(
-						[
-							'the ',
-							$author$project$Morphir$Visual$Common$nameToText(variableName),
-							'\'s ',
-							$author$project$Morphir$Visual$Common$nameToText(fieldName)
-						])));
-		} else {
-			return A2(
-				$mdgriffith$elm_ui$Element$row,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
-					]),
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$text(
-						$elm$core$String$concat(
-							_List_fromArray(
-								[
-									'the ',
-									$author$project$Morphir$Visual$Common$nameToText(fieldName),
-									' field of '
-								]))),
-						viewValue(subjectValue)
-					]));
-		}
 	});
 var $author$project$Morphir$Visual$Components$DecisionTree$NotHighlighted = {$: 'NotHighlighted'};
 var $author$project$Morphir$Visual$Components$DecisionTree$Highlighted = function (a) {
@@ -21593,13 +26065,6 @@ var $mdgriffith$elm_ui$Internal$Model$GridPosition = function (a) {
 var $mdgriffith$elm_ui$Internal$Model$GridTemplateStyle = function (a) {
 	return {$: 'GridTemplateStyle', a: a};
 };
-var $elm$core$List$all = F2(
-	function (isOkay, list) {
-		return !A2(
-			$elm$core$List$any,
-			A2($elm$core$Basics$composeL, $elm$core$Basics$not, isOkay),
-			list);
-	});
 var $mdgriffith$elm_ui$Internal$Model$AsGrid = {$: 'AsGrid'};
 var $mdgriffith$elm_ui$Internal$Model$asGrid = $mdgriffith$elm_ui$Internal$Model$AsGrid;
 var $mdgriffith$elm_ui$Internal$Model$getSpacing = F2(
@@ -21635,27 +26100,6 @@ var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
 var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
-var $elm$core$List$repeatHelp = F3(
-	function (result, n, value) {
-		repeatHelp:
-		while (true) {
-			if (n <= 0) {
-				return result;
-			} else {
-				var $temp$result = A2($elm$core$List$cons, value, result),
-					$temp$n = n - 1,
-					$temp$value = value;
-				result = $temp$result;
-				n = $temp$n;
-				value = $temp$value;
-				continue repeatHelp;
-			}
-		}
-	});
-var $elm$core$List$repeat = F2(
-	function (n, value) {
-		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
-	});
 var $mdgriffith$elm_ui$Element$tableHelper = F2(
 	function (attrs, config) {
 		var onGrid = F3(
@@ -22051,10 +26495,10 @@ var $author$project$Morphir$Visual$ViewList$view = F4(
 												$mdgriffith$elm_ui$Element$el,
 												_List_fromArray(
 													[
-														$mdgriffith$elm_ui$Element$Border$widthEach(
-														{bottom: 1, left: 0, right: 0, top: 0}),
+														$mdgriffith$elm_ui$Element$Border$width(1),
 														$mdgriffith$elm_ui$Element$padding(
-														$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
+														$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme)),
+														$mdgriffith$elm_ui$Element$Font$bold
 													]),
 												A2(
 													$mdgriffith$elm_ui$Element$el,
@@ -22074,7 +26518,9 @@ var $author$project$Morphir$Visual$ViewList$view = F4(
 																$mdgriffith$elm_ui$Element$padding(
 																$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme)),
 																$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-																$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
+																$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+																$mdgriffith$elm_ui$Element$Border$widthEach(
+																{bottom: 1, left: 1, right: 1, top: 0})
 															]),
 														A2(
 															$mdgriffith$elm_ui$Element$el,
@@ -22143,10 +26589,6 @@ var $cuducos$elm_format_number$FormatNumber$Parser$FormattedNumber = F5(
 var $cuducos$elm_format_number$FormatNumber$Parser$Negative = {$: 'Negative'};
 var $cuducos$elm_format_number$FormatNumber$Parser$Positive = {$: 'Positive'};
 var $cuducos$elm_format_number$FormatNumber$Parser$Zero = {$: 'Zero'};
-var $elm$core$List$singleton = function (value) {
-	return _List_fromArray(
-		[value]);
-};
 var $cuducos$elm_format_number$FormatNumber$Parser$classify = function (formatted) {
 	var onlyZeros = A2(
 		$elm$core$String$all,
@@ -22163,19 +26605,6 @@ var $cuducos$elm_format_number$FormatNumber$Parser$classify = function (formatte
 	return onlyZeros ? $cuducos$elm_format_number$FormatNumber$Parser$Zero : ((formatted.original < 0) ? $cuducos$elm_format_number$FormatNumber$Parser$Negative : $cuducos$elm_format_number$FormatNumber$Parser$Positive);
 };
 var $elm$core$String$filter = _String_filter;
-var $elm$core$Bitwise$shiftRightBy = _Bitwise_shiftRightBy;
-var $elm$core$String$repeatHelp = F3(
-	function (n, chunk, result) {
-		return (n <= 0) ? result : A3(
-			$elm$core$String$repeatHelp,
-			n >> 1,
-			_Utils_ap(chunk, chunk),
-			(!(n & 1)) ? result : _Utils_ap(result, chunk));
-	});
-var $elm$core$String$repeat = F2(
-	function (n, chunk) {
-		return A3($elm$core$String$repeatHelp, n, chunk, '');
-	});
 var $cuducos$elm_format_number$FormatNumber$Parser$addZerosToFit = F2(
 	function (desiredLength, value) {
 		var length = $elm$core$String$length(value);
@@ -22183,18 +26612,6 @@ var $cuducos$elm_format_number$FormatNumber$Parser$addZerosToFit = F2(
 		return _Utils_ap(
 			value,
 			A2($elm$core$String$repeat, missing, '0'));
-	});
-var $elm$core$String$dropRight = F2(
-	function (n, string) {
-		return (n < 1) ? string : A3($elm$core$String$slice, 0, -n, string);
-	});
-var $elm$core$String$right = F2(
-	function (n, string) {
-		return (n < 1) ? '' : A3(
-			$elm$core$String$slice,
-			-n,
-			$elm$core$String$length(string),
-			string);
 	});
 var $cuducos$elm_format_number$FormatNumber$Parser$removeZeros = function (decimals) {
 	return (A2($elm$core$String$right, 1, decimals) !== '0') ? decimals : $cuducos$elm_format_number$FormatNumber$Parser$removeZeros(
@@ -22213,10 +26630,6 @@ var $cuducos$elm_format_number$FormatNumber$Parser$getDecimals = F2(
 				return A2($cuducos$elm_format_number$FormatNumber$Parser$addZerosToFit, min, digits);
 		}
 	});
-var $elm$core$String$foldr = _String_foldr;
-var $elm$core$String$toList = function (string) {
-	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
-};
 var $myrho$elm_round$Round$addSign = F2(
 	function (signed, str) {
 		var isNotZero = A2(
@@ -22233,7 +26646,6 @@ var $myrho$elm_round$Round$addSign = F2(
 			(signed && isNotZero) ? '-' : '',
 			str);
 	});
-var $elm$core$Char$fromCode = _Char_fromCode;
 var $myrho$elm_round$Round$increaseNum = function (_v0) {
 	var head = _v0.a;
 	var tail = _v0.b;
@@ -22258,21 +26670,6 @@ var $myrho$elm_round$Round$increaseNum = function (_v0) {
 			tail) : '0';
 	}
 };
-var $elm$core$Basics$isInfinite = _Basics_isInfinite;
-var $elm$core$Basics$isNaN = _Basics_isNaN;
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $elm$core$String$padRight = F3(
-	function (n, _char, string) {
-		return _Utils_ap(
-			string,
-			A2(
-				$elm$core$String$repeat,
-				n - $elm$core$String$length(string),
-				$elm$core$String$fromChar(_char)));
-	});
-var $elm$core$String$reverse = _String_reverse;
 var $myrho$elm_round$Round$splitComma = function (str) {
 	var _v0 = A2($elm$core$String$split, '.', str);
 	if (_v0.b) {
@@ -22424,15 +26821,6 @@ var $myrho$elm_round$Round$round = $myrho$elm_round$Round$roundFun(
 				}
 			}
 		}));
-var $elm$core$List$tail = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(xs);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $cuducos$elm_format_number$FormatNumber$Parser$splitInParts = F2(
 	function (locale, value) {
 		var toString = function () {
@@ -22636,92 +27024,152 @@ var $mdgriffith$elm_ui$Element$Column = F3(
 	function (header, width, view) {
 		return {header: header, view: view, width: width};
 	});
+var $author$project$Morphir$Visual$Components$DecisionTable$Pattern = function (a) {
+	return {$: 'Pattern', a: a};
+};
 var $author$project$Morphir$IR$FQName$getLocalName = function (_v0) {
 	var l = _v0.c;
 	return l;
 };
-var $author$project$Morphir$Visual$DecisionTable$Pattern = function (a) {
-	return {$: 'Pattern', a: a};
+var $author$project$Morphir$Visual$Components$DecisionTable$highlightColor = {
+	_default: A3($mdgriffith$elm_ui$Element$rgb255, 255, 255, 255),
+	_false: A3($mdgriffith$elm_ui$Element$rgb255, 180, 100, 100),
+	_true: A3($mdgriffith$elm_ui$Element$rgb255, 100, 180, 100)
 };
-var $author$project$Morphir$Visual$DecisionTable$toTypedPattern = function (match) {
+var $author$project$Morphir$Visual$Components$DecisionTable$highlightStateToColor = function (highlightState) {
+	if (highlightState.$ === 'Just') {
+		var state = highlightState.a;
+		switch (state.$) {
+			case 'Matched':
+				return $author$project$Morphir$Visual$Components$DecisionTable$highlightColor._true;
+			case 'Unmatched':
+				return $author$project$Morphir$Visual$Components$DecisionTable$highlightColor._false;
+			default:
+				return $author$project$Morphir$Visual$Components$DecisionTable$highlightColor._default;
+		}
+	} else {
+		return $author$project$Morphir$Visual$Components$DecisionTable$highlightColor._default;
+	}
+};
+var $author$project$Morphir$Visual$Components$DecisionTable$toTypedPattern = function (match) {
 	return A2(
 		$author$project$Morphir$IR$Value$mapPatternAttributes,
 		$elm$core$Basics$always(
 			$author$project$Morphir$IR$Value$patternAttribute(match)),
 		match);
 };
-var $author$project$Morphir$Visual$DecisionTable$patternToMatch = function (pattern) {
-	return $author$project$Morphir$Visual$DecisionTable$Pattern(
-		$author$project$Morphir$Visual$DecisionTable$toTypedPattern(pattern));
+var $author$project$Morphir$Visual$Components$DecisionTable$patternToMatch = function (pattern) {
+	return $author$project$Morphir$Visual$Components$DecisionTable$Pattern(
+		$author$project$Morphir$Visual$Components$DecisionTable$toTypedPattern(pattern));
 };
-var $author$project$Morphir$Visual$DecisionTable$toVisualTypedValue = function (typedValue) {
+var $author$project$Morphir$Visual$Components$DecisionTable$toVisualTypedValue = function (typedValue) {
 	return A3($author$project$Morphir$IR$Value$indexedMapValue, $elm$core$Tuple$pair, 0, typedValue).a;
 };
-var $author$project$Morphir$Visual$DecisionTable$getCaseFromIndex = F2(
-	function (viewValue, rules) {
+var $author$project$Morphir$Visual$Components$DecisionTable$updateConfig = F2(
+	function (config, highlightState) {
+		var tableState = config.state;
+		var updatedTableState = _Utils_update(
+			tableState,
+			{highlightState: highlightState});
+		return _Utils_update(
+			config,
+			{state: updatedTableState});
+	});
+var $author$project$Morphir$Visual$Components$DecisionTable$getCaseFromIndex = F5(
+	function (config, head, viewValue, highlightState, rule) {
 		getCaseFromIndex:
 		while (true) {
-			if (rules.$ === 'Just') {
-				var match = rules.a;
+			if (rule.$ === 'Just') {
+				var match = rule.a;
 				if (match.$ === 'Pattern') {
 					var pattern = match.a;
+					var updatedConfig = A2($author$project$Morphir$Visual$Components$DecisionTable$updateConfig, config, highlightState);
+					var result = $author$project$Morphir$Visual$Components$DecisionTable$highlightStateToColor(highlightState);
 					switch (pattern.$) {
 						case 'WildcardPattern':
 							return A2(
 								$mdgriffith$elm_ui$Element$el,
 								_List_fromArray(
 									[
-										$mdgriffith$elm_ui$Element$Background$color(
-										A3($mdgriffith$elm_ui$Element$rgb255, 200, 200, 200))
+										$mdgriffith$elm_ui$Element$Background$color(result),
+										$mdgriffith$elm_ui$Element$padding(
+										$author$project$Morphir$Visual$Theme$mediumPadding(config.state.theme))
 									]),
-								$mdgriffith$elm_ui$Element$text(' '));
+								$mdgriffith$elm_ui$Element$text('_'));
 						case 'LiteralPattern':
 							var va = pattern.a;
 							var literal = pattern.b;
-							var value = $author$project$Morphir$Visual$DecisionTable$toVisualTypedValue(
+							var value = $author$project$Morphir$Visual$Components$DecisionTable$toVisualTypedValue(
 								A2($author$project$Morphir$IR$Value$Literal, va, literal));
-							return viewValue(value);
+							return A2(
+								$mdgriffith$elm_ui$Element$el,
+								_List_fromArray(
+									[
+										$mdgriffith$elm_ui$Element$Background$color(result),
+										$mdgriffith$elm_ui$Element$padding(
+										$author$project$Morphir$Visual$Theme$mediumPadding(config.state.theme))
+									]),
+								A2(viewValue, updatedConfig, value));
 						case 'ConstructorPattern':
 							var tpe = pattern.a;
 							var fQName = pattern.b;
 							var matches = pattern.c;
-							var patternToMaybeMatch = function (input) {
-								return $elm$core$Maybe$Just(
-									$author$project$Morphir$Visual$DecisionTable$patternToMatch(input));
-							};
-							var maybeMatches = A2($elm$core$List$map, patternToMaybeMatch, matches);
 							var parsedMatches = A2(
 								$elm$core$List$map,
-								$author$project$Morphir$Visual$DecisionTable$getCaseFromIndex(viewValue),
-								maybeMatches);
+								A2(
+									$elm$core$Basics$composeL,
+									A2(
+										$elm$core$Basics$composeL,
+										A2(
+											$elm$core$Basics$composeL,
+											A4($author$project$Morphir$Visual$Components$DecisionTable$getCaseFromIndex, config, head, viewValue, highlightState),
+											$elm$core$Maybe$Just),
+										$author$project$Morphir$Visual$Components$DecisionTable$Pattern),
+									$author$project$Morphir$Visual$Components$DecisionTable$toTypedPattern),
+								matches);
 							return A2(
 								$mdgriffith$elm_ui$Element$row,
 								_List_fromArray(
 									[
-										$mdgriffith$elm_ui$Element$spacing(5),
-										$mdgriffith$elm_ui$Element$Border$widthEach(
-										{bottom: 0, left: 2, right: 0, top: 0})
+										$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+										$mdgriffith$elm_ui$Element$Background$color(result),
+										$mdgriffith$elm_ui$Element$padding(
+										$author$project$Morphir$Visual$Theme$mediumPadding(config.state.theme))
 									]),
 								$elm$core$List$concat(
 									_List_fromArray(
 										[
 											_List_fromArray(
 											[
+												$mdgriffith$elm_ui$Element$text('('),
 												$mdgriffith$elm_ui$Element$text(
 												$author$project$Morphir$Visual$Common$nameToText(
 													$author$project$Morphir$IR$FQName$getLocalName(fQName)))
 											]),
-											parsedMatches
+											A2(
+											$elm$core$List$intersperse,
+											$mdgriffith$elm_ui$Element$text(','),
+											parsedMatches),
+											_List_fromArray(
+											[
+												$mdgriffith$elm_ui$Element$text(')')
+											])
 										])));
 						case 'AsPattern':
 							var tpe = pattern.a;
 							var asPattern = pattern.b;
 							var name = pattern.c;
-							var $temp$viewValue = viewValue,
-								$temp$rules = $elm$core$Maybe$Just(
-								$author$project$Morphir$Visual$DecisionTable$patternToMatch(asPattern));
+							var $temp$config = config,
+								$temp$head = head,
+								$temp$viewValue = viewValue,
+								$temp$highlightState = highlightState,
+								$temp$rule = $elm$core$Maybe$Just(
+								$author$project$Morphir$Visual$Components$DecisionTable$patternToMatch(asPattern));
+							config = $temp$config;
+							head = $temp$head;
 							viewValue = $temp$viewValue;
-							rules = $temp$rules;
+							highlightState = $temp$highlightState;
+							rule = $temp$rule;
 							continue getCaseFromIndex;
 						default:
 							return $mdgriffith$elm_ui$Element$text('pattern type not implemented');
@@ -22734,9 +27182,9 @@ var $author$project$Morphir$Visual$DecisionTable$getCaseFromIndex = F2(
 			}
 		}
 	});
-var $author$project$Morphir$Visual$DecisionTable$columnHelper = F3(
-	function (viewValue, header, index) {
-		var head = $author$project$Morphir$Visual$DecisionTable$toVisualTypedValue(header);
+var $author$project$Morphir$Visual$Components$DecisionTable$columnHelper = F4(
+	function (config, viewValue, header, index) {
+		var head = $author$project$Morphir$Visual$Components$DecisionTable$toVisualTypedValue(header);
 		return _List_fromArray(
 			[
 				A3(
@@ -22746,54 +27194,59 @@ var $author$project$Morphir$Visual$DecisionTable$columnHelper = F3(
 					_List_fromArray(
 						[
 							$mdgriffith$elm_ui$Element$Border$widthEach(
-							{bottom: 1, left: 0, right: 0, top: 0})
+							{bottom: 1, left: 0, right: 0, top: 0}),
+							$mdgriffith$elm_ui$Element$padding(
+							$author$project$Morphir$Visual$Theme$mediumPadding(config.state.theme)),
+							$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
 						]),
-					viewValue(head)),
+					A2(viewValue, config, head)),
 				$mdgriffith$elm_ui$Element$fill,
 				function (rules) {
-					return A2(
-						$author$project$Morphir$Visual$DecisionTable$getCaseFromIndex,
+					return A5(
+						$author$project$Morphir$Visual$Components$DecisionTable$getCaseFromIndex,
+						config,
+						head,
 						viewValue,
 						$elm$core$List$head(
-							A2($elm$core$List$drop, index, rules.a)));
+							A2($elm$core$List$drop, index, rules.highlightStates)),
+						$elm$core$List$head(
+							A2($elm$core$List$drop, index, rules.matches)));
 				})
 			]);
 	});
-var $author$project$Morphir$Visual$DecisionTable$getColumnFromHeader = F3(
-	function (viewValue, index, decomposeInput) {
+var $author$project$Morphir$Visual$Components$DecisionTable$getColumnFromHeader = F4(
+	function (config, viewValue, index, decomposeInput) {
 		if (decomposeInput.b) {
 			if (!decomposeInput.b.b) {
 				var inputHead = decomposeInput.a;
-				return A3($author$project$Morphir$Visual$DecisionTable$columnHelper, viewValue, inputHead, index);
+				return A4($author$project$Morphir$Visual$Components$DecisionTable$columnHelper, config, viewValue, inputHead, index);
 			} else {
 				var inputHead = decomposeInput.a;
 				var inputTail = decomposeInput.b;
 				return $elm$core$List$concat(
 					_List_fromArray(
 						[
-							A3($author$project$Morphir$Visual$DecisionTable$columnHelper, viewValue, inputHead, index),
-							A3($author$project$Morphir$Visual$DecisionTable$getColumnFromHeader, viewValue, index + 1, inputTail)
+							A4($author$project$Morphir$Visual$Components$DecisionTable$columnHelper, config, viewValue, inputHead, index),
+							A4($author$project$Morphir$Visual$Components$DecisionTable$getColumnFromHeader, config, viewValue, index + 1, inputTail)
 						]));
 			}
 		} else {
 			return _List_Nil;
 		}
 	});
-var $author$project$Morphir$Visual$DecisionTable$tableHelp = F3(
-	function (viewValue, headerFunctions, rows) {
+var $author$project$Morphir$Visual$Components$DecisionTable$tableHelp = F4(
+	function (config, viewValue, headerFunctions, rows) {
 		return A2(
 			$mdgriffith$elm_ui$Element$table,
 			_List_fromArray(
 				[
-					$mdgriffith$elm_ui$Element$spacing(10),
-					$mdgriffith$elm_ui$Element$padding(10),
 					$mdgriffith$elm_ui$Element$Border$solid,
 					$mdgriffith$elm_ui$Element$Border$width(1)
 				]),
 			{
 				columns: A2(
 					$elm$core$List$append,
-					A3($author$project$Morphir$Visual$DecisionTable$getColumnFromHeader, viewValue, 0, headerFunctions),
+					A4($author$project$Morphir$Visual$Components$DecisionTable$getColumnFromHeader, config, viewValue, 0, headerFunctions),
 					_List_fromArray(
 						[
 							A3(
@@ -22803,21 +27256,45 @@ var $author$project$Morphir$Visual$DecisionTable$tableHelp = F3(
 								_List_fromArray(
 									[
 										$mdgriffith$elm_ui$Element$Border$widthEach(
-										{bottom: 1, left: 0, right: 0, top: 0})
+										{bottom: 1, left: 0, right: 0, top: 0}),
+										$mdgriffith$elm_ui$Element$padding(
+										$author$project$Morphir$Visual$Theme$mediumPadding(config.state.theme)),
+										$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
 									]),
 								$mdgriffith$elm_ui$Element$text('Result')),
 							$mdgriffith$elm_ui$Element$fill,
 							function (rules) {
-								return viewValue(
-									$author$project$Morphir$Visual$DecisionTable$toVisualTypedValue(rules.b));
+								return A2(
+									$mdgriffith$elm_ui$Element$el,
+									_List_fromArray(
+										[
+											$mdgriffith$elm_ui$Element$Background$color(
+											$author$project$Morphir$Visual$Components$DecisionTable$highlightStateToColor(
+												$elm$core$List$head(
+													$elm$core$List$reverse(rules.highlightStates)))),
+											$mdgriffith$elm_ui$Element$padding(
+											$author$project$Morphir$Visual$Theme$mediumPadding(config.state.theme))
+										]),
+									A2(
+										viewValue,
+										A2(
+											$author$project$Morphir$Visual$Components$DecisionTable$updateConfig,
+											config,
+											$elm$core$List$head(
+												$elm$core$List$reverse(rules.highlightStates))),
+										$author$project$Morphir$Visual$Components$DecisionTable$toVisualTypedValue(rules.result)));
 							})
 						])),
 				data: rows
 			});
 	});
-var $author$project$Morphir$Visual$DecisionTable$displayTable = F2(
-	function (viewValue, table) {
-		return A3($author$project$Morphir$Visual$DecisionTable$tableHelp, viewValue, table.decomposeInput, table.rules);
+var $author$project$Morphir$Visual$Components$DecisionTable$displayTable = F3(
+	function (config, viewValue, table) {
+		return A4($author$project$Morphir$Visual$Components$DecisionTable$tableHelp, config, viewValue, table.decomposeInput, table.rules);
+	});
+var $author$project$Morphir$Visual$Components$DecisionTable$Rule = F3(
+	function (matches, result, highlightStates) {
+		return {highlightStates: highlightStates, matches: matches, result: result};
 	});
 var $author$project$Morphir$Visual$ViewPatternMatch$decomposeInput = function (subject) {
 	if (subject.$ === 'Tuple') {
@@ -22828,12 +27305,176 @@ var $author$project$Morphir$Visual$ViewPatternMatch$decomposeInput = function (s
 			[subject]);
 	}
 };
+var $author$project$Morphir$Visual$Config$Default = {$: 'Default'};
+var $author$project$Morphir$Visual$Config$Matched = {$: 'Matched'};
+var $author$project$Morphir$Visual$Config$Unmatched = {$: 'Unmatched'};
+var $author$project$Morphir$Visual$ViewPatternMatch$getNextHighlightState = F3(
+	function (config, currentMatch, previousStates) {
+		var lastState = function () {
+			var _v5 = $elm$core$List$reverse(previousStates);
+			if (_v5.b) {
+				var x = _v5.a;
+				return x;
+			} else {
+				return $author$project$Morphir$Visual$Config$Matched;
+			}
+		}();
+		var nextState = function () {
+			if (lastState.$ === 'Matched') {
+				var subject = currentMatch.a;
+				var match = currentMatch.b;
+				if (match.$ === 'Pattern') {
+					var pattern = match.a;
+					var rawPattern = A2(
+						$author$project$Morphir$IR$Value$mapPatternAttributes,
+						$elm$core$Basics$always(_Utils_Tuple0),
+						pattern);
+					var _v3 = A2(
+						$author$project$Morphir$Visual$Config$evaluate,
+						$author$project$Morphir$IR$Value$toRawValue(subject),
+						config);
+					if (_v3.$ === 'Ok') {
+						var value = _v3.a;
+						var _v4 = A2($author$project$Morphir$Value$Interpreter$matchPattern, rawPattern, value);
+						if (_v4.$ === 'Ok') {
+							return $author$project$Morphir$Visual$Config$Matched;
+						} else {
+							return $author$project$Morphir$Visual$Config$Unmatched;
+						}
+					} else {
+						return $author$project$Morphir$Visual$Config$Default;
+					}
+				} else {
+					return $author$project$Morphir$Visual$Config$Default;
+				}
+			} else {
+				return $author$project$Morphir$Visual$Config$Default;
+			}
+		}();
+		return A2(
+			$elm$core$List$append,
+			previousStates,
+			_List_fromArray(
+				[nextState]));
+	});
+var $author$project$Morphir$Visual$ViewPatternMatch$isNotDefaultHighlightState = function (highlightState) {
+	return !_Utils_eq(highlightState, $author$project$Morphir$Visual$Config$Default);
+};
+var $author$project$Morphir$Visual$ViewPatternMatch$isFullyDefaultRow = function (highlightStates) {
+	return !$elm$core$List$length(
+		A2($elm$core$List$filter, $author$project$Morphir$Visual$ViewPatternMatch$isNotDefaultHighlightState, highlightStates));
+};
+var $author$project$Morphir$Visual$ViewPatternMatch$isNotMatchedHighlightState = function (highlightState) {
+	return !_Utils_eq(highlightState, $author$project$Morphir$Visual$Config$Matched);
+};
+var $author$project$Morphir$Visual$ViewPatternMatch$isFullyMatchedRow = function (highlightStates) {
+	return !$elm$core$List$length(
+		A2($elm$core$List$filter, $author$project$Morphir$Visual$ViewPatternMatch$isNotMatchedHighlightState, highlightStates));
+};
+var $author$project$Morphir$Visual$ViewPatternMatch$comparePreviousHighlightStates = F3(
+	function (config, matches, previousStates) {
+		var mostRecentRow = function () {
+			var _v1 = $elm$core$List$reverse(previousStates);
+			if (_v1.b) {
+				var x = _v1.a;
+				return x;
+			} else {
+				return _List_Nil;
+			}
+		}();
+		var nextMatches = function () {
+			if (mostRecentRow.b) {
+				var x = mostRecentRow.a;
+				if ($author$project$Morphir$Visual$ViewPatternMatch$isFullyMatchedRow(mostRecentRow) || $author$project$Morphir$Visual$ViewPatternMatch$isFullyDefaultRow(mostRecentRow)) {
+					return A2(
+						$elm$core$List$repeat,
+						$elm$core$List$length(matches) + 1,
+						$author$project$Morphir$Visual$Config$Default);
+				} else {
+					var nextStates = A3(
+						$elm$core$List$foldl,
+						$author$project$Morphir$Visual$ViewPatternMatch$getNextHighlightState(config),
+						_List_Nil,
+						matches);
+					return $author$project$Morphir$Visual$ViewPatternMatch$isFullyMatchedRow(nextStates) ? A2(
+						$elm$core$List$append,
+						nextStates,
+						_List_fromArray(
+							[$author$project$Morphir$Visual$Config$Matched])) : A2(
+						$elm$core$List$append,
+						nextStates,
+						_List_fromArray(
+							[$author$project$Morphir$Visual$Config$Default]));
+				}
+			} else {
+				var nextStates = A3(
+					$elm$core$List$foldl,
+					$author$project$Morphir$Visual$ViewPatternMatch$getNextHighlightState(config),
+					_List_Nil,
+					matches);
+				return $author$project$Morphir$Visual$ViewPatternMatch$isFullyMatchedRow(nextStates) ? A2(
+					$elm$core$List$append,
+					nextStates,
+					_List_fromArray(
+						[$author$project$Morphir$Visual$Config$Matched])) : A2(
+					$elm$core$List$append,
+					nextStates,
+					_List_fromArray(
+						[$author$project$Morphir$Visual$Config$Default]));
+			}
+		}();
+		return A2(
+			$elm$core$List$append,
+			previousStates,
+			_List_fromArray(
+				[nextMatches]));
+	});
+var $author$project$Morphir$Visual$ViewPatternMatch$getHighlightStates = F3(
+	function (config, subject, matches) {
+		var patterns = A2(
+			$elm$core$List$map,
+			function (x) {
+				return x.a;
+			},
+			matches);
+		var referencedPatterns = A2(
+			$elm$core$List$map,
+			A2($elm$core$List$map2, $elm$core$Tuple$pair, subject),
+			patterns);
+		var _v0 = config.state.highlightState;
+		if (_v0.$ === 'Nothing') {
+			return A3(
+				$elm$core$List$foldl,
+				$author$project$Morphir$Visual$ViewPatternMatch$comparePreviousHighlightStates(config),
+				_List_Nil,
+				referencedPatterns);
+		} else {
+			var highlightState = _v0.a;
+			if (highlightState.$ === 'Matched') {
+				return A3(
+					$elm$core$List$foldl,
+					$author$project$Morphir$Visual$ViewPatternMatch$comparePreviousHighlightStates(config),
+					_List_Nil,
+					referencedPatterns);
+			} else {
+				return A2(
+					$elm$core$List$map,
+					function (x) {
+						return A2(
+							$elm$core$List$repeat,
+							$elm$core$List$length(x),
+							$author$project$Morphir$Visual$Config$Default);
+					},
+					patterns);
+			}
+		}
+	});
 var $author$project$Morphir$Visual$ViewPatternMatch$decomposePattern = F2(
 	function (subject, match) {
 		switch (match.a.$) {
 			case 'WildcardPattern':
 				var tpe = match.a.a;
-				var wildcardMatch = $author$project$Morphir$Visual$DecisionTable$Pattern(match.a);
+				var wildcardMatch = $author$project$Morphir$Visual$Components$DecisionTable$Pattern(match.a);
 				return _List_fromArray(
 					[
 						_Utils_Tuple2(
@@ -22847,7 +27488,7 @@ var $author$project$Morphir$Visual$ViewPatternMatch$decomposePattern = F2(
 				var _v1 = match.a;
 				var tpe = _v1.a;
 				var literal = _v1.b;
-				var literalMatch = $author$project$Morphir$Visual$DecisionTable$Pattern(match.a);
+				var literalMatch = $author$project$Morphir$Visual$Components$DecisionTable$Pattern(match.a);
 				return _List_fromArray(
 					[
 						_Utils_Tuple2(
@@ -22859,7 +27500,7 @@ var $author$project$Morphir$Visual$ViewPatternMatch$decomposePattern = F2(
 				var _v2 = match.a;
 				var tpe = _v2.a;
 				var matches = _v2.b;
-				var tupleMatch = A2($elm$core$List$map, $author$project$Morphir$Visual$DecisionTable$Pattern, matches);
+				var tupleMatch = A2($elm$core$List$map, $author$project$Morphir$Visual$Components$DecisionTable$Pattern, matches);
 				return _List_fromArray(
 					[
 						_Utils_Tuple2(tupleMatch, match.b)
@@ -22869,7 +27510,7 @@ var $author$project$Morphir$Visual$ViewPatternMatch$decomposePattern = F2(
 				var tpe = _v3.a;
 				var fQName = _v3.b;
 				var matches = _v3.c;
-				var constructorMatch = $author$project$Morphir$Visual$DecisionTable$Pattern(match.a);
+				var constructorMatch = $author$project$Morphir$Visual$Components$DecisionTable$Pattern(match.a);
 				return _List_fromArray(
 					[
 						_Utils_Tuple2(
@@ -22882,7 +27523,7 @@ var $author$project$Morphir$Visual$ViewPatternMatch$decomposePattern = F2(
 				var tpe = _v4.a;
 				var pattern = _v4.b;
 				var name = _v4.c;
-				var asMatch = $author$project$Morphir$Visual$DecisionTable$Pattern(match.a);
+				var asMatch = $author$project$Morphir$Visual$Components$DecisionTable$Pattern(match.a);
 				return _List_fromArray(
 					[
 						_Utils_Tuple2(
@@ -22901,12 +27542,21 @@ var $author$project$Morphir$Visual$ViewPatternMatch$getRules = F2(
 			$author$project$Morphir$Visual$ViewPatternMatch$decomposePattern(subject),
 			matches);
 	});
-var $author$project$Morphir$Visual$ViewPatternMatch$toDecisionTable = F2(
-	function (subject, matches) {
+var $author$project$Morphir$Visual$ViewPatternMatch$toDecisionTable = F3(
+	function (config, subject, matches) {
 		var decomposedInput = $author$project$Morphir$Visual$ViewPatternMatch$decomposeInput(subject);
+		var rules = A2($author$project$Morphir$Visual$ViewPatternMatch$getRules, decomposedInput, matches);
+		var highlights = A3($author$project$Morphir$Visual$ViewPatternMatch$getHighlightStates, config, decomposedInput, rules);
 		return {
 			decomposeInput: decomposedInput,
-			rules: A2($author$project$Morphir$Visual$ViewPatternMatch$getRules, decomposedInput, matches)
+			rules: A3(
+				$elm$core$List$map2,
+				F2(
+					function (rows, highlightStates) {
+						return A3($author$project$Morphir$Visual$Components$DecisionTable$Rule, rows.a, rows.b, highlightStates);
+					}),
+				rules,
+				highlights)
 		};
 	});
 var $author$project$Morphir$Visual$ViewPatternMatch$toTypedPattern = function (match) {
@@ -22941,8 +27591,94 @@ var $author$project$Morphir$Visual$ViewPatternMatch$view = F4(
 					$author$project$Morphir$Visual$ViewPatternMatch$toTypedValue(b));
 			},
 			matches);
-		var decisionTable = A2($author$project$Morphir$Visual$ViewPatternMatch$toDecisionTable, typedSubject, typedMatches);
-		return A2($author$project$Morphir$Visual$DecisionTable$displayTable, viewValue, decisionTable);
+		var decisionTable = A3($author$project$Morphir$Visual$ViewPatternMatch$toDecisionTable, config, typedSubject, typedMatches);
+		return A3($author$project$Morphir$Visual$Components$DecisionTable$displayTable, config, viewValue, decisionTable);
+	});
+var $author$project$Morphir$Visual$ViewRecord$view = F3(
+	function (config, viewValue, items) {
+		return A2(
+			$mdgriffith$elm_ui$Element$table,
+			_List_fromArray(
+				[$mdgriffith$elm_ui$Element$centerX, $mdgriffith$elm_ui$Element$centerY]),
+			{
+				columns: _List_fromArray(
+					[
+						{
+						header: A2(
+							$mdgriffith$elm_ui$Element$el,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$Border$widthEach(
+									{bottom: 1, left: 1, right: 0, top: 1}),
+									$mdgriffith$elm_ui$Element$padding(
+									$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
+								]),
+							A2(
+								$mdgriffith$elm_ui$Element$el,
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Element$centerX, $mdgriffith$elm_ui$Element$centerY, $mdgriffith$elm_ui$Element$Font$bold]),
+								$mdgriffith$elm_ui$Element$text('Field Name'))),
+						view: function (_v0) {
+							var name = _v0.a;
+							return A2(
+								$mdgriffith$elm_ui$Element$el,
+								_List_fromArray(
+									[
+										$mdgriffith$elm_ui$Element$padding(
+										$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme)),
+										$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+										$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+										$mdgriffith$elm_ui$Element$Border$widthEach(
+										{bottom: 1, left: 1, right: 0, top: 0})
+									]),
+								A2(
+									$mdgriffith$elm_ui$Element$el,
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Element$centerX, $mdgriffith$elm_ui$Element$centerY]),
+									$mdgriffith$elm_ui$Element$text(
+										$author$project$Morphir$Visual$Common$nameToText(name))));
+						},
+						width: $mdgriffith$elm_ui$Element$fill
+					},
+						{
+						header: A2(
+							$mdgriffith$elm_ui$Element$el,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$Border$widthEach(
+									{bottom: 1, left: 1, right: 1, top: 1}),
+									$mdgriffith$elm_ui$Element$padding(
+									$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
+								]),
+							A2(
+								$mdgriffith$elm_ui$Element$el,
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Element$centerX, $mdgriffith$elm_ui$Element$centerY, $mdgriffith$elm_ui$Element$Font$bold]),
+								$mdgriffith$elm_ui$Element$text('Field Value'))),
+						view: function (_v1) {
+							var val = _v1.b;
+							return A2(
+								$mdgriffith$elm_ui$Element$el,
+								_List_fromArray(
+									[
+										$mdgriffith$elm_ui$Element$padding(
+										$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme)),
+										$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+										$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+										$mdgriffith$elm_ui$Element$Border$widthEach(
+										{bottom: 1, left: 1, right: 1, top: 0})
+									]),
+								A2(
+									$mdgriffith$elm_ui$Element$el,
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Element$centerX, $mdgriffith$elm_ui$Element$centerY]),
+									viewValue(val)));
+						},
+						width: $mdgriffith$elm_ui$Element$fill
+					}
+					]),
+				data: items
+			});
 	});
 var $author$project$Morphir$Visual$ViewReference$view = F3(
 	function (config, viewValue, fQName) {
@@ -22969,48 +27705,42 @@ var $author$project$Morphir$Visual$ViewReference$view = F3(
 						$author$project$Morphir$Visual$Common$nameToText(localName)))
 				]));
 	});
-var $mdgriffith$elm_ui$Internal$Model$MoveX = function (a) {
-	return {$: 'MoveX', a: a};
-};
-var $mdgriffith$elm_ui$Internal$Flag$moveX = $mdgriffith$elm_ui$Internal$Flag$flag(25);
-var $mdgriffith$elm_ui$Element$moveRight = function (x) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$TransformComponent,
-		$mdgriffith$elm_ui$Internal$Flag$moveX,
-		$mdgriffith$elm_ui$Internal$Model$MoveX(x));
-};
 var $author$project$Morphir$Visual$ViewTuple$view = F3(
 	function (config, viewValue, elems) {
-		var tupleCase = function () {
-			var _v0 = $elm$core$List$length(elems);
-			switch (_v0) {
-				case 2:
-					return 'pair';
-				case 3:
-					return 'triple';
-				default:
-					return 'tuple';
-			}
-		}();
 		return A2(
 			$mdgriffith$elm_ui$Element$column,
 			_List_fromArray(
 				[
 					$mdgriffith$elm_ui$Element$spacing(
-					$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+					$author$project$Morphir$Visual$Theme$mediumSpacing(config.state.theme))
 				]),
 			_List_fromArray(
 				[
-					$mdgriffith$elm_ui$Element$text(tupleCase + ' of'),
 					A2(
-					$mdgriffith$elm_ui$Element$column,
+					$mdgriffith$elm_ui$Element$row,
 					_List_fromArray(
 						[
-							$mdgriffith$elm_ui$Element$moveRight(10),
 							$mdgriffith$elm_ui$Element$spacing(
-							$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+							$author$project$Morphir$Visual$Theme$mediumSpacing(config.state.theme)),
+							$mdgriffith$elm_ui$Element$padding(
+							$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
 						]),
-					A2($elm$core$List$map, viewValue, elems))
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$text('('),
+							A2(
+							$mdgriffith$elm_ui$Element$row,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$spacing(
+									$author$project$Morphir$Visual$Theme$smallSpacing(config.state.theme))
+								]),
+							A2(
+								$elm$core$List$intersperse,
+								$mdgriffith$elm_ui$Element$text(','),
+								A2($elm$core$List$map, viewValue, elems))),
+							$mdgriffith$elm_ui$Element$text(')')
+						]))
 				]));
 	});
 var $author$project$Morphir$Visual$XRayView$viewType = function (tpe) {
@@ -23635,7 +28365,7 @@ var $author$project$Morphir$Visual$XRayView$viewReferenceName = function (_v0) {
 		$author$project$Morphir$IR$Name$toCamelCase(localName));
 };
 var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value) {
-	var nodeLabel = function (labelText) {
+	var logicLabel = function (labelText) {
 		return A2(
 			$mdgriffith$elm_ui$Element$el,
 			_List_fromArray(
@@ -23656,13 +28386,25 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 				]),
 			elems);
 	};
+	var dataLabel = function (labelText) {
+		return A2(
+			$mdgriffith$elm_ui$Element$el,
+			_List_fromArray(
+				[
+					A2($mdgriffith$elm_ui$Element$paddingXY, 6, 3),
+					$mdgriffith$elm_ui$Element$Border$rounded(3),
+					$mdgriffith$elm_ui$Element$Background$color(
+					A3($mdgriffith$elm_ui$Element$rgb, 0.9, 0.9, 1))
+				]),
+			$mdgriffith$elm_ui$Element$text(labelText));
+	};
 	switch (value.$) {
 		case 'Literal':
 			var lit = value.b;
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Literal'),
+						dataLabel('Literal'),
 						$author$project$Morphir$Visual$XRayView$viewLiteral(lit)
 					]));
 		case 'Constructor':
@@ -23670,7 +28412,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Constructor'),
+						dataLabel('Constructor'),
 						$author$project$Morphir$Visual$XRayView$viewConstructorName(fQName)
 					]));
 		case 'Tuple':
@@ -23678,43 +28420,43 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return $elm$core$List$isEmpty(items) ? header(
 				_List_fromArray(
 					[
-						nodeLabel('Tuple'),
+						dataLabel('Tuple'),
 						$mdgriffith$elm_ui$Element$text('()')
 					])) : header(
 				_List_fromArray(
 					[
-						nodeLabel('Tuple')
+						dataLabel('Tuple')
 					]));
 		case 'List':
 			var items = value.b;
 			return $elm$core$List$isEmpty(items) ? header(
 				_List_fromArray(
 					[
-						nodeLabel('List'),
+						dataLabel('List'),
 						$mdgriffith$elm_ui$Element$text('[]')
 					])) : header(
 				_List_fromArray(
 					[
-						nodeLabel('List')
+						dataLabel('List')
 					]));
 		case 'Record':
 			var fields = value.b;
 			return $elm$core$List$isEmpty(fields) ? header(
 				_List_fromArray(
 					[
-						nodeLabel('Record'),
+						dataLabel('Record'),
 						$mdgriffith$elm_ui$Element$text('{}')
 					])) : header(
 				_List_fromArray(
 					[
-						nodeLabel('Record')
+						dataLabel('Record')
 					]));
 		case 'Variable':
 			var varName = value.b;
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Variable'),
+						logicLabel('Variable'),
 						$mdgriffith$elm_ui$Element$text(
 						$author$project$Morphir$IR$Name$toCamelCase(varName))
 					]));
@@ -23723,7 +28465,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Reference'),
+						logicLabel('Reference'),
 						$author$project$Morphir$Visual$XRayView$viewReferenceName(fQName)
 					]));
 		case 'Field':
@@ -23731,7 +28473,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Field'),
+						logicLabel('Field'),
 						$mdgriffith$elm_ui$Element$text(
 						$author$project$Morphir$IR$Name$toCamelCase(fieldName))
 					]));
@@ -23740,7 +28482,7 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('FieldFunction'),
+						logicLabel('FieldFunction'),
 						$mdgriffith$elm_ui$Element$text(
 						$author$project$Morphir$IR$Name$toCamelCase(fieldName))
 					]));
@@ -23748,55 +28490,55 @@ var $author$project$Morphir$Visual$XRayView$viewValueAsHeader = function (value)
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Apply')
+						logicLabel('Apply')
 					]));
 		case 'Lambda':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Lambda')
+						logicLabel('Lambda')
 					]));
 		case 'LetDefinition':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('LetDefinition')
+						logicLabel('LetDefinition')
 					]));
 		case 'LetRecursion':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('LetRecursion')
+						logicLabel('LetRecursion')
 					]));
 		case 'Destructure':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Destructure')
+						logicLabel('Destructure')
 					]));
 		case 'IfThenElse':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('IfThenElse')
+						logicLabel('IfThenElse')
 					]));
 		case 'PatternMatch':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('PatternMatch')
+						logicLabel('PatternMatch')
 					]));
 		case 'UpdateRecord':
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('UpdateRecord')
+						logicLabel('UpdateRecord')
 					]));
 		default:
 			return header(
 				_List_fromArray(
 					[
-						nodeLabel('Unit')
+						logicLabel('Unit')
 					]));
 	}
 };
@@ -23929,7 +28671,7 @@ var $author$project$Morphir$Visual$ViewValue$viewPopup = function (config) {
 					$author$project$Morphir$Visual$VisualTypedValue$rawToVisualTypedValue,
 					$author$project$Morphir$IR$fromDistribution(config.irContext.distribution),
 					rawValue);
-				var popUpStyle = function (element) {
+				var popUpStyle = function (elementMsg) {
 					return A2(
 						$mdgriffith$elm_ui$Element$el,
 						_List_fromArray(
@@ -23953,7 +28695,7 @@ var $author$project$Morphir$Visual$ViewValue$viewPopup = function (config) {
 								$mdgriffith$elm_ui$Element$htmlAttribute(
 								A2($elm$html$Html$Attributes$style, 'transition', 'all 0.2s ease-in-out'))
 							]),
-						element);
+						elementMsg);
 				};
 				if (visualTypedVal.$ === 'Ok') {
 					var visualTypedValue = visualTypedVal.a;
@@ -23975,7 +28717,7 @@ var $author$project$Morphir$Visual$ViewValue$viewValue = F2(
 var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 	function (config, value) {
 		var valueElem = function () {
-			_v0$12:
+			_v0$13:
 			while (true) {
 				switch (value.$) {
 					case 'Literal':
@@ -24020,8 +28762,15 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 								itemType,
 								items);
 						} else {
-							break _v0$12;
+							break _v0$13;
 						}
+					case 'Record':
+						var items = value.b;
+						return A3(
+							$author$project$Morphir$Visual$ViewRecord$view,
+							config,
+							$author$project$Morphir$Visual$ViewValue$viewValue(config),
+							items);
 					case 'Variable':
 						var _v14 = value.a;
 						var index = _v14.a;
@@ -24058,19 +28807,87 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 							$author$project$Morphir$Visual$ViewValue$viewValue(config),
 							fQName);
 					case 'Field':
+						var _v15 = value.a;
+						var index1 = _v15.a;
+						var tpe = _v15.b;
 						var subjectValue = value.b;
 						var fieldName = value.c;
-						return A3(
-							$author$project$Morphir$Visual$ViewField$view,
-							$author$project$Morphir$Visual$ViewValue$viewValue(config),
-							subjectValue,
-							fieldName);
+						var defaultValue = A2(
+							$mdgriffith$elm_ui$Element$row,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+								]),
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$text(
+									$elm$core$String$concat(
+										_List_fromArray(
+											[
+												'the ',
+												$author$project$Morphir$Visual$Common$nameToText(fieldName),
+												' field of '
+											]))),
+									A2($author$project$Morphir$Visual$ViewValue$viewValue, config, subjectValue)
+								]));
+						var _v16 = A2(
+							$author$project$Morphir$Visual$Config$evaluate,
+							$author$project$Morphir$IR$Value$toRawValue(subjectValue),
+							config);
+						if (_v16.$ === 'Ok') {
+							var valueType = _v16.a;
+							var _v17 = A2(
+								$author$project$Morphir$Visual$VisualTypedValue$rawToVisualTypedValue,
+								$author$project$Morphir$IR$fromDistribution(config.irContext.distribution),
+								valueType);
+							if ((_v17.$ === 'Ok') && (_v17.a.$ === 'Variable')) {
+								var _v18 = _v17.a;
+								var _v19 = _v18.a;
+								var index = _v19.a;
+								var variableName = _v18.b;
+								var variableValue = A2($elm$core$Dict$get, variableName, config.state.variables);
+								return A2(
+									$mdgriffith$elm_ui$Element$el,
+									_List_fromArray(
+										[
+											$mdgriffith$elm_ui$Element$Events$onMouseEnter(
+											A2(config.handlers.onHoverOver, index, variableValue)),
+											$mdgriffith$elm_ui$Element$Events$onMouseLeave(
+											config.handlers.onHoverLeave(index)),
+											$mdgriffith$elm_ui$Element$below(
+											_Utils_eq(config.state.popupVariables.variableIndex, index) ? A2(
+												$mdgriffith$elm_ui$Element$el,
+												_List_fromArray(
+													[
+														$mdgriffith$elm_ui$Element$padding(
+														$author$project$Morphir$Visual$Theme$smallPadding(config.state.theme))
+													]),
+												$author$project$Morphir$Visual$ViewValue$viewPopup(config)) : $mdgriffith$elm_ui$Element$text('Not Found')),
+											$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+											$mdgriffith$elm_ui$Element$Font$center
+										]),
+									$mdgriffith$elm_ui$Element$text(
+										$elm$core$String$concat(
+											_List_fromArray(
+												[
+													'the ',
+													$author$project$Morphir$Visual$Common$nameToText(variableName),
+													'\'s ',
+													$author$project$Morphir$Visual$Common$nameToText(fieldName)
+												]))));
+							} else {
+								return defaultValue;
+							}
+						} else {
+							var error = _v16.a;
+							return defaultValue;
+						}
 					case 'Apply':
 						var fun = value.b;
 						var arg = value.c;
-						var _v15 = A2($author$project$Morphir$IR$Value$uncurryApply, fun, arg);
-						var _function = _v15.a;
-						var args = _v15.b;
+						var _v20 = A2($author$project$Morphir$IR$Value$uncurryApply, fun, arg);
+						var _function = _v20.a;
+						var args = _v20.b;
 						return A4(
 							$author$project$Morphir$Visual$ViewApply$view,
 							config,
@@ -24106,14 +28923,14 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 																def)),
 														conf)))
 										});
-									var _v17 = A2(
+									var _v22 = A2(
 										unnest,
 										_Utils_update(
 											conf,
 											{state: newState}),
 										inVal);
-									var defs = _v17.a;
-									var bottomIn = _v17.b;
+									var defs = _v22.a;
+									var bottomIn = _v22.b;
 									return _Utils_Tuple2(
 										A2(
 											$elm$core$List$cons,
@@ -24129,9 +28946,9 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 										A2($author$project$Morphir$Visual$ViewValue$viewValue, conf, notLet));
 								}
 							});
-						var _v18 = A2(unnest, config, value);
-						var definitions = _v18.a;
-						var inValueElem = _v18.b;
+						var _v23 = A2(unnest, config, value);
+						var definitions = _v23.a;
+						var inValueElem = _v23.b;
 						return A2(
 							$mdgriffith$elm_ui$Element$column,
 							_List_fromArray(
@@ -24151,9 +28968,9 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 										]),
 									A2(
 										$elm$core$List$map,
-										function (_v19) {
-											var defName = _v19.a;
-											var defElem = _v19.b;
+										function (_v24) {
+											var defName = _v24.a;
+											var defElem = _v24.b;
 											return A2(
 												$mdgriffith$elm_ui$Element$column,
 												_List_fromArray(
@@ -24182,19 +28999,14 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 						var tpe = value.a;
 						var param = value.b;
 						var patterns = value.c;
-						return A4(
-							$author$project$Morphir$Visual$ViewPatternMatch$view,
-							config,
-							$author$project$Morphir$Visual$ViewValue$viewValue(config),
-							param,
-							patterns);
+						return A4($author$project$Morphir$Visual$ViewPatternMatch$view, config, $author$project$Morphir$Visual$ViewValue$viewValue, param, patterns);
 					case 'Unit':
 						return A2(
 							$mdgriffith$elm_ui$Element$el,
 							_List_Nil,
 							$mdgriffith$elm_ui$Element$text('not set'));
 					default:
-						break _v0$12;
+						break _v0$13;
 				}
 			}
 			var other = value;
@@ -24236,8 +29048,8 @@ var $author$project$Morphir$Visual$ViewValue$viewValueByLanguageFeature = F2(
 							A3(
 								$author$project$Morphir$IR$Value$mapValueAttributes,
 								$elm$core$Basics$identity,
-								function (_v20) {
-									var tpe = _v20.b;
+								function (_v25) {
+									var tpe = _v25.b;
 									return tpe;
 								},
 								other)))
@@ -24281,7 +29093,6 @@ var $author$project$Morphir$Visual$ViewValue$viewDefinition = F3(
 				$author$project$Morphir$Visual$ViewValue$viewValue,
 				config,
 				$author$project$Morphir$Visual$VisualTypedValue$typedToVisualTypedValue(valueDef.body)));
-		var _v1 = A2($elm$core$Debug$log, 'variables', config.state.variables);
 		return A2(
 			$mdgriffith$elm_ui$Element$column,
 			_List_fromArray(
@@ -24301,10 +29112,10 @@ var $author$project$Morphir$Visual$ViewValue$viewDefinition = F3(
 						]),
 					A2(
 						$elm$core$List$map,
-						function (_v2) {
-							var fqName = _v2.a;
+						function (_v1) {
+							var fqName = _v1.a;
 							var localName = fqName.c;
-							var valDef = _v2.b;
+							var valDef = _v1.b;
 							return A2(
 								$mdgriffith$elm_ui$Element$column,
 								_List_fromArray(
@@ -24386,7 +29197,7 @@ var $author$project$Morphir$Web$Insight$view = function (model) {
 			var config = {
 				handlers: {onHoverLeave: $author$project$Morphir$Web$Insight$ShrinkVariable, onHoverOver: $author$project$Morphir$Web$Insight$ExpandVariable, onReferenceClicked: $author$project$Morphir$Web$Insight$ExpandReference},
 				irContext: {distribution: visualizationState.distribution, nativeFunctions: $author$project$Morphir$IR$SDK$nativeFunctions},
-				state: {expandedFunctions: visualizationState.expandedFunctions, popupVariables: visualizationState.popupVariables, theme: model.theme, variables: validArgValues}
+				state: {expandedFunctions: visualizationState.expandedFunctions, highlightState: $elm$core$Maybe$Nothing, popupVariables: visualizationState.popupVariables, theme: model.theme, variables: validArgValues}
 			};
 			return A2(
 				$mdgriffith$elm_ui$Element$layout,
