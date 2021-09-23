@@ -1,4 +1,5 @@
-#!/usr/bin/env nodemodule.exports =
+#!/usr/bin/env node
+module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -43,28 +44,28 @@ app.get('/', (req, res) => {
 app.use(express.static(__webpack_require__.ab + "web"))
 app.use(express.json());
 
-app.get('/server/morphir.json', wrap(async (req, res, next) => {
+app.get('./morphir-service/server/morphir.json', wrap(async (req, res, next) => {
   const morphirJsonPath = path.join(program.projectDir, 'morphir.json')
   const morphirJsonContent = await readFile(morphirJsonPath)
   const morphirJson = JSON.parse(morphirJsonContent.toString())
   res.send(morphirJson)
 }))
 
-app.get('/server/morphir-ir.json', wrap(async (req, res, next) => {
+app.get('./morphir-service/server/morphir-ir.json', wrap(async (req, res, next) => {
   const morphirJsonPath = path.join(program.projectDir, 'morphir-ir.json')
   const morphirJsonContent = await readFile(morphirJsonPath)
   const morphirJson = JSON.parse(morphirJsonContent.toString())
   res.send(morphirJson)
 }))
 
-app.get('/server/morphir-tests.json', wrap(async (req, res, next) => {
+app.get('./morphir-service/server/morphir-tests.json', wrap(async (req, res, next) => {
   const morphirTestsJsonPath = path.join(program.projectDir, 'morphir-tests.json')
   const morphirTestsJsonContent = await readFile(morphirTestsJsonPath)
   const morphirTestsJson = JSON.parse(morphirTestsJsonContent.toString())
   res.send(morphirTestsJson)
 }))
 
-app.post('/server/morphir-tests.json', wrap(async (req, res, next) => {
+app.post('./morphir-service/server/morphir-tests.json', wrap(async (req, res, next) => {
   const morphirTestsJsonPath = path.join(program.projectDir, 'morphir-tests.json')
   var jsonContent = JSON.stringify(req.body,null,4)
   await writeFile(morphirTestsJsonPath, jsonContent)
