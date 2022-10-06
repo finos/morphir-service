@@ -1,0 +1,5 @@
+{
+  "ignore": [
+      { "id": "sonatype-2017-0655", "reason": "Low score - 5.9" }
+  ]
+}
